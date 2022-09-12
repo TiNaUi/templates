@@ -1,21 +1,15 @@
 {
 	"pages": [
-    {
-      "path": "pages/Home/index",
-      "style": {
-        "navigationBarTitleText": "首页"
-      }
-    },
 		{
-			"path": "pages/index/index",
+			"path": "pages/Home/index",
 			"style": {
-				"navigationBarTitleText": "uni-app"
+				"navigationBarTitleText": "Home"
 			}
 		}
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
+		"navigationBarTitleText": "tina-ui壁纸模板",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8"
 	},
@@ -23,7 +17,7 @@
 		"autoscan": true,
 		"custom": {
 			"^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue",
-      "^tn-(.*)": "@/tuniao-ui/components/tn-$1/tn-$1.vue"
+			"^tn-(.*)": "@tina-ui/ui/components/tn-$1/tn-$1.vue"
 		}
 	}
 }

@@ -67,4 +67,6 @@ onHide(() => {
 </script>
 
 <style lang="scss">
+@import '@tina-ui/ui/iconfont.css';
+@import '@tina-ui/ui/index.scss';
 </style>

@@ -1,11 +1,12 @@
 import { defineConfig } from 'vite'
 import uni from '@dcloudio/vite-plugin-uni'
 import { resolve } from 'path'
+import DefineOptions from 'unplugin-vue-define-options/vite'
 
 // https://vitejs.dev/config/
 export default defineConfig({
   envDir: resolve(__dirname, 'env'),
-  plugins: [uni()],
+  plugins: [uni(), DefineOptions()],
   resolve: {
       // 配置别名
       alias: {
@@ -13,13 +14,13 @@ export default defineConfig({
       }
   },
   css: {
-      // css预处理器
-      preprocessorOptions: {
-          scss: {
-              // 因为uni.scss可以全局使用，这里根据自己的需求调整
-              additionalData: '@import "./src/styles/global.scss";'
-          }
+    // css预处理器
+    preprocessorOptions: {
+      scss: {
+        // 因为uni.scss可以全局使用，这里根据自己的需求调整
+        additionalData: '@import "./src/styles/global.scss";'
       }
+    }
   },
   // 开发服务器配置
   server: {

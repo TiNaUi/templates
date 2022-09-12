@@ -1,0 +1,33 @@
+<template>
+  <view class="picture-list-container">
+    <Item v-for="(item, index) in lists"/>
+  </view>
+</template>
+
+<script lang="ts" setup>
+import { PropType } from 'vue';
+import Item from './item.vue';
+
+defineOptions({
+  name: 'PictureList'
+})
+const props = defineProps({
+  lists: {
+    type: Array as PropType<any[]>,
+    default: () => ([])
+  }
+})
+
+</script>
+
+<style lang="scss" scoped>
+.picture-list-container {
+  display: flex;
+  flex-wrap: wrap;
+  .picture-item {
+    &:nth-of-type(2n+1) {
+      margin-right: 30upx;
+    }
+  }
+}
+</style>

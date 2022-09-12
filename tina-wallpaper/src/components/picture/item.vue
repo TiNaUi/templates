@@ -1,0 +1,72 @@
+<template>
+  <view class="picture-item">
+    <view class="item-image">
+      <image
+        src="https://tnuiimage.tnkjapp.com/shop/bag1.jpg"
+        mode="scaleToFill"
+      />
+    </view>
+    <view class="item-title">炫动直播APP闪屏设计页面xxxxssdaa</view>
+    <view class="item-info">
+      <view class="item-info-icon">
+        <text class="tn-icon-like"></text>
+        <text class="info-value">233</text>
+      </view>
+      <view class="item-info-icon">
+        <text class="tn-icon-download"></text>
+        <text class="info-value">235</text>
+      </view>
+    </view>
+  </view>
+</template>
+
+<script lang="ts" setup>
+
+defineOptions({
+  name: 'PictureItem'
+})
+
+</script>
+
+<style lang="scss" scoped>
+.picture-item {
+  width: 330upx;
+  height: 410upx;
+  margin-bottom: 30upx;
+  box-shadow: 0upx 30upx 60upx 0upx rgba(19,104,158,0.1), 0px 30upx 60upx 0upx rgba(19,104,158,0.1);
+  border-radius: 20upx;
+  overflow: hidden;
+  padding-bottom: 14upx;
+  .item-image {
+    height: 310upx;
+    width: 100%;
+    overflow: hidden;
+    image {
+      object-fit: scale-down;
+      width: 100%;
+      min-height: 100%;
+    }
+  }
+  .item-title {
+    margin: 15upx 14upx;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 22upx;
+  }
+  .item-info {
+    display: flex;
+    flex-wrap: nowrap;
+    color: #CED8E1;
+    font-size: 20upx;
+    padding: 0 14upx 14upx 14upx;
+    &-icon {
+      font-size: 22upx;
+      flex: 1;
+      &:last-child {
+        text-align: right;
+      }
+    }
+  }
+}
+</style>

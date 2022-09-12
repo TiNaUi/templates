@@ -76,4 +76,5 @@ $uni-color-paragraph: #3f536e; // 文章段落颜色
 $uni-font-size-paragraph: 30rpx;
 
 
-@import '@/tuniao-ui/theme.scss';
+@import '@tina-ui/ui/theme.scss';
+@import './styles/global.scss';
