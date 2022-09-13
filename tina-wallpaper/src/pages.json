@@ -5,6 +5,12 @@
 			"style": {
 				"navigationBarTitleText": "Home"
 			}
+		},
+		{
+			"path": "pages/Category/index",
+			"style": {
+				"navigationBarTitleText": "category"
+			}
 		}
 	],
 	"globalStyle": {

@@ -1,6 +1,6 @@
 <template>
   <view class="home-banner-container">
-    <tn-swiper :list="list" indicatorPosition="bottomRight"></tn-swiper>
+    <tn-swiper :list="list" indicatorPosition="bottomRight" :effect3d="true" mode="round"></tn-swiper>
   </view>
 </template>
 

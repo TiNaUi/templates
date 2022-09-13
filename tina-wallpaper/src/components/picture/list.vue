@@ -25,8 +25,9 @@ const props = defineProps({
   display: flex;
   flex-wrap: wrap;
   .picture-item {
-    &:nth-of-type(2n+1) {
-      margin-right: 30upx;
+    margin-right: 30upx;
+    &:nth-of-type(3n) {
+      margin-right: 0upx;
     }
   }
 }

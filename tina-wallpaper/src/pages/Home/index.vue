@@ -1,31 +1,15 @@
 <template>
-  <view class="page-container">
-    <tn-custom bg-color="bg-white">
-      <block slot="left">
-        <navigator class='padding-left-xs' url="/pagesA/about/about" hover-class="none">
-          <view class="cu-avatar round shadow " :style="'background-image:url();'"></view>
-        </navigator>
-      </block>
-      <block slot="content">
-        <text class="text-xxl text-black" :style="'opacity:' +  (1 - titleOpacity) + ';'">图鸟官网</text>
-      </block>
-      <block slot="right">
-        <view :style="'opacity:' +  titleOpacity + ';'">
-          <navigator url="/pagesA/search/search" hover-class="none">
-            <view class='search-form search-round search-index'>
-              <text class="cuIcon-search text-bold text-lg"></text>
-              <input class="" disabled type="text" placeholder="搜点什么" confirm-type="search" placeholder-style="color:#000" />
-            </view>
-          </navigator>
-        </view>
-      </block>
-    </tn-custom>
+  <PageWrapper>
     <Banner />
     <view class="container">
       <HomeNav />
+      <HotTag style="margin-top: 30upx;" />
+      <SectionTitle title="今日壁纸精选" />
+      <List :lists="list.slice(3)" style="margin-top: 30upx;"/>
+      <SectionTitle title="热门推荐" />
       <List :lists="list" style="margin-top: 30upx;"/>
     </view>
-  </view>
+  </PageWrapper>
 </template>
 
 <script lang="ts" setup>
@@ -33,9 +17,11 @@ import { ref } from 'vue';
 import Banner from './components/Banner.vue';
 import HomeNav from './components/HomeNav.vue';
 import List from '@/components/picture/list.vue';
-import TnCustom from '@/components/TnCustom/index.vue'
+import HotTag from './components/HotTag.vue';
+import SectionTitle from '@/components/sectionTitle/index.vue';
+import PageWrapper from '@/components/pageWrapper/index.vue';
 
-const titleOpacity = 1
+const titleOpacity = 0.1
 
 const list = ref([
   {title: '', image: '', like: 233, download: 234},
@@ -47,4 +33,57 @@ const list = ref([
 ])
 </script>
 
-<style scoped></style>
+<style scoped lang="scss">
+/* 自定义导航栏内容 start */
+.custom-nav {
+  height: 100%;
+  
+  &__back {
+    margin: auto 5rpx;
+    font-size: 40rpx;
+    margin-right: 10rpx;
+    margin-left: 30rpx;
+    flex-basis: 5%;
+  }
+  
+  &__search {
+    flex-basis: 60%;
+    width: 100%;
+    height: 100%;
+    
+    &__box {
+      width: 100%;
+      height: 70%;
+      padding: 10rpx 0;
+      margin: 0 30rpx;
+      border-radius: 60rpx 60rpx 0 60rpx;
+      font-size: 24rpx;
+      background-color: rgba(255,255,255,0.2);
+    }
+    
+    &__icon {
+      padding-right: 10rpx;
+      margin-left: 20rpx;
+      font-size: 30rpx;
+    }
+    
+    &__text {
+    }
+  }
+}
+/* 自定义导航栏内容 end */
+
+/*logo start */
+.logo-image{
+  width: 65rpx;
+  height: 65rpx;
+  position: relative;
+}
+.logo-pic{
+  background-size: cover;
+  background-repeat:no-repeat;
+  // background-attachment:fixed;
+  background-position:top;
+  border-radius: 50%;
+}
+</style>
