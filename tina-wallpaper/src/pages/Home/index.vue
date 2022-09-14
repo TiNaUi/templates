@@ -17,7 +17,7 @@ import { ref } from 'vue';
 import Banner from './components/Banner.vue';
 import HomeNav from './components/HomeNav.vue';
 import List from '@/components/picture/list.vue';
-import HotTag from './components/HotTag.vue';
+import HotTag from '@/components/hotTag/index.vue';
 import SectionTitle from '@/components/sectionTitle/index.vue';
 import PageWrapper from '@/components/pageWrapper/index.vue';
 
