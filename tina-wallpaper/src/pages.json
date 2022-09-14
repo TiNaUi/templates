@@ -11,9 +11,22 @@
 			"style": {
 				"navigationBarTitleText": "category"
 			}
+		},
+		{
+			"path": "pages/UserCenter/index",
+			"style": {
+				"navigationBarTitleText": "UserCenter"
+			}
+		},
+		{
+			"path": "pages/Creator/index",
+			"style": {
+				"navigationBarTitleText": "Creator"
+			}
 		}
 	],
 	"globalStyle": {
+    "navigationStyle": "custom",
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "tina-ui壁纸模板",
 		"navigationBarBackgroundColor": "#F8F8F8",
