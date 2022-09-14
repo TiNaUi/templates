@@ -46,24 +46,24 @@ defineOptions({
 
 const tabbarList = reactive([
   {
-    title: '元素',
-    activeIcon: 'count-fill',
-    inactiveIcon: 'menu'
+    title: '首页',
+    activeIcon: 'https://tnuiimage.tnkjapp.com/tabbar/home_tnnew.png',
+    inactiveIcon: 'https://tnuiimage.tnkjapp.com/tabbar/home_tn.png'
   },
   {
-    title: '组件',
-    activeIcon: 'honor-fill',
-    inactiveIcon: 'honor'
+    title: '分类',
+    activeIcon: 'https://tnuiimage.tnkjapp.com/tabbar/cate_tncur.png',
+    inactiveIcon: 'https://tnuiimage.tnkjapp.com/tabbar/cate_tn.png'
   },
   {
-    title: '页面',
-    activeIcon: 'discover',
-    inactiveIcon: 'discover'
+    title: '推荐官',
+    activeIcon: 'https://tnuiimage.tnkjapp.com/tabbar/information_tncur.png',
+    inactiveIcon: 'https://tnuiimage.tnkjapp.com/tabbar/information_tn.png'
   },
   {
-    title: '图鸟',
-    activeIcon: 'computer-fill',
-    inactiveIcon: 'computer',
+    title: '我的',
+    activeIcon: 'https://tnuiimage.tnkjapp.com/tabbar/my2_tncur.png',
+    inactiveIcon: 'https://tnuiimage.tnkjapp.com/tabbar/my2_tn.png',
     dot: true
   }
 ])

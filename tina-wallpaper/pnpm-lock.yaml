@@ -18,7 +18,7 @@ specifiers:
   '@dcloudio/uni-quickapp-webview': ^3.0.0-alpha-3030420211227002
   '@dcloudio/uni-ui': ^1.4.12
   '@dcloudio/vite-plugin-uni': ^3.0.0-alpha-3030420211227002
-  '@tina-ui/ui': ^1.0.1
+  '@tina-ui/ui': 1.0.3
   '@types/mockjs': ^1.0.6
   '@types/weixin-app': ^2.9.3
   '@typescript-eslint/eslint-plugin': ^5.12.1
@@ -65,7 +65,7 @@ dependencies:
   '@dcloudio/uni-mp-weixin': 3.0.0-alpha-3040020220225001_postcss@8.4.16+vue@3.2.31
   '@dcloudio/uni-quickapp-webview': 3.0.0-alpha-3040020220225001_postcss@8.4.16+vue@3.2.31
   '@dcloudio/uni-ui': 1.4.12
-  '@tina-ui/ui': 1.0.1
+  '@tina-ui/ui': 1.0.3
   mockjs: 1.1.0
   pinia: 2.0.21_yiky6a7nq42a76m3cgtakyoff4
   vue: 3.2.31
@@ -2096,8 +2096,8 @@ packages:
       estree-walker: 2.0.2
       picomatch: 2.3.1
 
-  /@tina-ui/ui/1.0.1:
-    resolution: {integrity: sha512-o/Qht4bvVQ7DV0UBLrd7kneKrQe+C1UJ0oLcx+p5HD7i0QSNZYzV5lklXwApsZOvePCfz0XcOM5B0j8d6itObw==}
+  /@tina-ui/ui/1.0.3:
+    resolution: {integrity: sha512-cJlZY/8/B5iUy9B00NggeTbS3G3bEEi7V+2jDp+FZSZI+VsaBS/WO9AqdCLUV1EKGg29cqhHqB2DQ6LwIIqtsA==}
     dev: false
 
   /@types/eslint-scope/3.7.3:
