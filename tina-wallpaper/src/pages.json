@@ -1,5 +1,11 @@
 {
 	"pages": [
+    {
+      "path": "pages/Index/index",
+      "style": {
+        "navigationBarTitleText": "Index"
+      }
+    },
 		{
 			"path": "pages/Home/index",
 			"style": {
@@ -26,7 +32,7 @@
 		}
 	],
 	"globalStyle": {
-    "navigationStyle": "custom",
+		"navigationStyle": "custom",
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "tina-ui壁纸模板",
 		"navigationBarBackgroundColor": "#F8F8F8",

@@ -35,8 +35,8 @@
       <List :lists="list" style="margin-top: 30upx;"/>
 
     </view>
+    <NotCreator v-if="false" />
   </view>
-  <NotCreator v-if="false" />
 </template>
 
 <script lang="ts" setup>
