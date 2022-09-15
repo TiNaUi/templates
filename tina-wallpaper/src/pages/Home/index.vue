@@ -4,6 +4,9 @@
     <view class="container">
       <HomeNav />
       <HotTag style="margin-top: 30upx;" />
+      <view class="create-banner">
+        <image class="create-banner-image" src="@/static/banner/create.png" mode='widthFix'></image>
+      </view>
       <SectionTitle title="今日壁纸精选" />
       <List :lists="list.slice(3)" style="margin-top: 30upx;"/>
       <SectionTitle title="热门推荐" />
@@ -85,5 +88,12 @@ const list = ref([
   // background-attachment:fixed;
   background-position:top;
   border-radius: 50%;
+}
+
+.create-banner {
+  width: 100%;
+  &-image {
+    width: 100%;
+  }
 }
 </style>

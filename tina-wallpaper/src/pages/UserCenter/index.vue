@@ -67,9 +67,12 @@
       </view>
 
       <VipCard />
+      <view class="create-banner">
+        <image class="create-banner-image" src="@/static/banner/create.png" mode='widthFix'></image>
+      </view>
       
       <!-- 更多信息-->
-      <view class="about-shadow tn-margin-top-xl tn-padding-top-sm tn-padding-bottom-sm tn-margin-left tn-margin-right">
+      <view class="about-shadow tn-padding-top-sm tn-padding-bottom-sm tn-margin-left tn-margin-right">
         <tn-list-cell :hover="true" :unlined="true" :radius="true" :fontSize="30">
           <view class="tn-flex tn-flex-col-center">
             <view class="icon1__item--icon tn-flex tn-flex-row-center tn-flex-col-center tn-cool-bg-color-5 tn-color-white" > 
@@ -358,5 +361,12 @@ animation: move_wave 4s linear infinite;
   width: 50rpx;
   height: 50rpx;
   display: inline-block;
+}
+
+.create-banner {
+  width: 100%;
+  &-image {
+    width: 100%;
+  }
 }
 </style>
