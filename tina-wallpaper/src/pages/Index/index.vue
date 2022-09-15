@@ -5,16 +5,16 @@
     <Creator :style="{display: currentIndex === 2 ? '' : 'none'}"/>
     <UserCenter :style="{display: currentIndex === 3 ? '' : 'none'}"/>
   </view>
-  <Tabbar />
+  <Tabbar v-model="currentIndex" />
 </template>
 
 <script lang="ts" setup>
+import { ref } from 'vue';
 import Home from '../Home/index.vue';
 import Category from '../Category/index.vue';
 import Creator from '../Creator/index.vue';
 import UserCenter from '../UserCenter/index.vue';
 import Tabbar from './components/tabbar/index.vue';
-import { ref } from 'vue';
 
 defineOptions({
   name: 'IndexPage'

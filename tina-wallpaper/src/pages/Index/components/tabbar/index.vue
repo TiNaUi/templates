@@ -27,7 +27,7 @@
   </view>
 </view> -->
 <tn-tabbar
-  v-model="currentIndex"
+  v-model="modelValue"
   :list="tabbarList"
   activeColor="#838383"
   inactiveColor="#AAAAAA"
@@ -38,39 +38,47 @@
 ></tn-tabbar>
 </template>
 
-<script lang="ts" setup>import { reactive, ref } from 'vue';
+<script lang="ts" setup>import { reactive, ref, computed } from 'vue';
 
 defineOptions({
   name: 'TabBar'
 })
 
+const props = defineProps({
+  modelValue: {
+    type: Number,
+    default: 0
+  }
+})
+
+const emit = defineEmits(['change', 'update:modelValue'])
+
 const tabbarList = reactive([
   {
     title: '首页',
-    activeIcon: 'https://tnuiimage.tnkjapp.com/tabbar/home_tnnew.png',
-    inactiveIcon: 'https://tnuiimage.tnkjapp.com/tabbar/home_tn.png'
+    activeIcon: '/static/tabbar/home_tnnew.png',
+    inactiveIcon: '/static/tabbar/home_tn.png'
   },
   {
     title: '分类',
-    activeIcon: 'https://tnuiimage.tnkjapp.com/tabbar/cate_tncur.png',
-    inactiveIcon: 'https://tnuiimage.tnkjapp.com/tabbar/cate_tn.png'
+    activeIcon: '/static/tabbar/cate_tncur.png',
+    inactiveIcon: '/static/tabbar/cate_tn.png'
   },
   {
     title: '推荐官',
-    activeIcon: 'https://tnuiimage.tnkjapp.com/tabbar/information_tncur.png',
-    inactiveIcon: 'https://tnuiimage.tnkjapp.com/tabbar/information_tn.png'
+    activeIcon: '/static/tabbar/information_tncur.png',
+    inactiveIcon: '/static/tabbar/information_tn.png'
   },
   {
     title: '我的',
-    activeIcon: 'https://tnuiimage.tnkjapp.com/tabbar/my2_tncur.png',
-    inactiveIcon: 'https://tnuiimage.tnkjapp.com/tabbar/my2_tn.png',
-    dot: true
+    activeIcon: '/static/tabbar/my_tnnew.png',
+    inactiveIcon: '/static/tabbar/my_tn.png'
   }
 ])
 
-const currentIndex = ref(0)
 const switchTabbar = (index: number) => {
-  currentIndex.value = index
+  emit('change', index)
+  emit('update:modelValue', index)
 }
 </script>
 

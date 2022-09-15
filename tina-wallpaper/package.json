@@ -48,7 +48,7 @@
         "@dcloudio/uni-mp-weixin": "^3.0.0-alpha-3030420211227002",
         "@dcloudio/uni-quickapp-webview": "^3.0.0-alpha-3030420211227002",
         "@dcloudio/uni-ui": "^1.4.12",
-        "@tina-ui/ui": "1.0.3",
+        "@tina-ui/ui": "1.0.5",
         "mockjs": "^1.1.0",
         "pinia": "^2.0.21",
         "vue": "^3.2.26",

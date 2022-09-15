@@ -1,5 +1,5 @@
 <template>
-  <view class="page-container">
+  <view class="page-container" style="padding-top: 100upx;">
     <tn-nav-bar fixed :isBack="false" :bottomShadow="false" backgroundColor="#FFFFFF">
       <view class="custom-nav tn-flex tn-flex-col-center tn-flex-row-left">
         <!-- 返回按钮 -->

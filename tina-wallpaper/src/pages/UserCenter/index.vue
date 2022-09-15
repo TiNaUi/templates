@@ -64,8 +64,9 @@
             </view>
           </view>
         </view>
-      </view> 
-      
+      </view>
+
+      <VipCard />
       
       <!-- 更多信息-->
       <view class="about-shadow tn-margin-top-xl tn-padding-top-sm tn-padding-bottom-sm tn-margin-left tn-margin-right">
@@ -140,6 +141,7 @@
 </template>
 
 <script lang="ts" setup>
+import VipCard from './components/vipCard.vue';
 
 defineOptions({
   name: 'UserCenter'

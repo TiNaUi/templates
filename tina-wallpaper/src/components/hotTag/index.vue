@@ -1,7 +1,12 @@
 <template>
   <view class="hot-tag-container">
     <SectionTitle title="热门标签" v-if="hasTitle" v-bind="titleProps" />
-    <tn-tag v-for="(tag, index) in tags" :fontSize="24" class="hot-tag" backgroundColor="#eeeeee" shape="circle" margin="10rpx 10rpx" width="auto" :key="index">{{ tag }}</tn-tag>
+    <view class="">
+      <view class="tn-plan-content tn-text-justify">
+        <view v-for="(item, index) in tags" :class="['tn-plan-content__item','tn-margin-right','tn-round','tn-text-sm','tn-text-bold','tn-bg-'+item.color+'--light tn-color-'+ item.color]">
+          <text class="tn-plan-content__item--prefix ">#</text>{{''+item.name+''}}</view>
+      </view>
+  </view>
   </view>
 </template>
 
@@ -24,15 +29,52 @@ defineProps({
   }
 })
 
-const tags = ref(['小清新', '动漫', '沙雕', '搞笑', '王者荣耀', '明星', '日系动漫', '和平精英', '泰国', '风景'])
+const tags = ref([
+  {
+      name: "小清新",
+      color: "red"
+  }, {
+      name: "动漫",
+      color: "cyan"
+  }, {
+      name: "沙雕",
+      color: "blue"
+  }, {
+      name: "搞笑",
+      color: "green"
+  }, {
+      name: "王者荣耀",
+      color: "orange"
+  }, {
+      name: "明星",
+      color: "purplered"
+  }, {
+      name: "日系动漫",
+      color: "purple"
+  }, {
+      name: "和平精英",
+      color: "brown"
+  }, {
+      name: "泰国",
+      color: "yellowgreen"
+  }, {
+      name: "风景",
+      color: "grey"
+  } ])
 
 </script>
 
 <style lang="scss" scoped>
 .hot-tag-container {
-  .hot-tag {
-    background: #eeeeee;
-    color: #6e6e6e;
+  margin-bottom: 30upx;
+  .tn-plan-content__item {
+    display: inline-block;
+    line-height: 45rpx;
+    margin: 20rpx 20rpx 5rpx 0rpx;
+    padding: 10rpx 30rpx;
+    &--prefix {
+      padding-right: 10rpx;
+    }
   }
 }
 </style>
