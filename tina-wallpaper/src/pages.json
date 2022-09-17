@@ -1,11 +1,11 @@
 {
 	"pages": [
-    {
-      "path": "pages/Index/index",
-      "style": {
-        "navigationBarTitleText": "Index"
-      }
-    },
+		{
+			"path": "pages/Index/index",
+			"style": {
+				"navigationBarTitleText": "Index"
+			}
+		},
 		{
 			"path": "pages/Home/index",
 			"style": {
@@ -28,6 +28,12 @@
 			"path": "pages/Creator/index",
 			"style": {
 				"navigationBarTitleText": "Creator"
+			}
+		},
+		{
+			"path": "pages/Creator/apply",
+			"style": {
+				"navigationBarTitleText": "apply"
 			}
 		}
 	],
