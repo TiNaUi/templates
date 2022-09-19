@@ -35,7 +35,13 @@
 			"style": {
 				"navigationBarTitleText": "apply"
 			}
-		}
+		},
+    {
+      "path": "pages/Creator/list",
+      "style": {
+        "navigationBarTitleText": "list"
+      }
+    }
 	],
 	"globalStyle": {
 		"navigationStyle": "custom",
