@@ -3,11 +3,11 @@
     <Banner />
     <view class="container">
       <HomeNav />
-      <HotTag style="margin-top: 30upx;" />
+      <HotTag class="tn-margin-top" />
       <view class="create-banner">
-        <image class="create-banner-image" src="@/static/banner/create.png" mode='widthFix'></image>
+        <image class="create-banner-image" :src="useImagePath('/banner/create.png')" mode='widthFix'></image>
       </view>
-      <SectionTitle title="今日壁纸精选" />
+      <SectionTitle class="tn-margin-top" title="今日壁纸精选" />
       <List :lists="list.slice(3)" style="margin-top: 30upx;"/>
       <SectionTitle title="热门推荐" />
       <List :lists="list" style="margin-top: 30upx;"/>
@@ -23,6 +23,7 @@ import List from '@/components/picture/list.vue';
 import HotTag from '@/components/hotTag/index.vue';
 import SectionTitle from '@/components/sectionTitle/index.vue';
 import PageWrapper from '@/components/pageWrapper/index.vue';
+import { useImagePath } from '@/hooks';
 
 const titleOpacity = 0.1
 

@@ -7,7 +7,7 @@
             <view class="tn-icon-moon-fill tn-three"></view>
           </view>  
           <view class="tn-text-center">
-            <text class="tn-text-ellipsis">高清壁纸</text>
+            <text class="tn-text-ellipsis" style="font-size: 24rpx;">高清壁纸</text>
           </view>
         </view>
       </view>
@@ -17,7 +17,7 @@
             <view class="tn-icon-light-fill tn-three"></view>
           </view>  
           <view class="tn-text-center">
-            <text class="tn-text-ellipsis">热门排行</text>
+            <text class="tn-text-ellipsis" style="font-size: 24rpx;">热门排行</text>
           </view>
         </view>
       </view>
@@ -27,7 +27,7 @@
             <view class="tn-icon-star-fill tn-three"></view>
           </view>  
           <view class="tn-text-center">
-            <text class="tn-text-ellipsis">文艺可爱</text>
+            <text class="tn-text-ellipsis" style="font-size: 24rpx;">文艺可爱</text>
           </view>
         </view>
       </view>
@@ -37,7 +37,7 @@
             <view class="tn-icon-like-fill tn-three"></view>
           </view>  
           <view class="tn-text-center">
-            <text class="tn-text-ellipsis">精选壁纸</text>
+            <text class="tn-text-ellipsis" style="font-size: 24rpx;">精选壁纸</text>
           </view>
         </view>
       </view>

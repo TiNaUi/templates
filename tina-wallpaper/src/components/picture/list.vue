@@ -1,6 +1,6 @@
 <template>
   <view class="picture-list-container">
-    <Item v-for="(item, index) in lists"/>
+    <Item class="item" v-for="(item, index) in lists" :key="index"/>
   </view>
 </template>
 
@@ -24,7 +24,7 @@ const props = defineProps({
 .picture-list-container {
   display: flex;
   flex-wrap: wrap;
-  .picture-item {
+  .picture-item, .item {
     margin-right: 30upx;
     &:nth-of-type(3n) {
       margin-right: 0upx;

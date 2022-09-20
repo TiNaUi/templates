@@ -1,12 +1,13 @@
 <template>
   <view class="hot-tag-container">
-    <SectionTitle title="热门标签" v-if="hasTitle" v-bind="titleProps" />
+    <SectionTitle title="热门标签" v-if="hasTitle" :has-right="titleProps.hasRight" />
     <view class="">
       <view class="tn-plan-content tn-text-justify">
         <view
           v-for="(item, index) in tags"
           :class="['tn-plan-content__item','tn-margin-right','tn-round','tn-text-sm','tn-text-bold','tn-bg-'+item.color+'--light tn-color-'+ item.color]"
-          @click="itemClick(index)"
+          :key="index"
+          @click="itemClick()"
         >
           <text class="tn-plan-content__item--prefix ">#</text>{{''+item.name+''}}</view>
       </view>
@@ -21,6 +22,7 @@ import { ref } from 'vue';
 defineOptions({
   name: 'HotTag'
 })
+
 
 defineProps({
   hasTitle: {

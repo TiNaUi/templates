@@ -90,7 +90,7 @@ const tuniaoData = [
 <style lang="scss" scoped>
 /** 背景图 */
 .creator-header {
-  background-image: url('@/assets/bg/adn4.jpg');
+  background-image: url('#{$tnt-img-host}/bg/adn4.jpg');
   background-repeat: no-repeat;
   position: relative;
   height: 460upx;

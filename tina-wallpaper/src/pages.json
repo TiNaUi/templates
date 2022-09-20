@@ -7,30 +7,6 @@
 			}
 		},
 		{
-			"path": "pages/Home/index",
-			"style": {
-				"navigationBarTitleText": "Home"
-			}
-		},
-		{
-			"path": "pages/Category/index",
-			"style": {
-				"navigationBarTitleText": "category"
-			}
-		},
-		{
-			"path": "pages/UserCenter/index",
-			"style": {
-				"navigationBarTitleText": "UserCenter"
-			}
-		},
-		{
-			"path": "pages/Creator/index",
-			"style": {
-				"navigationBarTitleText": "Creator"
-			}
-		},
-		{
 			"path": "pages/Creator/apply",
 			"style": {
 				"navigationBarTitleText": "apply"

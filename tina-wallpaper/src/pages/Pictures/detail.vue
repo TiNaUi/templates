@@ -14,10 +14,11 @@
         mode="none"
         :radius="0"
         :autoplay="false"
-        :height="0"
+        :height="windowHeight"
         class="page-swiper"
         @change="swiperChange"
         @click="changeNavbarState"
+        style="height:100vh;width:100vw;"
       ></tn-swiper>
     </view>
     <scroll-view
@@ -67,7 +68,9 @@
 <script lang="ts" setup>
 import { ref, computed, getCurrentInstance, onMounted, watch } from 'vue';
 import { useGetCompnentRectByInstance } from '@tina-ui/ui/hooks/ComponentRect'
+ // #ifdef H5
 import { h5DownLoadImage } from '@/utils/file';
+// #endif
 
 defineOptions({
   name: 'PictureDetail'
@@ -88,6 +91,7 @@ const swiperWidth = computed(() => {
 const currentIndex = ref(0)
 const swiperChange = (index: number) => {
   currentIndex.value = index
+  console.log('=======', index)
 }
 const navBarState = ref(true)
 const contentScrollW = ref(0)
@@ -130,6 +134,7 @@ onMounted(() => {
 })
 
 watch(currentIndex, (index) => {
+  console.log(1)
   // 当前点击子元素距离左边栏的距离 - scroll-view 宽度的一半  + 当前点击子元素一半的宽度 实现居中展示
   scrollLeft.value = index === 0 ? 0 : index === list.value.length ? swiperWidth.value : allArr.value[index].left - contentScrollW.value / 2 + allArr.value[index].width / 2
 })
@@ -243,22 +248,22 @@ function saveImageToLocal() {
     background-size: 100% 100%;
   }
   .icon-back {
-    background-image: url('/static/picture/back.png');
+    background-image: url('#{$tnt-img-host}/picture/back.png');
   }
   .icon-collection {
-    background-image: url('/static/picture/coll.png');
+    background-image: url('#{$tnt-img-host}/picture/coll.png');
   }
   .icon-collection-active {
-    background-image: url('/static/picture/coll_art.png');
+    background-image: url('#{$tnt-img-host}/picture/coll_art.png');
   }
   .icon-download {
-    background-image: url('/static/picture/duihuan.png');
+    background-image: url('#{$tnt-img-host}/picture/duihuan.png');
   }
   .icon-share {
-    background-image: url('/static/picture/shares.png');
+    background-image: url('#{$tnt-img-host}/picture/shares.png');
   }
   .icon-zan {
-    background-image: url('/static/picture/zan.png');
+    background-image: url('#{$tnt-img-host}/picture/zan.png');
   }
   .icon-zan-active {
     transform: scale(1.1);
@@ -301,7 +306,7 @@ function saveImageToLocal() {
   height: 100vh !important;
   ::v-deep {
     .tn-swiper {
-      height: 100% !important;
+      height: 100vh !important;
     }
   }
 }

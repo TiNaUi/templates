@@ -65,12 +65,13 @@ const navigator = () => {
     }
     .section-title-text {
       margin-left: 12upx;
-      font-size: 28upx;
+      font-size: 30upx;
       font-weight: 600;
     }
   }
   .section-title-right {
     color: $tnt-main-color;
+    font-size: 24upx;
   }
 }
 </style>

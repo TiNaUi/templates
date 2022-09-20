@@ -68,7 +68,7 @@
 
       <VipCard />
       <view class="create-banner">
-        <image class="create-banner-image" src="@/static/banner/create.png" mode='widthFix'></image>
+        <image class="create-banner-image" :src="useImagePath('/banner/create.png')" mode='widthFix'></image>
       </view>
 
       <view class="about-shadow tn-padding-top-sm tn-padding-bottom-sm tn-margin-left tn-margin-right">
@@ -173,6 +173,7 @@
 </template>
 
 <script lang="ts" setup>
+import { useImagePath } from '@/hooks';
 import VipCard from './components/vipCard.vue';
 
 defineOptions({

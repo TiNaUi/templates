@@ -23,8 +23,8 @@ import Home from '../Home/index.vue';
 import Category from '../Category/index.vue';
 import Creator from '../Creator/index.vue';
 import UserCenter from '../UserCenter/index.vue';
-import Tabbar from './components/tabbar/index.vue';
 import { onLoad } from '@dcloudio/uni-app';
+import { useImagePath } from '@/hooks';
 
 defineOptions({
   name: 'IndexPage'
@@ -36,23 +36,23 @@ const tabberPageLoadFlag = ref<boolean[]>([])
 const tabbarList = reactive([
   {
     title: '首页',
-    activeIcon: '/static/tabbar/home_tnnew.png',
-    inactiveIcon: '/static/tabbar/home_tn.png'
+    activeIcon: useImagePath('/tabbar/home_tnnew.png'),
+    inactiveIcon: useImagePath('/tabbar/home_tn.png')
   },
   {
     title: '分类',
-    activeIcon: '/static/tabbar/cate_tncur.png',
-    inactiveIcon: '/static/tabbar/cate_tn.png'
+    activeIcon: useImagePath('/tabbar/cate_tncur.png'),
+    inactiveIcon: useImagePath('/tabbar/cate_tn.png')
   },
   {
     title: '推荐官',
-    activeIcon: '/static/tabbar/information_tncur.png',
-    inactiveIcon: '/static/tabbar/information_tn.png'
+    activeIcon: useImagePath('/tabbar/information_tncur.png'),
+    inactiveIcon: useImagePath('/tabbar/information_tn.png')
   },
   {
     title: '我的',
-    activeIcon: '/static/tabbar/my_tnnew.png',
-    inactiveIcon: '/static/tabbar/my_tn.png'
+    activeIcon: useImagePath('/tabbar/my_tnnew.png'),
+    inactiveIcon: useImagePath('/tabbar/my_tn.png')
   }
 ])
 

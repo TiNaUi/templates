@@ -1,23 +1,23 @@
 <template>
   <view class="user-vip-card about-shadow">
     <view class="home-vip-tag-box">
-      <image class="bg" src="@/static/vip/vipcard_bg_vip02@2x.png"></image>
+      <image class="bg" :src="useImagePath('/vip/vipcard_bg_vip02@2x.png')"></image>
       <view class="main" v-if="false">
         <view class="tag-no-vip">普通用户</view>
         <view class="tn-flex tn-text-center" style="flex: 1;">
           <text class="vip-text">升级VIP，省更多钱</text>
-          <image class="right-icon" src="@/static/vip/vipcard_icon_arrowr_black@2x.png"></image>
+          <image class="right-icon" :src="useImagePath('/vip/vipcard_icon_arrowr_black@2x.png')"></image>
         </view>
       </view>
       <view class="main">
         <view class="tag-has-vip tn-flex tn-text-center tn-flex-center">
-          <image class="vip-level-icon" src="@/static/vip/vipcard_icon_v1@2x.png"></image>
+          <image class="vip-level-icon" :src="useImagePath('/vip/vipcard_icon_v1@2x.png')"></image>
           <text class="vip-level-means">VIP会员</text>
         </view>
         <view class="tn-flex tn-text-center" style="align-items: center; flex: 1;">
           <view class="vip-expired-text">您好！尊敬的VIP<br>您的会员已经到期-2天</view>
           <view v-if="false" class="vip-expired-text">您好！尊敬的VIP<br>您的会员90天后到期</view>
-          <image class="right-icon" src="@/static/vip/vipcard_icon_arrowr_black@2x.png"></image>
+          <image class="right-icon" :src="useImagePath('/vip/vipcard_icon_arrowr_black@2x.png')"></image>
         </view>
       </view>
     </view>
@@ -59,6 +59,7 @@
 </template>
 
 <script lang="ts" setup>
+import { useImagePath } from '@/hooks';
 import { useButtonStyle } from '@/hooks/useButtonStyle';
 
 defineOptions({

@@ -1,10 +1,10 @@
 <template>
-  <view class="page-container" style="padding-top: 100upx;">
+  <view class="page-container">
     <tn-nav-bar fixed :isBack="false" :bottomShadow="false" backgroundColor="#FFFFFF">
       <view class="custom-nav tn-flex tn-flex-col-center tn-flex-row-left">
         <!-- 返回按钮 -->
         <view class="custom-nav__back">
-          <view class="logo-pic tn-shadow-blur" style="background-image:url('/static/logo.jpg')">
+          <view class="logo-pic tn-shadow-blur" :style="'background-image:url('+ useImagePath('/logo.jpg') +')'">
             <view class="logo-image">
             </view>
           </view> 
@@ -19,14 +19,22 @@
         </view>
       </view>
     </tn-nav-bar>
-    <slot></slot>
+    <view class="page-main" :style="{ paddingTop: (appStore.vuex_custom_bar_height + 10) + 'px' }">
+      <slot></slot>
+    </view>
   </view>
 </template>
 
 <script lang="ts" setup>
+import { useImagePath } from '@/hooks'
+import { useAppStore } from '@/store/modules/app';
+
 defineOptions({
   name: 'PageWrapper'
 })
+
+const appStore = useAppStore()
+console.log(appStore)
 </script>
 
 <style scoped lang="scss">
