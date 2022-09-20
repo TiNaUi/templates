@@ -32,7 +32,7 @@ const props = defineProps({
   },
   url: {
     type: String,
-    default: ''
+    default: '/pages/Pictures/index'
   }
 })
 

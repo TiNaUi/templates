@@ -1,5 +1,5 @@
 <template>
-  <view class="picture-item">
+  <view class="picture-item" @click="itemClick">
     <view class="item-image">
       <image
         src="https://tnuiimage.tnkjapp.com/shop/bag1.jpg"
@@ -27,6 +27,11 @@
 defineOptions({
   name: 'PictureItem'
 })
+const itemClick = () => {
+  uni.navigateTo({
+    url: '/pages/Pictures/detail'
+  })
+}
 
 </script>
 

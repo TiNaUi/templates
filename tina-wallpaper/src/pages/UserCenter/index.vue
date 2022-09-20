@@ -70,9 +70,38 @@
       <view class="create-banner">
         <image class="create-banner-image" src="@/static/banner/create.png" mode='widthFix'></image>
       </view>
+
+      <view class="about-shadow tn-padding-top-sm tn-padding-bottom-sm tn-margin-left tn-margin-right">
+        <tn-list-cell :hover="true" :unlined="true" :radius="true" :fontSize="30">
+          <view class="tn-flex tn-flex-col-center">
+            <view class="icon1__item--icon tn-flex tn-flex-row-center tn-flex-col-center tn-cool-bg-color-5 tn-color-white" > 
+              <view class="tn-icon-like-fill"></view>
+            </view>
+            <view class="tn-margin-left-sm tn-flex-1">我的点赞</view>
+          </view>
+        </tn-list-cell>
+        <tn-list-cell :hover="true" :unlined="true" :radius="true" :fontSize="30">
+          <view class="tn-flex tn-flex-col-center">
+            <view class="icon1__item--icon tn-flex tn-flex-row-center tn-flex-col-center tn-cool-bg-color-1 tn-color-white"> 
+              <view class="tn-icon-download"></view>
+            </view>
+            <view class="tn-margin-left-sm tn-flex-1">我的下载</view>
+            <!-- <view class="tn-margin-left-sm tn-color-blue tn-icon-copy-fill"></view> -->
+          </view>
+        </tn-list-cell>
+        <tn-list-cell :hover="true" :unlined="true" :radius="true" :fontSize="30">
+          <view class="tn-flex tn-flex-col-center">
+            <view class="icon1__item--icon tn-flex tn-flex-row-center tn-flex-col-center tn-cool-bg-color-2 tn-color-white"> 
+              <view class="tn-icon-cardbag-fill"></view>
+            </view>
+            <view class="tn-margin-left-sm tn-flex-1">我的收藏</view>
+            <!-- <view class="tn-margin-left-sm tn-color-gray">懒</view> -->
+          </view>
+        </tn-list-cell>
+      </view>
       
       <!-- 更多信息-->
-      <view class="about-shadow tn-padding-top-sm tn-padding-bottom-sm tn-margin-left tn-margin-right">
+      <view class="about-shadow tn-margin-top-xl tn-padding-top-sm tn-padding-bottom-sm tn-margin-left tn-margin-right">
         <tn-list-cell :hover="true" :unlined="true" :radius="true" :fontSize="30">
           <view class="tn-flex tn-flex-col-center">
             <view class="icon1__item--icon tn-flex tn-flex-row-center tn-flex-col-center tn-cool-bg-color-5 tn-color-white" > 

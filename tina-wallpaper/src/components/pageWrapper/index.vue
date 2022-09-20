@@ -4,7 +4,7 @@
       <view class="custom-nav tn-flex tn-flex-col-center tn-flex-row-left">
         <!-- 返回按钮 -->
         <view class="custom-nav__back">
-          <view class="logo-pic tn-shadow-blur" style="background-image:url('https://tnuiimage.tnkjapp.com/logo/logo2.png')">
+          <view class="logo-pic tn-shadow-blur" style="background-image:url('/static/logo.jpg')">
             <view class="logo-image">
             </view>
           </view> 

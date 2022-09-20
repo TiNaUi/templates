@@ -36,10 +36,22 @@
 				"navigationBarTitleText": "apply"
 			}
 		},
+		{
+			"path": "pages/Creator/list",
+			"style": {
+				"navigationBarTitleText": "list"
+			}
+		},
+		{
+			"path": "pages/Pictures/index",
+			"style": {
+				"navigationBarTitleText": "Pictures"
+			}
+		},
     {
-      "path": "pages/Creator/list",
+      "path": "pages/Pictures/detail",
       "style": {
-        "navigationBarTitleText": "list"
+        "navigationBarTitleText": "PicturesDetail"
       }
     }
 	],

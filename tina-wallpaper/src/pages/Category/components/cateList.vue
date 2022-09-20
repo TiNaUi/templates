@@ -32,63 +32,53 @@ defineOptions({
 
 const lists = ref([
   {
-    icon: 'menu-more',
-    title: 'Flex布局',
-    url: '/basicPage/flex-layout/flex-layout',
+    title: '美女',
+    url: '/pages/Pictures/index',
     background: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2F811%2F041914135038%2F140419135038-3-1200.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665715861&t=a2c0dd091f95ebdb5f60b3e1256ee2d6'
   },
   {
-    icon: 'menu-circle',
-    title: 'Grid布局',
-    url: '/basicPage/grid-layout/grid-layout',
+    title: '风景',
+    url: '/pages/Pictures/index',
     background: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2019-04-19%2F5cb972785fa64.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665715906&t=efd0f50130800ed2621d572361207604'
   },
   {
-    icon: 'gloves',
-    title: '配色',
-    url: '/basicPage/color/color',
+    title: '明星',
+    url: '/pages/Pictures/index',
     background: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fdik.img.kttpdq.com%2Fpic%2F74%2F51149%2Fe72e5cf533957691.jpg&refer=http%3A%2F%2Fdik.img.kttpdq.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665715946&t=32a3bb146fc87381810419a28c6cde1a'
   },
   {
-    icon: 'font',
-    title: '图标',
-    url: '/basicPage/icon/icon',
+    title: '动漫',
+    url: '/pages/Pictures/index',
     background: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2F811%2F041914135038%2F140419135038-3-1200.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665715861&t=a2c0dd091f95ebdb5f60b3e1256ee2d6'
   },
   {
-    icon: 'circle-fill',
-    title: '按钮',
-    url: '/basicPage/button/button',
+    title: '游戏',
+    url: '//pages/Pictures/index',
     background: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2019-04-19%2F5cb972785fa64.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665715906&t=efd0f50130800ed2621d572361207604'
   },
   {
-    icon: 'tag',
-    title: '标签',
-    url: '/basicPage/tag/tag',
+    title: '星空',
+    url: '/pages/Pictures/index',
     background: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fdik.img.kttpdq.com%2Fpic%2F74%2F51149%2Fe72e5cf533957691.jpg&refer=http%3A%2F%2Fdik.img.kttpdq.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665715946&t=32a3bb146fc87381810419a28c6cde1a'
   },
   {
-    icon: 'square',
-    title: '边框',
-    url: '/basicPage/border/border',
+    title: '海景',
+    url: '/pages/Pictures/index',
     background: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fdik.img.kttpdq.com%2Fpic%2F74%2F51149%2Fe72e5cf533957691.jpg&refer=http%3A%2F%2Fdik.img.kttpdq.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665715946&t=32a3bb146fc87381810419a28c6cde1a'
   },
   {
-    icon: 'copy-fill',
-    title: '阴影',
-    url: '/basicPage/shadow/shadow',
+    title: '静物',
+    url: '/pages/Pictures/index',
     background: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fdik.img.kttpdq.com%2Fpic%2F74%2F51149%2Fe72e5cf533957691.jpg&refer=http%3A%2F%2Fdik.img.kttpdq.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665715946&t=32a3bb146fc87381810419a28c6cde1a'
   },
   {
-    icon: 'moon',
-    title: '微标',
-    url: '/basicPage/badge/badge',
+    title: '萌宠',
+    url: '/pages/Pictures/index',
     background: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fdik.img.kttpdq.com%2Fpic%2F74%2F51149%2Fe72e5cf533957691.jpg&refer=http%3A%2F%2Fdik.img.kttpdq.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665715946&t=32a3bb146fc87381810419a28c6cde1a'
   },
   {
-    icon: 'emoji-good',
-    title: '头像',
-    url: '/basicPage/avatar/avatar',
+    title: '街景',
+    url: '/pages/Pictures/index',
     background: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fdik.img.kttpdq.com%2Fpic%2F74%2F51149%2Fe72e5cf533957691.jpg&refer=http%3A%2F%2Fdik.img.kttpdq.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665715946&t=32a3bb146fc87381810419a28c6cde1a'
   }
 ])
