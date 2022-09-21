@@ -13,7 +13,7 @@
     "types": ["@dcloudio/types", "@types/weixin-app"],
     "baseUrl": "./",
     "paths": {
-        "@/*": ["src/*"]
+      "@/*": ["src/*"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "env/index.d.ts"]

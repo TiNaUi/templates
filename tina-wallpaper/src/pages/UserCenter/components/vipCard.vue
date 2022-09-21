@@ -1,55 +1,57 @@
 <template>
-  <view class="user-vip-card about-shadow">
-    <view class="home-vip-tag-box">
-      <image class="bg" :src="useImagePath('/vip/vipcard_bg_vip02@2x.png')"></image>
-      <view class="main" v-if="false">
-        <view class="tag-no-vip">普通用户</view>
-        <view class="tn-flex tn-text-center" style="flex: 1;">
-          <text class="vip-text">升级VIP，省更多钱</text>
-          <image class="right-icon" :src="useImagePath('/vip/vipcard_icon_arrowr_black@2x.png')"></image>
+  <view class="user-vip-card tnt-shadow">
+    <template v-if="isLogin">
+      <view class="home-vip-tag-box">
+        <image class="bg" :src="useImagePath('/vip/vipcard_bg_vip02@2x.png')"></image>
+        <view class="main" v-if="false">
+          <view class="tag-no-vip">普通用户</view>
+          <view class="tn-flex tn-text-center" style="flex: 1;">
+            <text class="vip-text">升级VIP，省更多钱</text>
+            <image class="right-icon" :src="useImagePath('/vip/vipcard_icon_arrowr_black@2x.png')"></image>
+          </view>
+        </view>
+        <view class="main">
+          <view class="tag-has-vip tn-flex tn-text-center tn-flex-center">
+            <image class="vip-level-icon" :src="useImagePath('/vip/vipcard_icon_v1@2x.png')"></image>
+            <text class="vip-level-means">VIP会员</text>
+          </view>
+          <view class="tn-flex tn-text-center" style="align-items: center; flex: 1;">
+            <view class="vip-expired-text">您好！尊敬的VIP<br>您的会员已经到期-2天</view>
+            <view v-if="false" class="vip-expired-text">您好！尊敬的VIP<br>您的会员90天后到期</view>
+            <image class="right-icon" :src="useImagePath('/vip/vipcard_icon_arrowr_black@2x.png')"></image>
+          </view>
         </view>
       </view>
-      <view class="main">
-        <view class="tag-has-vip tn-flex tn-text-center tn-flex-center">
-          <image class="vip-level-icon" :src="useImagePath('/vip/vipcard_icon_v1@2x.png')"></image>
-          <text class="vip-level-means">VIP会员</text>
+      <view class="user-data-container">
+        <view class="data-item">
+          <view class="data-text">积分</view>
+          <view class="data-value">2200</view>
         </view>
-        <view class="tn-flex tn-text-center" style="align-items: center; flex: 1;">
-          <view class="vip-expired-text">您好！尊敬的VIP<br>您的会员已经到期-2天</view>
-          <view v-if="false" class="vip-expired-text">您好！尊敬的VIP<br>您的会员90天后到期</view>
-          <image class="right-icon" :src="useImagePath('/vip/vipcard_icon_arrowr_black@2x.png')"></image>
+        <view class="data-item">
+          <view class="data-text">投稿</view>
+          <view class="data-value">100</view>
+        </view>
+        <view class="data-item">
+          <view class="data-text">可提现</view>
+          <view class="data-value">200</view>
         </view>
       </view>
-    </view>
-    <view class="user-data-container">
-      <view class="data-item">
-        <view class="data-text">积分</view>
-        <view class="data-value">2200</view>
+      <view class="user-data-button">
+        <view class="user-data-button-group">
+          <button class="data-btn" :style="getBtnStyle">充 值</button>
+          <button class="data-btn tx-btn" :style="getBtnStyle">提 现</button>
+        </view>
+        <view @click="showQrcodeAct" class="vip-qrcode-tag" :style="getBtnStyle">
+          <text class="tn-icon-qr-code"></text>
+        </view>
+        <!-- #ifdef APP-PLUS -->
+        <!-- <view @click="wdfxm" v-if="userinfo.config.iskq==1" class="vip-qrcode-tag" :style="getBtnStyle">
+          <text class="iconfont iconbtn_card_ma-copy ft20 cl-w"></text>
+        </view> -->
+        <!-- #endif -->
       </view>
-      <view class="data-item">
-        <view class="data-text">投稿</view>
-        <view class="data-value">100</view>
-      </view>
-      <view class="data-item">
-        <view class="data-text">可提现</view>
-        <view class="data-value">200</view>
-      </view>
-    </view>
-    <view class="user-data-button">
-      <view class="user-data-button-group">
-        <button class="data-btn" :style="getBtnStyle">充 值</button>
-        <button class="data-btn tx-btn" :style="getBtnStyle">提 现</button>
-      </view>
-      <view @click="showQrcodeAct" class="vip-qrcode-tag" :style="getBtnStyle">
-        <text class="tn-icon-qr-code"></text>
-      </view>
-      <!-- #ifdef APP-PLUS -->
-      <!-- <view @click="wdfxm" v-if="userinfo.config.iskq==1" class="vip-qrcode-tag" :style="getBtnStyle">
-        <text class="iconfont iconbtn_card_ma-copy ft20 cl-w"></text>
-      </view> -->
-      <!-- #endif -->
-    </view>
-    <view class="login-box" v-if="false">
+    </template>
+    <view class="login-box" v-else>
       <view class="tn-text-center">您还没登录，登录后即可体验VIP会员!</view>
       <view class="login-btn tn-flex tn-flex-nowrap">
         <button class="btn-mid" @click="loginAct" :style="getBtnStyle">立即登录</button>
@@ -67,6 +69,12 @@ defineOptions({
 })
 
 const emit = defineEmits(['loginAct'])
+const props = defineProps({
+  isLogin: {
+    type: Boolean,
+    default: false
+  }
+})
 
 const loginAct = () => {
   emit('loginAct')
@@ -80,6 +88,7 @@ const getBtnStyle = useButtonStyle()
 <style lang="scss" scoped>
 .user-vip-card {
   margin: 40upx 30upx 0 30upx;
+  background-color: #fff;
   .login-box {
     padding: 60upx;
   }

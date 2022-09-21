@@ -22,12 +22,12 @@
         </view>
       </view>
       <view class="tn-flex-1 tn-padding-sm tn-margin-xs tn-radius">
-        <view class="tn-flex tn-flex-direction-column tn-flex-row-center tn-flex-col-center">
+        <view class="tn-flex tn-flex-direction-column tn-flex-row-center tn-flex-col-center" @click="navigator('creator')">
           <view class="icon12__item--icon tn-flex tn-flex-row-center tn-flex-col-center tn-main-gradient-indigo--light tn-color-indigo">
             <view class="tn-icon-star-fill tn-three"></view>
           </view>  
           <view class="tn-text-center">
-            <text class="tn-text-ellipsis" style="font-size: 24rpx;">文艺可爱</text>
+            <text class="tn-text-ellipsis" style="font-size: 24rpx;">创作者</text>
           </view>
         </view>
       </view>
@@ -50,6 +50,14 @@
 defineOptions({
   name: 'HomeNav'
 })
+
+const urlMap: Record<string, string> = {
+  creator: "/pages/Creator/list"
+}
+
+function navigator(pathKey: string) {
+  uni.navigateTo({ url: urlMap[pathKey] || '/pages/Index/index' })
+}
 
 </script>
 

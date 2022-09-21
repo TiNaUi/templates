@@ -3,7 +3,7 @@
     <view class="container">
       <tn-tabs :list="scrollList" :current="current" backgroundColor="#FFFFFF" :barStyle="barStyle" @change="tabChange"></tn-tabs>
       <SectionTitle v-if="false" title="热门推荐" :hasRight="false" />
-      <PictureList :lists="list" style="margin-top: 30upx;" />
+      <!-- <PictureList :lists="list" class="tn-margin-top" /> -->
     </view>
   </PageWrapper>
 </template>

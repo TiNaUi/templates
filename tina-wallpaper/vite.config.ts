@@ -2,11 +2,11 @@ import { defineConfig } from 'vite'
 import uni from '@dcloudio/vite-plugin-uni'
 import { resolve } from 'path'
 import DefineOptions from 'unplugin-vue-define-options/vite'
-
+import { templateInset } from "./plugins/viteInjectComponents"
 // https://vitejs.dev/config/
 export default defineConfig({
   envDir: resolve(__dirname, 'env'),
-  plugins: [uni(), DefineOptions()],
+  plugins: [templateInset(["<LoginModel ref='loginModel'></LoginModel>"]), uni(), DefineOptions()],
   resolve: {
       // 配置别名
       alias: {

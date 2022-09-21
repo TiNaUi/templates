@@ -242,7 +242,7 @@ function saveImageToLocal() {
   }
   &-icon {
     width: 48upx;
-    height: 40upx;
+    height: 48upx;
     background-position: center center;
     background-repeat: no-repeat;
     background-size: 100% 100%;

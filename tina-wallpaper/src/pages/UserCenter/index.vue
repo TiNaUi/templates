@@ -4,7 +4,7 @@
       <image src='https://tnuiimage.tnkjapp.com/swiper/summer.jpg' mode='widthFix' class='backgroud-image'></image>
     </view>
     
-    <view class="tnwave waveAnimation">
+    <view class="tnwave waveAnimation" v-if="isLogin">
       <view class="waveWrapperInner bgTop">
         <view class="wave waveTop" style="background-image: url('https://tnuiimage.tnkjapp.com/wave/wave-2.png')"></view>
       </view>
@@ -18,17 +18,17 @@
     
     <view class="about__wrap">
       <!-- 头像用户信息 -->
-      <view class="user-info__container tn-flex tn-flex-direction-column tn-flex-col-center tn-flex-row-center">
-        <view class="user-info__avatar tn-bg-grey--light tn-flex tn-flex-col-center tn-flex-row-center">
-          <view class="tn-shadow-blur" style="background-image:url('https://tnuiimage.tnkjapp.com/blogger/avatar_2.jpeg');width: 170rpx;height: 170rpx;background-size: cover;">
+      <view class="user-info__container">
+        <view class="user-info__avatar tn-bg-grey--light">
+          <view :style="'background-image:url('+ userAvatar +');width:170rpx;height:170rpx;background-size:170rpx 170rpx;overflow:hidden;'">
           </view>
           <!-- <view class="tn-icon-logo-tuniao" style="font-size: 140rpx;color: #01BEFF;"></view> -->
         </view>
-        <view class="user-info__nick-name">图鸟科技</view>
+        <view class="user-info__nick-name">{{ isLogin ? userInfo.username : '登录/注册'}}</view>
       </view>
       
       <!-- 消息&数据 -->
-      <view class="tn-shadow-warp" style="margin-top: 100rpx;background-color: rgba(255,255,255,1);">
+      <view v-if="isLogin" class="tn-shadow-warp" style="margin-top: 100rpx;background-color: rgba(255,255,255,1);">
         <view class="tn-flex">
           <view class="tn-flex-1 tn-padding-sm tn-margin-xs">
             <view class="tn-flex tn-flex-direction-column tn-flex-row-center tn-flex-col-center">
@@ -66,7 +66,7 @@
         </view>
       </view>
 
-      <VipCard />
+      <VipCard :isLogin="isLogin" @loginAct="loginAct()" />
       <view class="create-banner">
         <image class="create-banner-image" :src="useImagePath('/banner/create.png')" mode='widthFix'></image>
       </view>
@@ -174,12 +174,25 @@
 
 <script lang="ts" setup>
 import { useImagePath } from '@/hooks';
+import { useUserStore } from '@/store';
 import VipCard from './components/vipCard.vue';
+import { computed, ref } from 'vue';
 
 defineOptions({
   name: 'UserCenter'
 })
-
+const userStore = useUserStore()
+const isLogin = computed(() => userStore.isLogin)
+const userInfo = computed(() => userStore.userInfo!)
+const userAvatar = computed(() => {
+  return isLogin.value ? userInfo.value.avatar : useImagePath('/man.jpg')
+})
+const loginModel = ref<null| any>(null)
+function loginAct() {
+  if (loginModel) {
+    loginModel.value.show()
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -284,16 +297,16 @@ animation: move_wave 4s linear infinite;
 /* 用户信息 start */
 .user-info {
   &__container {
-    
+    text-align: center;
   }
   
   &__avatar {
     width: 170rpx;
     height: 170rpx;
-    border: 8rpx solid rgba(255,255,255,0.05);
-    border-radius: 50%;
+     border-radius: 50%;
     overflow: hidden;
     box-shadow: 0rpx 0rpx 80rpx 0rpx rgba(0, 0, 0, 0.15);
+    display: inline-block;
   }
   
   &__nick-name {

@@ -24,12 +24,12 @@
 				"navigationBarTitleText": "Pictures"
 			}
 		},
-    {
-      "path": "pages/Pictures/detail",
-      "style": {
-        "navigationBarTitleText": "PicturesDetail"
-      }
-    }
+		{
+			"path": "pages/Pictures/detail",
+			"style": {
+				"navigationBarTitleText": "PicturesDetail"
+			}
+		}
 	],
 	"globalStyle": {
 		"navigationStyle": "custom",
@@ -42,7 +42,8 @@
 		"autoscan": true,
 		"custom": {
 			"^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue",
-			"^tn-(.*)": "@tina-ui/ui/components/tn-$1/tn-$1.vue"
+			"^tn-(.*)": "@tina-ui/ui/components/tn-$1/tn-$1.vue",
+      "^(?!z-paging-refresh|z-paging-load-more)z-paging(.*)": "z-paging/components/z-paging$1/z-paging$1.vue"
 		}
 	}
 }

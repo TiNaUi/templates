@@ -115,7 +115,7 @@ function getRandomCoolBg() {
       z-index: 99;
       height: 180upx;
       background-size: 100% 100%;
-      width: 100%;
+      width: 46%;
       background-position: left top;
       background-repeat: no-repeat;
       display: flex;
