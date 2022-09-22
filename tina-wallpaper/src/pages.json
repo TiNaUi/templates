@@ -29,6 +29,12 @@
 			"style": {
 				"navigationBarTitleText": "PicturesDetail"
 			}
+		},
+		{
+			"path": "pages/testZpaging/index",
+			"style": {
+				"navigationBarTitleText": "testZpaging"
+			}
 		}
 	],
 	"globalStyle": {
@@ -36,14 +42,15 @@
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "tina-ui壁纸模板",
 		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"backgroundColor": "#F8F8F8",
+    "onReachBottomDistance": 120
 	},
 	"easycom": {
 		"autoscan": true,
 		"custom": {
 			"^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue",
 			"^tn-(.*)": "@tina-ui/ui/components/tn-$1/tn-$1.vue",
-      "^(?!z-paging-refresh|z-paging-load-more)z-paging(.*)": "z-paging/components/z-paging$1/z-paging$1.vue"
+			"^(?!z-paging-refresh|z-paging-load-more)z-paging(.*)": "@/components/z-paging/components/z-paging$1/z-paging$1.vue"
 		}
 	}
 }

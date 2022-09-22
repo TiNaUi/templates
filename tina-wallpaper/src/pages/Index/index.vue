@@ -23,7 +23,7 @@ import Home from '../Home/index.vue';
 import Category from '../Category/index.vue';
 import Creator from '../Creator/index.vue';
 import UserCenter from '../UserCenter/index.vue';
-import { onLoad } from '@dcloudio/uni-app';
+import { onLoad, onReachBottom } from '@dcloudio/uni-app';
 import { useImagePath } from '@/hooks';
 
 defineOptions({
@@ -62,6 +62,10 @@ onLoad((options) => {
     return index === tabbarIndex
   })
   switchTabbar(index)
+})
+
+onReachBottom(() => {
+  
 })
 
 

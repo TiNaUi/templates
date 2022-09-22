@@ -8,15 +8,15 @@
         <image class="create-banner-image" :src="useImagePath('/banner/create.png')" mode='widthFix'></image>
       </view>
       <SectionTitle class="tn-margin-top" title="今日壁纸精选" />
-      <List :lists="list.slice(3)" style="margin-top: 30upx;"/>
+      <List v-model="hotList" style="margin-top: 30upx;"/>
       <SectionTitle title="热门推荐" />
-      <List :lists="list" style="margin-top: 30upx;"/>
+      <List ref="paging" v-model="list" :load-more="true" :queryList="queryList" style="margin-top: 30upx;"/>
     </view>
   </PageWrapper>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import Banner from './components/Banner.vue';
 import HomeNav from './components/HomeNav.vue';
 import List from '@/components/picture/list.vue';
@@ -24,17 +24,59 @@ import HotTag from '@/components/hotTag/index.vue';
 import SectionTitle from '@/components/sectionTitle/index.vue';
 import PageWrapper from '@/components/pageWrapper/index.vue';
 import { useImagePath } from '@/hooks';
+import { onPageScroll, onPullDownRefresh, onReachBottom } from '@dcloudio/uni-app';
+import { IPictureList } from '@/components/picture/types';
 
-const titleOpacity = 0.1
-
-const list = ref([
-  {title: '', image: '', like: 233, download: 234},
-  {title: '', image: '', like: 233, download: 234},
-  {title: '', image: '', like: 233, download: 234},
+const hotList = ref<any[]>([
   {title: '', image: '', like: 233, download: 234},
   {title: '', image: '', like: 233, download: 234},
   {title: '', image: '', like: 233, download: 234}
 ])
+const list = ref<any[]>([])
+const paging = ref<IPictureList>()
+
+const queryList = (params: { pageNo: number; pageSize: number; }):Promise<any[]> => {
+  console.log(111)
+  return new Promise((resolve, reject) => {
+    resolve([ 
+      {title: '', image: '', like: 233, download: 234},
+      {title: '', image: '', like: 233, download: 234},
+      {title: '', image: '', like: 233, download: 234},
+      {title: '', image: '', like: 233, download: 234},
+      {title: '', image: '', like: 233, download: 234},
+      {title: '', image: '', like: 233, download: 234},
+      {title: '', image: '', like: 233, download: 234},
+      {title: '', image: '', like: 233, download: 234},
+      {title: '', image: '', like: 233, download: 234}
+    ])
+  })
+}
+
+// ========================= zpaging ====================
+const isPagingRefNotFound = computed(() => {
+  if (paging.value) {
+    return !paging.value.paging || paging.value.paging === undefined
+  }
+  return true
+})
+onPullDownRefresh(() => {
+  if (isPagingRefNotFound.value) return
+  paging.value?.reload()
+})
+
+onPageScroll((e) => {
+  if (isPagingRefNotFound.value) return
+  paging.value!.updatePageScrollTop(e.scrollTop)
+  if (e.scrollTop < 10) {
+    paging.value?.doChatRecordLoadMore();
+  }
+})
+
+onReachBottom(() => {
+  if (isPagingRefNotFound.value) return
+  paging.value?.pageReachBottom()
+})
+
 </script>
 
 <style scoped lang="scss">
