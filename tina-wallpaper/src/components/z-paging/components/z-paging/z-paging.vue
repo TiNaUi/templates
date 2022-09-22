@@ -273,6 +273,7 @@ by ZXLee
 <!-- #endif -->
 <script module="pagingRenderjs" lang="renderjs">
 	import pagingRenderjs from './wxs/z-paging-renderjs.js';
+  import ZpPublicVirtualCell from '../../zp-public-virtual-cell/zp-public-virtual-cell.vue'
 	/**
 	 * z-paging 分页组件
 	 * @description 高性能，全平台兼容。支持虚拟列表，支持nvue、vue3
@@ -314,6 +315,9 @@ by ZXLee
 		// #ifdef APP-VUE || H5
 		mixins: [pagingRenderjs],
 		// #endif
+    components: {
+      ZpPublicVirtualCell
+    }
 	}
 </script>
 <script src="./js/z-paging-main.js" />
