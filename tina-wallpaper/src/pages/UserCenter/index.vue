@@ -1,7 +1,7 @@
 <template>
   <view class="template-about tn-safe-area-inset-bottom">
     <view class="top-backgroup">
-      <image :src='useImagePath("/swiper/summer.jpg")' mode='widthFix' class='backgroud-image'></image>
+      <image :src='useImagePath("/bg/summer.jpg")' mode='widthFix' class='backgroud-image'></image>
     </view>
     
     <view class="tnwave waveAnimation" v-if="isLogin">

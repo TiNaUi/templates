@@ -41,6 +41,12 @@
 			"style": {
 				"navigationBarTitleText": "customer-navbar"
 			}
+		},
+		{
+			"path": "pages/rank/index",
+			"style": {
+				"navigationBarTitleText": "rank"
+			}
 		}
 	],
 	"globalStyle": {

@@ -12,7 +12,7 @@
         </view>
       </view>
       <view class="tn-flex-1 tn-padding-sm tn-margin-xs tn-radius">
-        <view class="tn-flex tn-flex-direction-column tn-flex-row-center tn-flex-col-center">
+        <view class="tn-flex tn-flex-direction-column tn-flex-row-center tn-flex-col-center" @click="navigator('rank')">
           <view class="icon12__item--icon tn-flex tn-flex-row-center tn-flex-col-center tn-main-gradient-purple--light tn-color-purple">
             <view class="tn-icon-light-fill tn-three"></view>
           </view>  
@@ -27,7 +27,7 @@
             <view class="tn-icon-star-fill tn-three"></view>
           </view>  
           <view class="tn-text-center">
-            <text class="tn-text-ellipsis" style="font-size: 24rpx;">创作者</text>
+            <text class="tn-text-ellipsis" style="font-size: 24rpx;">图鉴官</text>
           </view>
         </view>
       </view>
@@ -52,7 +52,8 @@ defineOptions({
 })
 
 const urlMap: Record<string, string> = {
-  creator: "/pages/Creator/list"
+  creator: "/pages/Creator/list",
+  rank: "/pages/rank/index"
 }
 
 function navigator(pathKey: string) {
