@@ -1,18 +1,18 @@
 <template>
   <view class="template-about tn-safe-area-inset-bottom">
     <view class="top-backgroup">
-      <image src='https://tnuiimage.tnkjapp.com/swiper/summer.jpg' mode='widthFix' class='backgroud-image'></image>
+      <image :src='useImagePath("/swiper/summer.jpg")' mode='widthFix' class='backgroud-image'></image>
     </view>
     
     <view class="tnwave waveAnimation" v-if="isLogin">
       <view class="waveWrapperInner bgTop">
-        <view class="wave waveTop" style="background-image: url('https://tnuiimage.tnkjapp.com/wave/wave-2.png')"></view>
+        <view class="wave waveTop" :style="'background-image: url('+ useImagePath('/wave/wave-2.png') +')'"></view>
       </view>
       <view class="waveWrapperInner bgMiddle">
-        <view class="wave waveMiddle" style="background-image: url('https://tnuiimage.tnkjapp.com/wave/wave-2.png')"></view>
+        <view class="wave waveMiddle" :style="'background-image: url('+ useImagePath('/wave/wave-2.png') +')'"></view>
       </view>
       <view class="waveWrapperInner bgBottom">
-        <view class="wave waveBottom" style="background-image: url('https://tnuiimage.tnkjapp.com/wave/wave-1.png')"></view>
+        <view class="wave waveBottom" :style="'background-image: url('+ useImagePath('/wave/wave-1.png') +')'"></view>
       </view>
     </view>
     
@@ -350,7 +350,7 @@ animation: move_wave 4s linear infinite;
         opacity: 1;
         transform: scale(1, 1);
         background-size: 100% 100%;
-        background-image: url(https://tnuiimage.tnkjapp.com/cool_bg_image/icon_bg.png);
+        background-image: url(#{$tnt-img-host}/cool_bg_image/icon_bg.png);
       }
     }
   }

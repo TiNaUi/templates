@@ -35,6 +35,12 @@
 			"style": {
 				"navigationBarTitleText": "testZpaging"
 			}
+		},
+		{
+			"path": "components/customer-navbar/index",
+			"style": {
+				"navigationBarTitleText": "customer-navbar"
+			}
 		}
 	],
 	"globalStyle": {
@@ -43,7 +49,7 @@
 		"navigationBarTitleText": "tina-ui壁纸模板",
 		"navigationBarBackgroundColor": "#F8F8F8",
 		"backgroundColor": "#F8F8F8",
-    "onReachBottomDistance": 120
+		"onReachBottomDistance": 120
 	},
 	"easycom": {
 		"autoscan": true,

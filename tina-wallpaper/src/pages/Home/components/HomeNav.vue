@@ -104,7 +104,7 @@ function navigator(pathKey: string) {
         opacity: 1;
         transform: scale(1, 1);
         background-size: 100% 100%;
-        background-image: url(https://tnuiimage.tnkjapp.com/cool_bg_image/icon_bg.png);
+        background-image: url(#{$tnt-img-host}/cool_bg_image/icon_bg.png);
       }
     }
   }

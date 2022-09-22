@@ -71,19 +71,20 @@
     
     <view class="tnwave waveAnimation">
       <view class="waveWrapperInner bgTop">
-        <view class="wave waveTop" style="background-image: url('https://tnuiimage.tnkjapp.com/wave/wave-2.png')"></view>
+        <view class="wave waveTop" :style="'background-image: url('+ useImagePath('/wave/wave-2.png') +')'"></view>
       </view>
       <view class="waveWrapperInner bgMiddle">
-        <view class="wave waveMiddle" style="background-image: url('https://tnuiimage.tnkjapp.com/wave/wave-2.png')"></view>
+        <view class="wave waveMiddle" :style="'background-image: url('+ useImagePath('/wave/wave-2.png') +')'"></view>
       </view>
       <view class="waveWrapperInner bgBottom">
-        <view class="wave waveBottom" style="background-image: url('https://tnuiimage.tnkjapp.com/wave/wave-1.png')"></view>
+        <view class="wave waveBottom" :style="'background-image: url('+ useImagePath('/wave/wave-1.png') +')'"></view>
       </view>
     </view>
   </view>
 </template>
 
 <script lang="ts" setup>
+import { useImagePath } from '@/hooks';
 
 defineOptions({
   name: 'NotCreator'

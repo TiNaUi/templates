@@ -1,38 +1,34 @@
 <template>
-  <PageWrapper>
-    <view class="container">
-      <z-paging
-        ref="paging"
-        v-model="list"
-        :default-page-size="9"
-        :lower-threshold="100"
-        loading-more-default-text="点击加载更多"
-        loading-more-loading-text="正在加载..."
-        loading-more-no-more-text="没有更多了"
-        loading-more-fail-text="加载失败，点击重新加载"
-        :paging-style="{
-          top: '100upx'
-        }"
-        @query="queryList"
-      >
-        <view slot="top">
-          <tn-tabs :list="scrollList" :current="current" backgroundColor="#FFFFFF" :barStyle="barStyle" @change="tabChange"></tn-tabs>
-          <SectionTitle v-if="false" title="热门推荐" :hasRight="false" />
-        </view>
-        <!-- 如果希望其他view跟着页面滚动，可以放在z-paging标签内 -->
-        <view class="picture-list-container container">
-          <Item class="item" v-for="(item, index) in list" :key="index"/>
-        </view>
-
-        <template #refresher="{refresherStatus}">
-          <CustomRefresher :status="refresherStatus"></CustomRefresher>
-        </template>
-        <template #loadingMoreNoMore>
-          <CustomNomore></CustomNomore>
-        </template>
-      </z-paging>
+<view class="container">
+  <z-paging
+    ref="paging"
+    v-model="list"
+    :default-page-size="9"
+    loading-more-default-text="点击加载更多"
+    loading-more-loading-text="正在加载..."
+    loading-more-no-more-text="没有更多了"
+    loading-more-fail-text="加载失败，点击重新加载"
+    @query="queryList"
+  >
+    <template #top>
+      <CustomerNavbar :fixed="false" />
+      <tn-tabs :list="scrollList" :current="current" backgroundColor="#FFFFFF" :barStyle="barStyle" @change="tabChange"></tn-tabs>
+      <SectionTitle v-if="false" title="热门推荐" :hasRight="false" />
+    </template>
+    <!-- 如果希望其他view跟着页面滚动，可以放在z-paging标签内 -->
+    <view class="picture-list-container container">
+      <Item class="item" v-for="(item, index) in list" :key="index"/>
     </view>
-  </PageWrapper>
+
+    <template #refresher="{refresherStatus}">
+      <CustomRefresher :status="refresherStatus"></CustomRefresher>
+    </template>
+    <template #loadingMoreNoMore>
+      <CustomNomore></CustomNomore>
+    </template>
+  </z-paging>
+  <NavIndexButton />
+</view>
 </template>
 
 <script lang="ts" setup>
@@ -43,6 +39,8 @@ import Item from '@/components/picture/item.vue';
 import { ZPagingComponent } from '@/components/z-paging/types';
 import CustomRefresher from '../../components/z-paging/custom-refresher/custom-refresher.vue';
 import CustomNomore from '@/components/z-paging/custom-nomore/custom-nomore.vue';
+import CustomerNavbar from '@/components/customer-navbar/index.vue';
+import NavIndexButton from '../../components/common/nav-index-button.vue';
 
 defineOptions({
   name: 'PictureList'

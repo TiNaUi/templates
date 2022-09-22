@@ -96,7 +96,7 @@ const tuniaoData = [
   height: 460upx;
   overflow: hidden;
   .header-bg {
-    background-image: url('https://tnuiimage.tnkjapp.com/cool_bg_image/1.png');
+    background-image: url('#{$tnt-img-host}/cool_bg_image/1.png');
     background-repeat: no-repeat;
     background-size: 100% 50%;
     background-position: 0 100%;
@@ -178,7 +178,7 @@ const tuniaoData = [
         opacity: 1;
         transform: scale(1, 1);
         background-size: 100% 100%;
-        background-image: url(https://tnuiimage.tnkjapp.com/cool_bg_image/6.png);
+        background-image: url(#{$tnt-img-host}/cool_bg_image/6.png);
       }
     
     &__left {
@@ -204,7 +204,7 @@ const tuniaoData = [
           opacity: 1;
           transform: scale(1, 1);
           background-size: 100% 100%;
-          background-image: url(https://tnuiimage.tnkjapp.com/cool_bg_image/icon_bg5.png);
+          background-image: url(#{$tnt-img-host}/cool_bg_image/icon_bg5.png);
         }
       }
       
