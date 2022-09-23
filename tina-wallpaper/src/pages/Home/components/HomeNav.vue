@@ -4,7 +4,7 @@
       <view class="tn-flex-1 tn-padding-sm tn-margin-xs tn-radius">
         <view class="tn-flex tn-flex-direction-column tn-flex-row-center tn-flex-col-center">
           <view class="icon12__item--icon tn-flex tn-flex-row-center tn-flex-col-center tn-main-gradient-orange--light tn-color-orange">
-            <view class="tn-icon-moon-fill tn-three"></view>
+            <view class="tn-icon-moon-fill"></view>
           </view>  
           <view class="tn-text-center">
             <text class="tn-text-ellipsis" style="font-size: 24rpx;">高清壁纸</text>
@@ -14,7 +14,7 @@
       <view class="tn-flex-1 tn-padding-sm tn-margin-xs tn-radius">
         <view class="tn-flex tn-flex-direction-column tn-flex-row-center tn-flex-col-center" @click="navigator('rank')">
           <view class="icon12__item--icon tn-flex tn-flex-row-center tn-flex-col-center tn-main-gradient-purple--light tn-color-purple">
-            <view class="tn-icon-light-fill tn-three"></view>
+            <view class="tn-icon-light-fill"></view>
           </view>  
           <view class="tn-text-center">
             <text class="tn-text-ellipsis" style="font-size: 24rpx;">热门排行</text>
@@ -24,7 +24,7 @@
       <view class="tn-flex-1 tn-padding-sm tn-margin-xs tn-radius">
         <view class="tn-flex tn-flex-direction-column tn-flex-row-center tn-flex-col-center" @click="navigator('creator')">
           <view class="icon12__item--icon tn-flex tn-flex-row-center tn-flex-col-center tn-main-gradient-indigo--light tn-color-indigo">
-            <view class="tn-icon-star-fill tn-three"></view>
+            <view class="tn-icon-star-fill"></view>
           </view>  
           <view class="tn-text-center">
             <text class="tn-text-ellipsis" style="font-size: 24rpx;">图鉴官</text>
@@ -34,7 +34,7 @@
       <view class="tn-flex-1 tn-padding-sm tn-margin-xs tn-radius">
         <view class="tn-flex tn-flex-direction-column tn-flex-row-center tn-flex-col-center">
           <view class="icon12__item--icon tn-flex tn-flex-row-center tn-flex-col-center tn-main-gradient-purplered--light tn-color-purplered">
-            <view class="tn-icon-like-fill tn-three"></view>
+            <view class="tn-icon-like-fill"></view>
           </view>  
           <view class="tn-text-center">
             <text class="tn-text-ellipsis" style="font-size: 24rpx;">精选壁纸</text>

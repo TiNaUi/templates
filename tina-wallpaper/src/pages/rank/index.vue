@@ -1,17 +1,17 @@
 <template>
   <PageWrapper>
     <view class="tn-margin-top-sm">
-      <view class="tn-flex tn-flex-row-between tn-bg-yellow tn-round tn-padding-xs tn-margin">
+      <view class="tn-flex tn-flex-row-between tn-color-white tnt-bg-main-color tn-round tn-padding-xs tn-margin">
         <view class="justify-content-item tn-text-center tn-flex" style="padding:25rpx 30rpx;">
           <tn-avatar-group class="data-v-6ea9e2f9" :lists="latestUserAvatar" size="sm"></tn-avatar-group>
           <text class="tn-padding-xs">629位</text>
         </view>
         <view class="justify-content-item tn-text-right tn-padding-top-xs">
           <view class="tn-text-bold">图鉴官·星图部落</view>
-          <view class="tn-text-xs tn-color-gray--dark tn-padding-top-xs">大佬作品集，一起干巴爹叭</view>
+          <view class="tn-text-xs tn-color-white tn-padding-top-xs">大佬作品集，一起干巴爹叭</view>
         </view>
         <view class="justify-content-item tn-text-right tn-margin-right tn-padding-top-lg">
-          <text class="tn-icon-right tn-color-gray--dark"></text>
+          <text class="tn-icon-right tn-color-white"></text>
         </view>
       </view>
     </view>
@@ -39,8 +39,9 @@
       </view>
     </view>
     <view class="filter-tabbar tnt-shadow">
-      <view class="filter-tabbar-item tn-text-bold tn-text-xl">点赞排行</view>
-      <view class="filter-tabbar-item tn-text-bold tn-text-xl">下载排行</view>
+      <view class="filter-tabbar-item" :class="{active: currentFilterIndex === 0}" @click="itemFilter(0)">点赞排行</view>
+      <view class="filter-tabbar-item" :class="{active: currentFilterIndex === 1}" @click="itemFilter(1)">下载排行</view>
+      <view class="filter-bar" :style="{ left: `${filterBarLeft}%` }"></view>
     </view>
     <view class="container">
       <List ref="paging" v-model="list" :load-more="true" :queryList="queryList" style="margin-top: 30upx;"/>
@@ -61,6 +62,17 @@ import NavIndexButton from '../../components/common/nav-index-button.vue'
 defineOptions({
   name: 'Rank'
 })
+
+const currentFilterIndex = ref(0)
+const filterBarLeft = ref(5)
+const itemFilter = (index: number) => {
+  currentFilterIndex.value = index
+  if (index === 0) {
+    filterBarLeft.value = 5
+  } else {
+    filterBarLeft.value = 55
+  }
+}
 
 const latestUserAvatar = [
   {
@@ -201,6 +213,9 @@ onReachBottom(() => {
   line-height: 100upx;
   display: flex;
   flex-wrap: nowrap;
+  width: 90%;
+  margin: 0 auto;
+  position: relative;
   &-item {
     flex: 1;
     position: relative;
@@ -210,7 +225,7 @@ onReachBottom(() => {
       &::before {
         position: absolute;
         content: '';
-        width: 3px;
+        width: 1px;
         height: 50%;
         background: #dedede;
         top: 50%;
@@ -218,6 +233,22 @@ onReachBottom(() => {
         transform: translateY(-50%);
       }
     }
+    &.active {
+      color: #fff;
+    }
+  }
+  .filter-bar {
+    background-color: $tnt-main-color;
+    content: '';
+    width: 40%;
+    height: 70%;
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translate3d(0, -50%, 0);
+    border-radius: 20upx;
+    z-index: -1;
+    transition: all 0.3s linear;
   }
 }
 </style>

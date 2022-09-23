@@ -10,7 +10,7 @@
         <!-- <view class="tn-icon-left"></view> -->
       </view>
       <!-- 搜索框 -->
-      <view class="custom-nav__search tn-flex tn-flex-col-center tn-flex-row-center ">
+      <view class="custom-nav__search tn-flex tn-flex-col-center tn-flex-row-center" @click="search()">
         <view class="custom-nav__search__box tn-flex tn-flex-col-center tn-flex-row-left tn-color-gray--dark tn-bg-gray--light">
           <view class="custom-nav__search__icon tn-icon-search"></view>
           <view class="custom-nav__search__text tn-padding-left-xs">好想搜点什么</view>
@@ -22,6 +22,7 @@
 
 <script lang="ts" setup>
 import { useImagePath } from '@/hooks'
+import { message } from '@tina-ui/ui'
 
 defineProps({
   fixed: {
@@ -29,6 +30,10 @@ defineProps({
     default: true
   }
 })
+
+const search = () => {
+  message.toast('功能还未开放，敬请期待!')
+}
 </script>
 
 <style scoped lang="scss">

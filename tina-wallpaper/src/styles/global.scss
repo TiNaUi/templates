@@ -7,4 +7,8 @@ $tnt-img-host: "http://img.zukmb.cn/icons";
   margin-top: 30upx;
 }
 
+.tnt-bg-main-color {
+  background-color: $tnt-main-color;
+}
+
 @import 'page.scss';
