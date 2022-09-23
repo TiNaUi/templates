@@ -16,7 +16,6 @@ defineOptions({
 })
 
 const appStore = useAppStore()
-console.log(appStore)
 </script>
 
 <style scoped lang="scss">

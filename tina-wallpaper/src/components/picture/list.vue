@@ -1,7 +1,7 @@
 <template>
   <view class="list-container">
     <view class="picture-list-container" v-if="!loadMore">
-      <Item class="item" v-for="(item, index) in dataLists" :key="index"/>
+      <Item class="item" v-for="(item, index) in dataLists" :data="item" :key="index"/>
     </view>
     <z-paging
       v-else
@@ -19,16 +19,16 @@
       @query="queryList"
     >
       <view class="picture-list-container">
-        <Item class="item" v-for="(item, index) in dataLists" :key="index"/>
+        <Item class="item" v-for="(item, index) in dataLists" :data="item" :key="index"/>
       </view>
     </z-paging>
   </view>
 </template>
 
 <script lang="ts" setup>
-import { PropType, ref, computed } from 'vue';
-import Item from './item.vue';
-import ZPaging from '@/components/z-paging/components/z-paging/z-paging.vue';
+import { PropType, ref, computed } from 'vue'
+import Item from './item.vue'
+import ZPaging from '@/components/z-paging/components/z-paging/z-paging.vue'
 
 defineOptions({
   name: 'PictureList'
@@ -64,6 +64,7 @@ function queryList(pageNo: number, pageSize: number) {
     pageNo: pageNo,
     pageSize: pageSize,
   }
+  console.log(params, '=================')
   props.queryList(params).then(res => {
     console.log(params, res)
     paging.value?.complete(res)

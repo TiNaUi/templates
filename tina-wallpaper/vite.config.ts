@@ -28,13 +28,13 @@ export default defineConfig({
       port: 8080,
       // 请求代理
       proxy: {
-          // 个人习惯，这里就用/dev作为前缀了
-          '/dev': {
-              target: 'https://suggest.taobao.com',
-              changeOrigin: true,
-              // 路径重写，去掉/dev
-              rewrite: (path) => path.replace(/^\/dev/, '')
-          }
+        // 个人习惯，这里就用/dev作为前缀了
+        '/dev': {
+          target: 'https://suggest.taobao.com',
+          changeOrigin: true,
+          // 路径重写，去掉/dev
+          rewrite: (path) => path.replace(/^\/dev/, '')
+        }
       }
   },
   build: {

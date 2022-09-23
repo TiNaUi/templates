@@ -26,29 +26,29 @@ import PageWrapper from '@/components/pageWrapper/index.vue';
 import { useImagePath } from '@/hooks';
 import { onPageScroll, onPullDownRefresh, onReachBottom } from '@dcloudio/uni-app';
 import { IPictureList } from '@/components/picture/types';
+import { getResourceList } from '@/apis';
 
-const hotList = ref<any[]>([
-  {title: '', image: '', like: 233, download: 234},
-  {title: '', image: '', like: 233, download: 234},
-  {title: '', image: '', like: 233, download: 234}
-])
+const hotList = ref<any[]>([])
 const list = ref<any[]>([])
 const paging = ref<IPictureList>()
-
+getResourceList({ pageNo: 1, pageSize: 3 }).then(res => {
+  if(res.data.success) {
+    hotList.value.push(...res.data.result)
+  }
+})
 const queryList = (params: { pageNo: number; pageSize: number; }):Promise<any[]> => {
-  console.log(111)
   return new Promise((resolve, reject) => {
-    resolve([ 
-      {title: '', image: '', like: 233, download: 234},
-      {title: '', image: '', like: 233, download: 234},
-      {title: '', image: '', like: 233, download: 234},
-      {title: '', image: '', like: 233, download: 234},
-      {title: '', image: '', like: 233, download: 234},
-      {title: '', image: '', like: 233, download: 234},
-      {title: '', image: '', like: 233, download: 234},
-      {title: '', image: '', like: 233, download: 234},
-      {title: '', image: '', like: 233, download: 234}
-    ])
+    getResourceList(params).then(res => {
+      console.log(res)
+      if (res.data.success) {
+        console.log(res.data.result)
+        resolve(res.data.result)
+      } else {
+        resolve([])
+      }
+    }).catch(e => {
+      reject(e)
+    })
   })
 }
 

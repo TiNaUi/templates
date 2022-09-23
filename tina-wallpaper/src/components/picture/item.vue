@@ -2,7 +2,7 @@
   <view class="picture-item" @click="itemClick">
     <view class="item-image">
       <image
-        src="https://tnuiimage.tnkjapp.com/shop/bag1.jpg"
+        :src="data.resourceUrl"
         mode="scaleToFill"
       />
     </view>
@@ -11,11 +11,11 @@
       <view class="item-info">
         <view class="item-info-icon">
           <text class="tn-icon-like"></text>
-          <text class="info-value">233</text>
+          <text class="info-value">{{ number.formatNumberAddPriceUnit(data.like) }}</text>
         </view>
         <view class="item-info-icon">
           <text class="tn-icon-download"></text>
-          <text class="info-value">235</text>
+          <text class="info-value">{{ number.formatNumberAddPriceUnit(data.download) }}</text>
         </view>
       </view>
     </view>
@@ -23,10 +23,14 @@
 </template>
 
 <script lang="ts" setup>
-
+import { number } from '@tina-ui/ui'
 defineOptions({
   name: 'PictureItem'
 })
+
+const props = defineProps<{
+  data: any
+}>()
 const itemClick = () => {
   uni.navigateTo({
     url: '/pages/Pictures/detail'
@@ -75,7 +79,7 @@ const itemClick = () => {
     flex-wrap: nowrap;
     color: #CED8E1;
     font-size: 20upx;
-    padding: 0 14upx 4upx 14upx;
+    padding: 0 6upx 4upx 6upx;
     &-icon {
       font-size: 22upx;
       flex: 1;
