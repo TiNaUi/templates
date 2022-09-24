@@ -12,6 +12,12 @@
 				"navigationBarTitleText": "apply"
 			}
 		},
+    {
+      "path": "pages/Creator/applyLog",
+      "style": {
+        "navigationBarTitleText": "applyLog"
+      }
+    },
 		{
 			"path": "pages/Creator/list",
 			"style": {

@@ -17,7 +17,7 @@
       <!-- 数据信息 -->
       <view class="tn-info__container tn-flex tn-flex-wrap tn-flex-col-center tn-flex-row-between">
         <block v-for="(item, index) in tuniaoData" :key="index">
-          <view class="tn-info__item tn-flex tn-flex-direction-row tn-flex-col-center tn-flex-row-between about-shadow">
+          <view class="tn-info__item tn-flex tn-flex-direction-row tn-flex-col-center tn-flex-row-between about-shadow" @click="navigator(item.url)">
             <view class="tn-info__item__left tn-flex tn-flex-direction-row tn-flex-col-center tn-flex-row-left">
               <view class="tn-info__item__left--icon tn-flex tn-flex-col-center tn-flex-row-center" :class="[`tn-bg-${item.color}--light tn-color-${item.color}`]">
                 <view :class="[`tn-icon-${item.icon}`]"></view>
@@ -48,7 +48,11 @@ import SectionTitle from '@/components/sectionTitle/index.vue';
 defineOptions({
   name: 'Creator'
 })
-
+const navigator = (url: string) => {
+  uni.navigateTo({
+    url
+  })
+}
 const list = ref([
   {title: '', image: '', like: 233, download: 234},
   {title: '', image: '', like: 233, download: 234},
@@ -63,25 +67,29 @@ const tuniaoData = [
     title: '我的投稿',
     icon: 'medical',
     color: 'indigo',
-    value: '1.22 W'
+    value: '1.22 W',
+    url: '/pages/Creator/applyLog'
   },
   {
     title: '收获点赞',
     icon: 'praise',
     color: 'orange',
-    value: '406'
+    value: '406',
+    url: '/pages/Creator/applyLog'
   },
   {
     title: '收获积分',
     icon: 'topics',
     color: 'purplered',
-    value: '129'
+    value: '129',
+    url: '/pages/Creator/applyLog'
   },
   {
     title: '总下载量',
     icon: 'fire',
     color: 'green',
-    value: '1.0.0'
+    value: '100',
+    url: '/pages/Creator/applyLog'
   }
 ]
 
