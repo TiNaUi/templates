@@ -1,7 +1,7 @@
 import { createSSRApp } from 'vue'
 import { createPinia } from 'pinia'
 import App from './App.vue'
-import '../mock'
+// import '../mock'
 import piniaPersist from './store/plugins/persist'
 import LoginModel from '@/components/loginModel/index.vue';
 

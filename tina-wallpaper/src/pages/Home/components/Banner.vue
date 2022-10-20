@@ -5,18 +5,27 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { Banner, BannerApi } from '@/apis';
+import { onMounted, ref } from 'vue';
 
 defineOptions({
   name: 'HomeBanner'
 })
 
-const list = ref([
-  {image: 'https://lhsk.demo.hongcd.com/uploads/20220727/ea3838d155328fa2583f5a538b66ae59.jpg'},
-  {image: 'https://lhsk.demo.hongcd.com/uploads/20210304/e522390a2607d8f7a92c7196f0fe2d9b.jpg'},
-  {image: 'https://lhsk.demo.hongcd.com/uploads/20220727/74f418b81146eb2d22540d2d95efd0f7.jpg'}
-])
+const { position = 'HomeTop' } = defineProps<{
+  position: string
+}>()
 
+const list = ref<{image: string}[]>([])
+
+const getBanner = () => {
+  BannerApi.getList(position).then(res => {
+    list.value = res.data.map(item => ({ image: item.cover }))
+  })
+}
+onMounted(() => {
+  getBanner()
+})
 </script>
 
 <style lang="scss" scoped>

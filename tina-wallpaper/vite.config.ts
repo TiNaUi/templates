@@ -29,11 +29,11 @@ export default defineConfig({
       // 请求代理
       proxy: {
         // 个人习惯，这里就用/dev作为前缀了
-        '/dev': {
-          target: 'https://suggest.taobao.com',
+        '/api': {
+          target: 'http://localhost:10089',
           changeOrigin: true,
           // 路径重写，去掉/dev
-          rewrite: (path) => path.replace(/^\/dev/, '')
+          // rewrite: (path) => path.replace(/^\/dev/, '')
         }
       }
   },
