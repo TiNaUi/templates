@@ -9,15 +9,17 @@
           :key="index"
           @click="itemClick()"
         >
-          <text class="tn-plan-content__item--prefix ">#</text>{{''+item.name+''}}</view>
+          <text class="tn-plan-content__item--prefix ">#</text>{{''+item.tag_name+''}}</view>
       </view>
   </view>
   </view>
 </template>
 
 <script lang="ts" setup>
+import { ContentApi, Tag } from '@/apis';
 import SectionTitle from '@/components/sectionTitle/index.vue';
-import { ref } from 'vue';
+import { random } from '@/utils';
+import { ref, onMounted } from 'vue';
 
 defineOptions({
   name: 'HotTag'
@@ -34,39 +36,24 @@ defineProps({
     default: () => ({})
   }
 })
+const colors = ['red','cyan','blue','green','orange','purplered','purple','brown','grey', 'yellowgreen']
+const tags = ref<Array<Tag.Item & { color: string }>>([])
 
-const tags = ref([
-  {
-      name: "小清新",
-      color: "red"
-  }, {
-      name: "动漫",
-      color: "cyan"
-  }, {
-      name: "沙雕",
-      color: "blue"
-  }, {
-      name: "搞笑",
-      color: "green"
-  }, {
-      name: "王者荣耀",
-      color: "orange"
-  }, {
-      name: "明星",
-      color: "purplered"
-  }, {
-      name: "日系动漫",
-      color: "purple"
-  }, {
-      name: "和平精英",
-      color: "brown"
-  }, {
-      name: "泰国",
-      color: "yellowgreen"
-  }, {
-      name: "风景",
-      color: "grey"
-  } ])
+function getColors() {
+  return colors[random(0, colors.length - 1)]
+}
+function getTagList() {
+  ContentApi.tagList().then(res => {
+    tags.value = res.data.data.map(item => ({
+      ...item,
+      color: getColors()
+    }))
+  })
+}
+
+onMounted(() => {
+  getTagList()
+})
 
 function itemClick() {
   uni.navigateTo({

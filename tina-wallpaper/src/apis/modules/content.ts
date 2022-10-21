@@ -2,7 +2,7 @@
  * 内容模块api管理
  */
 
-import { ReqPage } from '../interface'
+import { ReqPage, ResPage } from '../interface'
 import { request } from "../request"
 
 export namespace Banner {
@@ -64,7 +64,7 @@ export namespace Category {
 
 export namespace Resource {
   export interface Item {
-    id: string
+    id: number
     appid: string
     type: string
     name: string
@@ -87,12 +87,31 @@ export namespace Resource {
 
   export interface ReqGetParams extends ReqPage {
     name: string
+    tagId: number
+    categoryId: number
+    isHot: boolean;
+    isRecommend: boolean;
+    search: string;
   }
 }
 
-export class BannerApi {
-  static getList(position: string) {
-    return request.get<Banner.Item[]>('/content/banner', { params: { position } })
+// { tagId: number; categoryId: number; isHot: boolean; isRecommend: boolean; search: string; pageNum?: number; pageSize?: number }
+
+export class ContentApi {
+  static bannerList(position: string) {
+    return request.get<Banner.Item[]>('/content/banner', { position })
+  }
+
+  static tagList() {
+    return request.get<Tag.Item[]>('/content/tags')
+  }
+
+  static wallpaper(params: Partial<Resource.ReqGetParams>) {
+    return request.get<ResPage<Resource.Item>>('/content/wallpaper', params)
+  }
+
+  static wallpaperInfo(id: number) {
+    return request.get<Resource.Item>('/content/wallpaper/' + id)
   }
 }
 

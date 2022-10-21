@@ -107,7 +107,7 @@ defineExpose({
   display: flex;
   flex-wrap: wrap;
   .picture-item, .item {
-    margin-right: 30upx;
+    margin-right: 15upx;
     &:nth-of-type(3n) {
       margin-right: 0upx;
     }

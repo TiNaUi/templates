@@ -1,3 +1,5 @@
 export * from './is'
 export * from './object'
 export * from './request/luch-request.js'
+export * from './resource'
+export * from './number'

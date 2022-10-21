@@ -16,7 +16,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
+import { computed, ref, onMounted } from 'vue';
 import Banner from './components/Banner.vue';
 import HomeNav from './components/HomeNav.vue';
 import List from '@/components/picture/list.vue';
@@ -26,23 +26,28 @@ import PageWrapper from '@/components/pageWrapper/index.vue';
 import { useImagePath } from '@/hooks';
 import { onPageScroll, onPullDownRefresh, onReachBottom } from '@dcloudio/uni-app';
 import { IPictureList } from '@/components/picture/types';
-import { getResourceList } from '@/apis';
+import { ContentApi, getResourceList, Resource } from '@/apis';
+import { wallpaperListHandler } from '@/utils';
 
 const hotList = ref<any[]>([])
 const list = ref<any[]>([])
 const paging = ref<IPictureList>()
-getResourceList({ pageNo: 1, pageSize: 3 }).then(res => {
-  if(res.data.success) {
-    hotList.value.push(...res.data.result)
-  }
+
+
+
+onMounted(() => {
+  ContentApi.wallpaper({ pageNum: 1, pageSize: 3, isHot: true }).then((res) => {
+    if (res.data.success) {
+      hotList.value = wallpaperListHandler(res.data.data.rows || [])
+    }
+  })
 })
+
 const queryList = (params: { pageNo: number; pageSize: number; }):Promise<any[]> => {
   return new Promise((resolve, reject) => {
-    getResourceList(params).then(res => {
-      console.log(res)
+    ContentApi.wallpaper({ pageNum: params.pageNo, pageSize: params.pageSize }).then(res => {
       if (res.data.success) {
-        console.log(res.data.result)
-        resolve(res.data.result)
+        resolve(wallpaperListHandler(res.data.data.rows))
       } else {
         resolve([])
       }

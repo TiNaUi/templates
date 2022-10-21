@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts" setup>
-import { Banner, BannerApi } from '@/apis';
+import { Banner, ContentApi } from '@/apis';
 import { onMounted, ref } from 'vue';
 
 defineOptions({
@@ -19,8 +19,8 @@ const { position = 'HomeTop' } = defineProps<{
 const list = ref<{image: string}[]>([])
 
 const getBanner = () => {
-  BannerApi.getList(position).then(res => {
-    list.value = res.data.map(item => ({ image: item.cover }))
+  ContentApi.bannerList(position).then(res => {
+    list.value = res.data.data.map(item => ({ image: 'http://img.zukmb.cn/' + item.cover }))
   })
 }
 onMounted(() => {

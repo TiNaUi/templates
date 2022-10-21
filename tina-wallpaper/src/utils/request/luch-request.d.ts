@@ -1,5 +1,5 @@
 type AnyObject = Record<string | number | symbol, any>
-type HttpPromise<T> = Promise<HttpResponse<T>>;
+export type HttpPromise<T> = Promise<HttpResponse<T>>;
 type Tasks = UniApp.RequestTask | UniApp.UploadTask | UniApp.DownloadTask
 export interface RequestTask {
   abort: () => void;

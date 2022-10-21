@@ -22,6 +22,7 @@
       ></tn-swiper>
     </view>
     <scroll-view
+    v-if="list.length > 1"
     :scroll-x="true"
     :scroll-with-animation="true"
     :scroll-left="scrollLeft"
@@ -59,15 +60,18 @@
     <view class="likes-people" :class="[ navBarState ? 'openCss' : 'closeCss']">
       <view class="tn-margin-sm tn-flex tn-flex-center" style="align-items: center;">
         <tn-avatar-group :lists="groupList"></tn-avatar-group>
-        <view class="like-text">等996人喜欢了这张图</view>
+        <view class="like-text">等{{ random(12, 1000) }}人喜欢了这张图</view>
       </view>
     </view>
   </view>
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, getCurrentInstance, onMounted, watch } from 'vue';
+import { ref, computed, getCurrentInstance, onMounted, watch, nextTick } from 'vue';
 import { useGetCompnentRectByInstance } from '@tina-ui/ui/hooks/ComponentRect'
+import { onLoad } from '@dcloudio/uni-app';
+import { ContentApi } from '@/apis';
+import { wallpaperListHandler, random } from '@/utils'
  // #ifdef H5
 import { h5DownLoadImage } from '@/utils/file';
 // #endif
@@ -78,13 +82,30 @@ defineOptions({
 const instance = getCurrentInstance()
 const { windowHeight } = uni.getSystemInfoSync()
 
-const list = ref([
-  {image: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg1.doubanio.com%2Fview%2Frichtext%2Flarge%2Fpublic%2Fp231769778.jpg&refer=http%3A%2F%2Fimg1.doubanio.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1666232798&t=a76ffafbc1c51c717aacc215f29f5fe1'},
-  {image: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F202003%2F31%2F20200331122332_orzoj.thumb.400_0.jpeg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1666232798&t=af64a3e60aa227febd3a418f0ee51855'},
-  {image: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F201803%2F09%2F20180309133928_MFX3c.thumb.400_0.jpeg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1666232798&t=99fcd1eb2e743de7220480901f4828ec'},
-  {image: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg1.doubanio.com%2Fview%2Frichtext%2Flarge%2Fpublic%2Fp231769778.jpg&refer=http%3A%2F%2Fimg1.doubanio.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1666232798&t=a76ffafbc1c51c717aacc215f29f5fe1'},
-  {image: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F202003%2F31%2F20200331122332_orzoj.thumb.400_0.jpeg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1666232798&t=af64a3e60aa227febd3a418f0ee51855'},
+const list = ref<Array<{ image: string }>>([
+  // { image: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg1.doubanio.com%2Fview%2Frichtext%2Flarge%2Fpublic%2Fp231769778.jpg&refer=http%3A%2F%2Fimg1.doubanio.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1666232798&t=a76ffafbc1c51c717aacc215f29f5fe1' },
+  // { image: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F202003%2F31%2F20200331122332_orzoj.thumb.400_0.jpeg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1666232798&t=af64a3e60aa227febd3a418f0ee51855' },
+  // { image: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F201803%2F09%2F20180309133928_MFX3c.thumb.400_0.jpeg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1666232798&t=99fcd1eb2e743de7220480901f4828ec' },
+  // { image: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg1.doubanio.com%2Fview%2Frichtext%2Flarge%2Fpublic%2Fp231769778.jpg&refer=http%3A%2F%2Fimg1.doubanio.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1666232798&t=a76ffafbc1c51c717aacc215f29f5fe1' },
+  // { image: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F202003%2F31%2F20200331122332_orzoj.thumb.400_0.jpeg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1666232798&t=af64a3e60aa227febd3a418f0ee51855' },
 ])
+
+onLoad((res) => {
+  const rid = +(res.rid || 0)
+  console.log(rid)
+  ContentApi.wallpaperInfo(rid).then(res => {
+    if (res.data.success) {
+      const infoList = wallpaperListHandler([res.data.data], { w: 375, q: 100 })
+      list.value = infoList.map(item => {
+        return {
+          image: item.url
+        }
+      })
+      getScrollWidth()
+    }
+  })
+})
+
 const swiperWidth = computed(() => {
   return uni.upx2px(list.value.length * 150 + 10)
 })
@@ -98,29 +119,31 @@ const contentScrollW = ref(0)
 const scrollLeft = ref(0)
 const allArr = ref<Array<{ left: number; width: number; }>>([])
 const getScrollWidth = () => {
-  useGetCompnentRectByInstance('.swiper-indicator', false, instance!).then(res => {
-    if (res) {
-      contentScrollW.value = res.width || 0
-    }
-  })
+  nextTick(() => {
+    useGetCompnentRectByInstance('.swiper-indicator',false,instance!).then(res => {
+      if (res) {
+        contentScrollW.value = res.width || 0
+      }
+    })
 
-  // useGetCompnentRectByInstance('.swiper-indicator-item', true, instance!).then(rect => {
-  //   if(rect) {
-  //     const data = rect as unknown as UniApp.NodeInfo[]
-  //     for (let i = 0; i < data.length; i++) {
-  //       allArr.value[i] = {left: 0, width: 0}
-  //       allArr.value[i].left = data[i].left!
-  //       allArr.value[i].width = 64
-  //     }
-  //     console.log(allArr)
-  //   }
-  // })
-  for (let i = 0; i < list.value.length; i++) {
-    allArr.value[i] = {left: 0, width: 0}
-    allArr.value[i].left = uni.upx2px(( 10 + 140 * 0.9 + 10 )) * i
-    allArr.value[i].width = 64
-  }
-  console.log(allArr)
+    // useGetCompnentRectByInstance('.swiper-indicator-item', true, instance!).then(rect => {
+    //   if(rect) {
+    //     const data = rect as unknown as UniApp.NodeInfo[]
+    //     for (let i = 0; i < data.length; i++) {
+    //       allArr.value[i] = {left: 0, width: 0}
+    //       allArr.value[i].left = data[i].left!
+    //       allArr.value[i].width = 64
+    //     }
+    //     console.log(allArr)
+    //   }
+    // })
+    for (let i = 0; i < list.value.length; i++) {
+      allArr.value[i] = { left: 0,width: 0 }
+      allArr.value[i].left = uni.upx2px((10 + 140 * 0.9 + 10)) * i
+      allArr.value[i].width = 64
+    }
+    console.log(allArr)
+  })
 }
 const itemClick = (index: number) => {
   currentIndex.value = index

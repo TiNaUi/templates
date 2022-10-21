@@ -9,6 +9,6 @@ export interface ResPage<T> {
 
 // * 分页请求参数
 export interface ReqPage {
-  pageNum: number
-  pageSize: number
+  pageNum?: number
+  pageSize?: number
 }
