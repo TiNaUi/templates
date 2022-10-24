@@ -1,9 +1,9 @@
 <template>
   <view class="page">
-    <Home v-if="tabberPageLoadFlag[0]" :style="{display: currentIndex === 0 ? '' : 'none'}"/>
-    <Category v-if="tabberPageLoadFlag[1]" :style="{display: currentIndex === 1 ? '' : 'none'}"/>
-    <Creator v-if="tabberPageLoadFlag[2]" :style="{display: currentIndex === 2 ? '' : 'none'}"/>
-    <UserCenter v-if="tabberPageLoadFlag[3]" :style="{display: currentIndex === 3 ? '' : 'none'}"/>
+    <Home v-if="currentIndex === 0 && tabberPageLoadFlag[0]" :hidden="currentIndex !== 0" :style="{display: currentIndex === 0 ? '' : 'none'}"/>
+    <Category v-if="tabberPageLoadFlag[1]" :hidden="currentIndex !== 1" :style="{display: currentIndex === 1 ? '' : 'none'}"/>
+    <Creator v-if="tabberPageLoadFlag[2]" :hidden="currentIndex !== 2" :style="{display: currentIndex === 2 ? '' : 'none'}"/>
+    <UserCenter v-if="tabberPageLoadFlag[3]" :hidden="currentIndex !== 3" :style="{display: currentIndex === 3 ? '' : 'none'}"/>
   </view>
   <tn-tabbar
     v-model="currentIndex"

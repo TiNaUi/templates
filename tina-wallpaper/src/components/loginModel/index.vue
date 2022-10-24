@@ -18,6 +18,7 @@
 </template>
 
 <script lang="ts" setup>
+import { UserApi } from '@/apis/modules/user';
 import { useUserStore } from '@/store';
 import { reactive, ref } from 'vue';
 
@@ -55,14 +56,19 @@ defineExpose({
 })
 
 function doLogin() {
-  console.log('ssssss')
   uni.login({
     provider: 'weixin',
-    success: (loginRes) => {
-      console.log("🚀 ~ file: index.vue ~ line 57 ~ doLogin ~ loginRes", loginRes)
+    success: async (loginRes) => {
       if (loginRes.errMsg.indexOf('ok') > -1) {
         state.wechatCode = loginRes.code
-        getUserProfile()
+        const userRes = await UserApi.getOpenId(state.wechatCode) 
+        if (userRes.data.success && userRes.data.data.needUpdate) {
+          getUserProfile(userRes)
+        } else {
+          console.log(userRes.data.data.useInfo)
+          userStore.setUserInfo(userRes.data.data.useInfo)
+          visible.value = false
+        }
       }
     },
     fail(err) {
@@ -71,7 +77,7 @@ function doLogin() {
   })
 }
 
-function getUserProfile() {
+function getUserProfile(userRemoteRes: any) {
   uni.showModal({
     title: '登录提醒',
     content: '亲，授权微信登录后才能正常使用小程序功能',
@@ -79,14 +85,15 @@ function getUserProfile() {
       if (actionRes.confirm) {
         uni.getUserProfile({
           desc: '获取您的昵称、头像、地区及性别',
-          success(userRes) {
+          async success(userRes) {
             console.log("🚀 ~ file: index.vue ~ line 72 ~ success ~ userRes", userRes)
             let sessionKey = '' // 远程获取
-            userStore.setUserInfo({
-              username: userRes.userInfo.nickName,
-              avatar: userRes.userInfo.avatarUrl,
-              openId: userRes.userInfo.openId
+            const updateRes = await UserApi.updateInfo({
+              ...userRes,
+              ...userRemoteRes.data.data.loginInfo
             })
+            console.log("🚀 ~ file: index.vue ~ line 91 ~ success ~ updateRes", updateRes)
+            userStore.setUserInfo(updateRes.data.data)
             visible.value = false
           },
           fail: res => {

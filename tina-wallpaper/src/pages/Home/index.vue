@@ -1,6 +1,6 @@
 <template>
   <PageWrapper>
-    <Banner />
+    <Banner position="HomeTop"/>
     <view class="container">
       <HomeNav />
       <HotTag class="tn-margin-top" />
@@ -10,7 +10,7 @@
       <SectionTitle class="tn-margin-top" title="今日壁纸精选" />
       <List v-model="hotList" style="margin-top: 30upx;"/>
       <SectionTitle title="热门推荐" />
-      <List ref="paging" v-model="list" :load-more="true" :queryList="queryList" style="margin-top: 30upx;"/>
+      <List ref="paging" :isHidden="isHidden" v-model="list" :load-more="true" :queryList="queryList" style="margin-top: 30upx;"/>
     </view>
   </PageWrapper>
 </template>
@@ -24,7 +24,7 @@ import HotTag from '@/components/hotTag/index.vue';
 import SectionTitle from '@/components/sectionTitle/index.vue';
 import PageWrapper from '@/components/pageWrapper/index.vue';
 import { useImagePath } from '@/hooks';
-import { onPageScroll, onPullDownRefresh, onReachBottom } from '@dcloudio/uni-app';
+import { onPageScroll, onPullDownRefresh, onReachBottom, onHide, onShow } from '@dcloudio/uni-app';
 import { IPictureList } from '@/components/picture/types';
 import { ContentApi, getResourceList, Resource } from '@/apis';
 import { wallpaperListHandler } from '@/utils';
@@ -33,7 +33,11 @@ const hotList = ref<any[]>([])
 const list = ref<any[]>([])
 const paging = ref<IPictureList>()
 
+const props = defineProps({
+  hidden: Boolean
+})
 
+const isHidden = computed(() => props.hidden)
 
 onMounted(() => {
   ContentApi.wallpaper({ pageNum: 1, pageSize: 3, isHot: true }).then((res) => {
@@ -43,7 +47,9 @@ onMounted(() => {
   })
 })
 
+
 const queryList = (params: { pageNo: number; pageSize: number; }):Promise<any[]> => {
+  console.log(isHidden.value)
   return new Promise((resolve, reject) => {
     ContentApi.wallpaper({ pageNum: params.pageNo, pageSize: params.pageSize }).then(res => {
       if (res.data.success) {

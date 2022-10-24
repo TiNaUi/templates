@@ -46,6 +46,10 @@ const props = defineProps({
   loadMore: {
     type: Boolean,
     default: false
+  },
+  isHidden: {
+    type: Boolean,
+    default: false
   }
 })
 const emit = defineEmits(['update:modelValue'])
@@ -60,6 +64,7 @@ const dataLists = computed({
 const paging = ref<typeof ZPaging | null>(null)
 
 function queryList(pageNo: number, pageSize: number) {
+  if (props.isHidden) return
   const params = {
     pageNo: pageNo,
     pageSize: pageSize,

@@ -3,14 +3,14 @@
     <template v-if="isLogin">
       <view class="home-vip-tag-box">
         <image class="bg" :src="useImagePath('/vip/vipcard_bg_vip02@2x.png')"></image>
-        <view class="main" v-if="false">
+        <view class="main" v-if="userInfo.vip_level === 0">
           <view class="tag-no-vip">普通用户</view>
-          <view class="tn-flex tn-text-center" style="flex: 1;">
+          <view class="tn-flex tn-text-center" style="flex: 1;"  @click="getVip()">
             <text class="vip-text">升级VIP，省更多钱</text>
             <image class="right-icon" :src="useImagePath('/vip/vipcard_icon_arrowr_black@2x.png')"></image>
           </view>
         </view>
-        <view class="main">
+        <view class="main" v-else>
           <view class="tag-has-vip tn-flex tn-text-center tn-flex-center">
             <image class="vip-level-icon" :src="useImagePath('/vip/vipcard_icon_v1@2x.png')"></image>
             <text class="vip-level-means">VIP会员</text>
@@ -22,7 +22,7 @@
           </view>
         </view>
       </view>
-      <view class="user-data-container">
+      <view class="user-data-container" v-if="false">
         <view class="data-item">
           <view class="data-text">积分</view>
           <view class="data-value">2200</view>
@@ -36,7 +36,7 @@
           <view class="data-value">200</view>
         </view>
       </view>
-      <view class="user-data-button">
+      <view class="user-data-button" v-if="false">
         <view class="user-data-button-group">
           <button class="data-btn" :style="getBtnStyle">充 值</button>
           <button class="data-btn tx-btn" :style="getBtnStyle">提 现</button>
@@ -63,10 +63,16 @@
 <script lang="ts" setup>
 import { useImagePath } from '@/hooks';
 import { useButtonStyle } from '@/hooks/useButtonStyle';
+import { useUserStore } from '@/store';
+import { message } from '@tina-ui/ui';
+import { computed } from 'vue';
 
 defineOptions({
   name: 'UserVipCard'
 })
+
+const userStore = useUserStore()
+const userInfo = computed(() => userStore.userInfo!)
 
 const emit = defineEmits(['loginAct'])
 const props = defineProps({
@@ -75,6 +81,9 @@ const props = defineProps({
     default: false
   }
 })
+const getVip = () => {
+  message.toast('开发中，敬请期待')
+}
 
 const loginAct = () => {
   emit('loginAct')

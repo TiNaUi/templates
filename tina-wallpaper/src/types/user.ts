@@ -3,7 +3,19 @@
  */
 
 export interface UserModel {
-  username: string
-  avatar: string
-  openId: string
+  profile: {
+    nickname: string;
+    avatar: string;
+    gender: number;
+    country: string;
+    province: string;
+    city: string;
+    id: number;
+    appid: string;
+    openid: string;
+  };
+  id: number
+  pid: number
+  vip_level: number
+  score: number
 }

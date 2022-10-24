@@ -24,12 +24,12 @@
           </view>
           <!-- <view class="tn-icon-logo-tuniao" style="font-size: 140rpx;color: #01BEFF;"></view> -->
         </view>
-        <view class="user-info__nick-name">{{ isLogin ? userInfo.username : '登录/注册'}}</view>
+        <view class="user-info__nick-name">{{ isLogin ? userInfo.profile.nickname : '登录/注册'}}</view>
       </view>
       
       <!-- 消息&数据 -->
       <view v-if="isLogin" class="tn-shadow-warp" style="margin-top: 100rpx;background-color: rgba(255,255,255,1);">
-        <view class="tn-flex">
+        <!--<view class="tn-flex">
           <view class="tn-flex-1 tn-padding-sm tn-margin-xs">
             <view class="tn-flex tn-flex-direction-column tn-flex-row-center tn-flex-col-center">
               <view class="">
@@ -63,7 +63,7 @@
               </view>
             </view>
           </view>
-        </view>
+        </view>-->
       </view>
 
       <VipCard :isLogin="isLogin" @loginAct="loginAct()" />
@@ -153,7 +153,7 @@ const userStore = useUserStore()
 const isLogin = computed(() => userStore.isLogin)
 const userInfo = computed(() => userStore.userInfo!)
 const userAvatar = computed(() => {
-  return isLogin.value ? userInfo.value.avatar : useImagePath('/man.jpg')
+  return isLogin.value ? userInfo.value.profile.avatar : useImagePath('/man.jpg')
 })
 const loginModel = ref<null| any>(null)
 function loginAct() {
