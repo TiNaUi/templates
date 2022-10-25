@@ -83,6 +83,10 @@ export namespace Resource {
     is_deleted: boolean
     create_at: Date
     update_at: Date
+    isLike: boolean
+    like_num: number
+    download_num: number
+    isCollection: boolean
   }
 
   export interface ReqGetParams extends ReqPage {
@@ -110,8 +114,20 @@ export class ContentApi {
     return request.get<ResPage<Resource.Item>>('/content/wallpaper', params)
   }
 
-  static wallpaperInfo(id: number) {
-    return request.get<Resource.Item>('/content/wallpaper/' + id)
+  static wallpaperInfo({ rid, userId }: { rid: number; userId: number }) {
+    return request.get<Resource.Item>('/content/wallpaper/' + rid, { userId })
+  }
+
+  static like(params: { rid: number; userId: number }) {
+    return request.post('/content/wallpaper/like', params)
+  }
+
+  static download(params: { rid: number; userId: number }) {
+    return request.post('/content/wallpaper/download', params)
+  }
+
+  static collection(params: { rid: number; userId: number }) {
+    return request.post('/content/wallpaper/collect', params)
   }
 }
 

@@ -39,17 +39,17 @@
         <view class="action-bar-icon icon-back"></view>
         <view class="action-bar-text">返回</view>
       </view>
-      <view class="action-bar-item">
-        <view class="action-bar-icon icon-collection"></view>
-        <view class="action-bar-text">收藏</view>
+      <view class="action-bar-item" @click="doCollect()">
+        <view class="action-bar-icon" :class="[info?.isCollection ? 'icon-collection-active' : 'icon-collection']"></view>
+        <view class="action-bar-text">{{ info?.isCollection ? '已' : '' }}收藏</view>
       </view>
       <view class="action-bar-item" @click="saveImageToLocal()">
         <view class="action-bar-icon icon-download"></view>
         <view class="action-bar-text">下载</view>
       </view>
-      <view class="action-bar-item">
-        <view class="action-bar-icon icon-zan"></view>
-        <view class="action-bar-text">点赞</view>
+      <view class="action-bar-item" @click="doLike()">
+        <view class="action-bar-icon" :class="[info?.isLike ? 'icon-zan-active' : 'icon-zan']"></view>
+        <view class="action-bar-text">{{ info?.isLike ? '已' : '' }}点赞</view>
       </view>
       <view class="action-bar-item">
         <view class="action-bar-icon icon-share"></view>
@@ -70,8 +70,11 @@
 import { ref, computed, getCurrentInstance, onMounted, watch, nextTick } from 'vue';
 import { useGetCompnentRectByInstance } from '@tina-ui/ui/hooks/ComponentRect'
 import { onLoad } from '@dcloudio/uni-app';
-import { ContentApi } from '@/apis';
+import { ContentApi, Resource } from '@/apis';
 import { wallpaperListHandler, random } from '@/utils'
+import { useUserStore } from '@/store';
+import { message } from '@tina-ui/ui';
+
  // #ifdef H5
 import { h5DownLoadImage } from '@/utils/file';
 // #endif
@@ -81,6 +84,7 @@ defineOptions({
 })
 const instance = getCurrentInstance()
 const { windowHeight } = uni.getSystemInfoSync()
+const userStore = useUserStore()
 
 const list = ref<Array<{ image: string }>>([
   // { image: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg1.doubanio.com%2Fview%2Frichtext%2Flarge%2Fpublic%2Fp231769778.jpg&refer=http%3A%2F%2Fimg1.doubanio.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1666232798&t=a76ffafbc1c51c717aacc215f29f5fe1' },
@@ -89,12 +93,51 @@ const list = ref<Array<{ image: string }>>([
   // { image: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg1.doubanio.com%2Fview%2Frichtext%2Flarge%2Fpublic%2Fp231769778.jpg&refer=http%3A%2F%2Fimg1.doubanio.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1666232798&t=a76ffafbc1c51c717aacc215f29f5fe1' },
   // { image: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F202003%2F31%2F20200331122332_orzoj.thumb.400_0.jpeg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1666232798&t=af64a3e60aa227febd3a418f0ee51855' },
 ])
+const info = ref<Resource.Item>()
+
+const isLogin = computed(() => userStore.isLogin)
+const userInfo = computed(() => userStore.userInfo)
+
+const loginModel = ref<null | any>(null)
+
+function loginAct() {
+  if (loginModel) {
+    loginModel.value.show()
+  }
+}
+
+function doLike() {
+  if (!isLogin.value) return loginAct()
+  if (info.value && userInfo.value) {
+    ContentApi.like({ rid: info.value.id,userId: userInfo.value.id }).then(res => {
+      if (res.data.success) {
+
+      } else {
+        message.toast(res.data.message)
+      }
+    })
+  }
+}
+
+function doCollect() {
+  if (!isLogin.value) return loginAct()
+  if (info.value && userInfo.value) {
+    ContentApi.collection({ rid: info.value.id,userId: userInfo.value.id }).then(res => {
+      if (res.data.success) {
+
+      } else {
+        message.toast(res.data.message)
+      }
+    })
+  }
+}
 
 onLoad((res) => {
   const rid = +(res.rid || 0)
   console.log(rid)
-  ContentApi.wallpaperInfo(rid).then(res => {
+  ContentApi.wallpaperInfo({ rid: rid, userId: userInfo.value!.id }).then(res => {
     if (res.data.success) {
+      info.value = res.data.data
       const infoList = wallpaperListHandler([res.data.data], { w: 375, q: 100 })
       list.value = infoList.map(item => {
         return {
@@ -175,7 +218,17 @@ function back() {
   uni.navigateBack({})
 }
 
+function logDownload() {
+  ContentApi.download({
+    userId: userInfo.value!.id,
+    rid: info.value!.id
+  }).then(() => {
+    message.toast('下载成功')
+  })
+}
+
 function saveImageToLocal() {
+  if (!isLogin.value) return loginAct()
   const imageUrl = list.value[currentIndex.value]
   // #ifndef H5
   uni.downloadFile({
@@ -184,7 +237,9 @@ function saveImageToLocal() {
         const tempUrl = result.tempFilePath
         uni.saveImageToPhotosAlbum({
           filePath: tempUrl,
-          success() {},
+          success() {
+            logDownload()
+          },
           fail() {}
         })
     },
@@ -192,6 +247,7 @@ function saveImageToLocal() {
   // #endif
   // #ifdef H5
   h5DownLoadImage(imageUrl.image)
+  logDownload()
   // #endif
 
 }
@@ -289,7 +345,7 @@ function saveImageToLocal() {
     background-image: url('#{$tnt-img-host}/picture/zan.png');
   }
   .icon-zan-active {
-    transform: scale(1.1);
+    background-image: url('#{$tnt-img-host}/picture/zan-active.png');
   }
 }
 .openCss {

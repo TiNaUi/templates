@@ -23,13 +23,20 @@
 </template>
 
 <script lang="ts" setup>
+import { Resource } from '@/apis';
 import { number } from '@tina-ui/ui'
 defineOptions({
   name: 'PictureItem'
 })
 
 const props = defineProps<{
-  data: any
+  data: {
+    id: number
+    index: string
+    like: number
+    download: number
+    url: string
+  }
 }>()
 const itemClick = () => {
   uni.navigateTo({

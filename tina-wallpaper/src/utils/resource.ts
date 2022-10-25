@@ -19,9 +19,9 @@ export function wallpaperListHandler(list: Resource.Item[], params?: { w?: numbe
       res.push({
         id: item.id,
         index: `${i}_${idx}`,
-        like: 0,
-        download: 0,
-        url: `http://img.zukmb.cn/${url}?imageView2/4/w/${w}/q/${q}/interlace/1/format/webp`
+        like: item.like_num,
+        download: item.download_num,
+        url: `http://img.zukmb.cn/${url}?imageView2/4/w/${w}/q/${q}/interlace/1/format/jpg`
       })
     })
   }
