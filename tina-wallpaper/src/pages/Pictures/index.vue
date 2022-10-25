@@ -12,12 +12,14 @@
   >
     <template #top>
       <CustomerNavbar :fixed="false" />
-      <tn-tabs :list="scrollList" :current="current" backgroundColor="#FFFFFF" :barStyle="barStyle" @change="tabChange"></tn-tabs>
-      <SectionTitle v-if="false" title="热门推荐" :hasRight="false" />
+      <view  v-if="subtitle" style="margin-left: 30rpx">
+        <SectionTitle :title="subtitle" :hasRight="false" />
+      </view>
+      <tn-tabs v-else :list="scrollList" :current="current" backgroundColor="#FFFFFF" :barStyle="barStyle" @change="tabChange"></tn-tabs>
     </template>
     <!-- 如果希望其他view跟着页面滚动，可以放在z-paging标签内 -->
     <view class="picture-list-container container">
-      <Item class="item" v-for="(item, index) in list" :key="index"/>
+      <Item class="item" v-for="(item, index) in list" :data="item" :key="index" />
     </view>
 
     <template #refresher="{refresherStatus}">
@@ -32,8 +34,7 @@
 </template>
 
 <script lang="ts" setup>
-import PageWrapper from '@/components/pageWrapper/index.vue';
-import { ref, reactive } from 'vue';
+import { ref, reactive, computed } from 'vue';
 import SectionTitle from '@/components/sectionTitle/index.vue';
 import Item from '@/components/picture/item.vue';
 import { ZPagingComponent } from '@/components/z-paging/types';
@@ -41,6 +42,9 @@ import CustomRefresher from '../../components/z-paging/custom-refresher/custom-r
 import CustomNomore from '@/components/z-paging/custom-nomore/custom-nomore.vue';
 import CustomerNavbar from '@/components/customer-navbar/index.vue';
 import NavIndexButton from '../../components/common/nav-index-button.vue';
+import { onLoad } from '@dcloudio/uni-app';
+import { Category, ContentApi, Resource } from '@/apis';
+import { wallpaperListHandler } from '@/utils';
 
 defineOptions({
   name: 'PictureList'
@@ -48,7 +52,6 @@ defineOptions({
 
 const list = ref([])
 const current = ref(0)
-const activeItemStyle = {  borderTop: '1rpx solid #E6E6E6'}
 const barStyle = { boxShadow: `0 0 8upx #01BEFF`}
 const scrollList = reactive([
   {name: '美女'},
@@ -65,27 +68,71 @@ const tabChange = (index: number) => {
   current.value = index
 }
 
-const paging = ref<ZPagingComponent | null>(null)
-function fetchData() {
-  return new Promise((resolve, reject) => {
-    resolve([
-      {title: '', image: '', like: 233, download: 234},
-      {title: '', image: '', like: 233, download: 234},
-      {title: '', image: '', like: 233, download: 234},
-      {title: '', image: '', like: 233, download: 234},
-      {title: '', image: '', like: 233, download: 234},
-      {title: '', image: '', like: 233, download: 234},
-      {title: '', image: '', like: 233, download: 234},
-      {title: '', image: '', like: 233, download: 234},
-      {title: '', image: '', like: 233, download: 234},
-    ])
+const query = ref<Resource.ReqGetParams>({
+  tagId: 0,
+  categoryId: 0,
+  isHot: false,
+  isRecommend: false,
+  search: ''
+})
+
+const tagName = ref('')
+const search = ref('')
+
+const subtitle = computed(() => {
+  if (query.value.isHot) return '热门壁纸'
+  if (query.value.isRecommend) return '精选壁纸'
+  if (query.value.search) return `关于“${query.value.search}”的壁纸`
+  if (query.value.tagId) return `#${tagName.value}`
+  return null
+})
+
+const categoryList = ref<Category.Item[]>([])
+
+function getCateList() {
+  ContentApi.categoriesList({}).then(res => {
+    if (res.data.success) {
+      categoryList.value = res.data.data
+    }
   })
 }
 
+function getResourceList({ pageNum = 1, pageSize = 10 }: { pageSize: number; pageNum: number }) {
+  query.value.pageNum = pageNum
+  query.value.pageSize = pageSize
+  return ContentApi.wallpaper(query.value)
+}
+
+onLoad((res) => {
+  if (res.tagId) {
+    query.value.tagId = +res.tagId
+    tagName.value = res.tagName || ''
+  }
+  if (res.cateId) {
+    query.value.categoryId = +res.cateId
+  }
+  if (res.isHot) {
+    query.value.isHot = res.isHot === 'true' ? true : false
+  }
+  if (res.isRecommend) {
+    query.value.isRecommend = res.isRecommend === 'true' ? true : false
+  }
+  console.log(res, query)
+  getCateList()
+})
+
+// =========================== zpagin ================================
+const paging = ref<ZPagingComponent | null>(null)
+
 function queryList(pageNo: number, pageSize: number) {
-  fetchData().then(res => {
-    paging.value?.complete(res)
-  }).catch(() => {
+  getResourceList({
+    pageNum: pageNo,
+    pageSize
+  }).then(res => {
+    if (res.data.success) {
+      paging.value?.complete(wallpaperListHandler(res.data.data.rows))
+    }
+  }).catch(e => {
     paging.value?.complete(false)
   })
 }
@@ -97,7 +144,7 @@ function queryList(pageNo: number, pageSize: number) {
   display: flex;
   flex-wrap: wrap;
   .picture-item, .item {
-    margin-right: 30upx;
+    margin-right: 15upx;
     &:nth-of-type(3n) {
       margin-right: 0upx;
     }

@@ -17,7 +17,6 @@ import SectionTitle from '@/components/sectionTitle/index.vue';
 defineOptions({
   name: 'Category'
 })
-
 </script>
 
 <style lang="scss" scoped>

@@ -4,7 +4,7 @@
       <navigator
         open-type="navigate"
         hover-class='none'
-        :url="content_item.url"
+        :url="'/pages/Pictures/index?cateId=' + content_item.id + '&cateName=' + content_item.name"
         class="nav-list-item tn-shadow-blur tn-cool-bg-image tn-flex tn-flex-direction-column tn-flex-col-center tn-flex-row-between"
         :style="{ 'background-image': `url(http://img.zukmb.cn/${content_item.cover})`}"
       >

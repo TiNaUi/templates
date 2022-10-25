@@ -90,7 +90,6 @@ export namespace Resource {
   }
 
   export interface ReqGetParams extends ReqPage {
-    name: string
     tagId: number
     categoryId: number
     isHot: boolean;

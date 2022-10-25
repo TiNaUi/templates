@@ -7,7 +7,7 @@
           v-for="(item, index) in tags"
           :class="['tn-plan-content__item','tn-margin-right','tn-round','tn-text-sm','tn-text-bold','tn-bg-'+item.color+'--light tn-color-'+ item.color]"
           :key="index"
-          @click="itemClick()"
+          @click="itemClick(item)"
         >
           <text class="tn-plan-content__item--prefix ">#</text>{{''+item.tag_name+''}}</view>
       </view>
@@ -55,9 +55,9 @@ onMounted(() => {
   getTagList()
 })
 
-function itemClick() {
+function itemClick(tag: Tag.Item) {
   uni.navigateTo({
-    url: '/pages/Pictures/index'
+    url: '/pages/Pictures/index?tagId=' + tag.id + '&tagName=' + tag.tag_name
   })
 }
 
