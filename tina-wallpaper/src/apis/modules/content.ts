@@ -3,7 +3,7 @@
  */
 
 import { ReqPage, ResPage } from '../interface'
-import { request } from "../request"
+import { request } from '../request';
 
 export namespace Banner {
   export interface Item {
@@ -108,6 +108,10 @@ export class ContentApi {
 
   static tagList() {
     return request.get<Tag.Item[]>('/content/tags')
+  }
+
+  static categoriesList({ type = 'resource' } ) {
+    return request.get<Category.Item[]>('/content/categories', { type })
   }
 
   static wallpaper(params: Partial<Resource.ReqGetParams>) {

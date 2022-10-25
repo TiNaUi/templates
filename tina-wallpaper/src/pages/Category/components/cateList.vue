@@ -6,14 +6,14 @@
         hover-class='none'
         :url="content_item.url"
         class="nav-list-item tn-shadow-blur tn-cool-bg-image tn-flex tn-flex-direction-column tn-flex-col-center tn-flex-row-between"
-        :style="{ 'background-image': `url(${content_item.background})`}"
+        :style="{ 'background-image': `url(http://img.zukmb.cn/${content_item.cover})`}"
       >
         <view class="content-container">
           <!-- <view class="icon">
             <view :class="['tn-icon-' + content_item.icon]"></view>
           </view> -->
           <view class="nav-link">
-            <view class='title'>{{ content_item.title }}</view>
+            <view class='title'>{{ content_item.name }}</view>
           </view>
         </view>
       </navigator>
@@ -23,69 +23,31 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import color from '@tina-ui/ui/libs/function/color'
+import { ContentApi, Category } from '@/apis';
 
 defineOptions({
   name: 'CateList'
 })
 
-const lists = ref([
-  {
-    title: '美女',
-    url: '/pages/Pictures/index',
-    background: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2F811%2F041914135038%2F140419135038-3-1200.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665715861&t=a2c0dd091f95ebdb5f60b3e1256ee2d6'
-  },
-  {
-    title: '风景',
-    url: '/pages/Pictures/index',
-    background: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2019-04-19%2F5cb972785fa64.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665715906&t=efd0f50130800ed2621d572361207604'
-  },
-  {
-    title: '明星',
-    url: '/pages/Pictures/index',
-    background: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fdik.img.kttpdq.com%2Fpic%2F74%2F51149%2Fe72e5cf533957691.jpg&refer=http%3A%2F%2Fdik.img.kttpdq.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665715946&t=32a3bb146fc87381810419a28c6cde1a'
-  },
-  {
-    title: '动漫',
-    url: '/pages/Pictures/index',
-    background: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.jj20.com%2Fup%2Fallimg%2F811%2F041914135038%2F140419135038-3-1200.jpg&refer=http%3A%2F%2Fimg.jj20.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665715861&t=a2c0dd091f95ebdb5f60b3e1256ee2d6'
-  },
-  {
-    title: '游戏',
-    url: '//pages/Pictures/index',
-    background: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic1.win4000.com%2Fwallpaper%2F2019-04-19%2F5cb972785fa64.jpg&refer=http%3A%2F%2Fpic1.win4000.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665715906&t=efd0f50130800ed2621d572361207604'
-  },
-  {
-    title: '星空',
-    url: '/pages/Pictures/index',
-    background: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fdik.img.kttpdq.com%2Fpic%2F74%2F51149%2Fe72e5cf533957691.jpg&refer=http%3A%2F%2Fdik.img.kttpdq.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665715946&t=32a3bb146fc87381810419a28c6cde1a'
-  },
-  {
-    title: '海景',
-    url: '/pages/Pictures/index',
-    background: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fdik.img.kttpdq.com%2Fpic%2F74%2F51149%2Fe72e5cf533957691.jpg&refer=http%3A%2F%2Fdik.img.kttpdq.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665715946&t=32a3bb146fc87381810419a28c6cde1a'
-  },
-  {
-    title: '静物',
-    url: '/pages/Pictures/index',
-    background: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fdik.img.kttpdq.com%2Fpic%2F74%2F51149%2Fe72e5cf533957691.jpg&refer=http%3A%2F%2Fdik.img.kttpdq.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665715946&t=32a3bb146fc87381810419a28c6cde1a'
-  },
-  {
-    title: '萌宠',
-    url: '/pages/Pictures/index',
-    background: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fdik.img.kttpdq.com%2Fpic%2F74%2F51149%2Fe72e5cf533957691.jpg&refer=http%3A%2F%2Fdik.img.kttpdq.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665715946&t=32a3bb146fc87381810419a28c6cde1a'
-  },
-  {
-    title: '街景',
-    url: '/pages/Pictures/index',
-    background: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fdik.img.kttpdq.com%2Fpic%2F74%2F51149%2Fe72e5cf533957691.jpg&refer=http%3A%2F%2Fdik.img.kttpdq.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665715946&t=32a3bb146fc87381810419a28c6cde1a'
-  }
-])
+const lists = ref<Category.Item[]>([])
 
 function getRandomCoolBg() {
   return color.getRandomCoolBgClass()
 }
+
+function getCateList() {
+  ContentApi.categoriesList({}).then(res => {
+    if (res.data.success) {
+      lists.value = res.data.data
+    }
+  })
+}
+
+onMounted(() => {
+  getCateList()
+})
 
 </script>
 
@@ -133,6 +95,7 @@ function getRandomCoolBg() {
           color: #FFFFFF;
           margin-top: 20rpx;
           text-align: center;
+          text-shadow: 2px 2px 2px #333333;
         }
       }
       /* 元素标题 end */

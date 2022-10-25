@@ -19,6 +19,7 @@
         @change="swiperChange"
         @click="changeNavbarState"
         style="height:100vh;width:100vw;"
+        ref="swiper"
       ></tn-swiper>
     </view>
     <scroll-view
@@ -132,8 +133,11 @@ function doCollect() {
   }
 }
 
+const swiper = ref()
+
 onLoad((res) => {
   const rid = +(res.rid || 0)
+  const index = +(res.index || 0)
   console.log(rid)
   ContentApi.wallpaperInfo({ rid: rid, userId: userInfo.value!.id }).then(res => {
     if (res.data.success) {
