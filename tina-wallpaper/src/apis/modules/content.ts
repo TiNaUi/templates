@@ -40,7 +40,7 @@ export namespace Tag {
 
 export namespace Category {
   export interface Item {
-    id: string
+    id: number
     appid: string
     type: string
     name: string

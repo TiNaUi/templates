@@ -15,7 +15,7 @@
       <view  v-if="subtitle" style="margin-left: 30rpx">
         <SectionTitle :title="subtitle" :hasRight="false" />
       </view>
-      <tn-tabs v-else :list="scrollList" :current="current" backgroundColor="#FFFFFF" :barStyle="barStyle" @change="tabChange"></tn-tabs>
+      <tn-tabs v-else :list="categoryList" :current="current" backgroundColor="#FFFFFF" :barStyle="barStyle" @change="tabChange"></tn-tabs>
     </template>
     <!-- 如果希望其他view跟着页面滚动，可以放在z-paging标签内 -->
     <view class="picture-list-container container">
@@ -64,9 +64,6 @@ const scrollList = reactive([
   {name: '萌宠'},
   {name: '街景'}
 ])
-const tabChange = (index: number) => {
-  current.value = index
-}
 
 const query = ref<Resource.ReqGetParams>({
   tagId: 0,
@@ -92,7 +89,7 @@ const categoryList = ref<Category.Item[]>([])
 function getCateList() {
   ContentApi.categoriesList({}).then(res => {
     if (res.data.success) {
-      categoryList.value = res.data.data
+      categoryList.value = [{ id: 0, name: '全部 ' } as any, ...res.data.data]
     }
   })
 }
@@ -123,6 +120,13 @@ onLoad((res) => {
 
 // =========================== zpagin ================================
 const paging = ref<ZPagingComponent | null>(null)
+
+const tabChange = (index: number) => {
+  current.value = index
+  const currentCate = categoryList.value[index]
+  query.value.categoryId = currentCate.id
+  paging.value?.reload(true)
+}
 
 function queryList(pageNo: number, pageSize: number) {
   getResourceList({
