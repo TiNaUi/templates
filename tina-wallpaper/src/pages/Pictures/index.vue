@@ -90,6 +90,9 @@ function getCateList() {
   ContentApi.categoriesList({}).then(res => {
     if (res.data.success) {
       categoryList.value = [{ id: 0, name: '全部 ' } as any, ...res.data.data]
+      const cateId = query.value.categoryId || 0
+      current.value = categoryList.value.findIndex(item => item.id === cateId)
+      console.log(cateId, current.value)
     }
   })
 }
@@ -114,7 +117,6 @@ onLoad((res) => {
   if (res.isRecommend) {
     query.value.isRecommend = res.isRecommend === 'true' ? true : false
   }
-  console.log(res, query)
   getCateList()
 })
 

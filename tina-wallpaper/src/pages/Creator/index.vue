@@ -1,53 +1,74 @@
-<template>
+<template insert>
   <view class="creator-container">
-    <view class="creator-header">
-      <!-- 头像用户信息 -->
-      <view class="user-info__container tn-flex tn-flex-direction-column tn-flex-col-center tn-flex-row-center">
-        <view class="user-info__avatar tn-flex tn-flex-col-center tn-flex-row-center">
-          <view class="tn-shadow-blur" style="background-image:url('https://tnuiimage.tnkjapp.com/logo/tuniao.png');width: 170rpx;height: 170rpx;background-size: cover;">
-          </view>
-        </view>
-        <view class="user-info__nick-name">TaTa</view>
-        <view class="user-info__nick-desc">什么都没有留下，写点什么吧? <text class="tn-icon-write"></text></view>
-      </view>
-      <view class="header-bg"></view>
-    </view>
-
-    <view class="container">
-      <!-- 数据信息 -->
-      <view class="tn-info__container tn-flex tn-flex-wrap tn-flex-col-center tn-flex-row-between">
-        <block v-for="(item, index) in tuniaoData" :key="index">
-          <view class="tn-info__item tn-flex tn-flex-direction-row tn-flex-col-center tn-flex-row-between about-shadow" @click="navigator(item.url)">
-            <view class="tn-info__item__left tn-flex tn-flex-direction-row tn-flex-col-center tn-flex-row-left">
-              <view class="tn-info__item__left--icon tn-flex tn-flex-col-center tn-flex-row-center" :class="[`tn-bg-${item.color}--light tn-color-${item.color}`]">
-                <view :class="[`tn-icon-${item.icon}`]"></view>
-              </view>
-              <view class="tn-info__item__left__content">
-                <view class="tn-info__item__left__content--title">{{ item.title }}</view>
-                <view class="tn-info__item__left__content--data tn-padding-top-xs">{{ item.value }}</view>
-              </view>
+    <template v-if="isCreattor">
+      <view class="creator-header">
+        <!-- 头像用户信息 -->
+        <view class="user-info__container tn-flex tn-flex-direction-column tn-flex-col-center tn-flex-row-center">
+          <view class="user-info__avatar tn-flex tn-flex-col-center tn-flex-row-center">
+            <view class="tn-shadow-blur"
+              style="background-image:url('https://tnuiimage.tnkjapp.com/logo/tuniao.png');width: 170rpx;height: 170rpx;background-size: cover;">
             </view>
           </view>
-        </block>
+          <view class="user-info__nick-name">TaTa</view>
+          <view class="user-info__nick-desc">什么都没有留下，写点什么吧? <text class="tn-icon-write"></text></view>
+        </view>
+        <view class="header-bg"></view>
       </view>
-
-      <SectionTitle title="我的投稿" class="mt-30" :hasRight="false" />
-      <List :lists="list" style="margin-top: 30upx;"/>
-
-    </view>
-    <NotCreator v-if="false" />
+      <view class="container">
+        <!-- 数据信息 -->
+        <view class="tn-info__container tn-flex tn-flex-wrap tn-flex-col-center tn-flex-row-between">
+          <block v-for="(item, index) in tuniaoData" :key="index">
+            <view class="tn-info__item tn-flex tn-flex-direction-row tn-flex-col-center tn-flex-row-between about-shadow"
+              @click="navigator(item.url)">
+              <view class="tn-info__item__left tn-flex tn-flex-direction-row tn-flex-col-center tn-flex-row-left">
+                <view class="tn-info__item__left--icon tn-flex tn-flex-col-center tn-flex-row-center"
+                  :class="[`tn-bg-${item.color}--light tn-color-${item.color}`]">
+                  <view :class="[`tn-icon-${item.icon}`]"></view>
+                </view>
+                <view class="tn-info__item__left__content">
+                  <view class="tn-info__item__left__content--title">{{ item.title }}</view>
+                  <view class="tn-info__item__left__content--data tn-padding-top-xs">{{ item.value }}</view>
+                </view>
+              </view>
+            </view>
+          </block>
+        </view>
+        <SectionTitle title="我的投稿" class="mt-30" :hasRight="false" />
+        <List :lists="list" style="margin-top: 30upx;" />
+      </view>
+    </template>
+    <NotCreator v-else @doCreator="doCreator" />
   </view>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import NotCreator from './components/NotCreator/index.vue'
 import List from '@/components/picture/list.vue';
 import SectionTitle from '@/components/sectionTitle/index.vue';
+import { useUserStore } from '@/store';
 
 defineOptions({
   name: 'Creator'
 })
+const userStore = useUserStore()
+const userInfo = computed(() => userStore.userInfo)
+const isCreattor = computed(() => userStore.userInfo?.creator)
+
+const loginModel = ref<null | any>(null)
+function loginAct() {
+  if (loginModel) {
+    loginModel.value.show()
+  }
+}
+
+const doCreator = (isRegister: boolean) => {
+  if (isRegister) {
+    loginAct()
+    return
+  }
+}
+
 const navigator = (url: string) => {
   uni.navigateTo({
     url

@@ -14,6 +14,7 @@ export interface UserModel {
     appid: string;
     openid: string;
   };
+  creator: any | null
   id: number
   pid: number
   vip_level: number

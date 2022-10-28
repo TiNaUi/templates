@@ -44,20 +44,20 @@
     <!-- 头像用户信息 -->
     <view class="user-info__container tn-flex tn-flex-direction-column tn-flex-col-center tn-flex-row-center">
       <view class="user-info__avatar tn-flex tn-flex-col-center tn-flex-row-center">
-        <view class="tn-shadow-blur" style="background-image:url('https://tnuiimage.tnkjapp.com/logo/tuniao.png');width: 170rpx;height: 170rpx;background-size: cover;">
+        <view class="tn-shadow-blur" v-if="userInfo" :style="'background-image:url('+ (userInfo?.profile.avatar || '') +');width: 170rpx;height: 170rpx;background-size: 100% 100%; border-radius: 50%;'">
         </view>
       </view>
       <!-- <view class="user-info__nick-name">图鸟UI</view> -->
     </view>
     
     <view class="tn-text-center tn-color-gray--disabled" style="padding: 40vh 0 0 0;">
-      <view class="" style="font-size: 45rpx; margin-top: 12upx;">
-       您还不是创意传播官
+      <view class="" style="font-size: 45rpx; margin-top: 24rpx;">
+       您还不是星图内容推荐官
       </view>
-      <view class="" style="font-size: 45rpx; margin-top: 12upx;">
-       成为创意传播官
+      <view class="" style="font-size: 45rpx; margin-top: 24rpx;">
+       成为星图内容推荐官
       </view>
-      <view class="" style="font-size: 45rpx; margin-top: 12upx;">
+      <view class="" style="font-size: 45rpx; margin-top: 24rpx;">
        为创意提供更好的舞台
       </view>
       <view class="tn-color-gray--disabled tn-text-df tn-padding-top">
@@ -65,8 +65,9 @@
       </view>
     </view>
     
-    <view class="" style="padding: 120rpx 200rpx;z-index: 999;position: relative;">
-      <tn-button :plain="true" shape="round" backgroundColor="#FFFFFF" fontColor="#FFFFFF" width="100%" height="70rpx">立即成为创意传播官</tn-button>
+    <view class="" style="padding: 160rpx 120rpx;z-index: 999;position: relative;">
+      <view class="join-btn" v-if="userInfo" @click="doCreator(false)">立即成为星荐官</view>
+      <view class="join-btn" v-else @click="doCreator(true)">立即注册成为创意星荐官</view>
     </view>
     
     <view class="tnwave waveAnimation">
@@ -85,10 +86,19 @@
 
 <script lang="ts" setup>
 import { useImagePath } from '@/hooks';
+import { useUserStore } from '@/store';
+import { computed, ref } from 'vue';
 
 defineOptions({
   name: 'NotCreator'
 })
+
+const emit = defineEmits(['doCreator'])
+
+const userStore = useUserStore()
+const userInfo = computed(() => userStore.userInfo)
+
+const doCreator = (isRegister: boolean) => { emit('doCreator', isRegister) }
 
 </script>
 

@@ -333,7 +333,8 @@
 .template-outset {
   background-image: linear-gradient(to top, #4C3FAE 20%, #6E26BA 80%);
   width: 100vw;
-  height: 100vh;
+  height: calc(100vh - 120upx);
+  position: relative;
 }
 
 @keyframes move_wave {
@@ -411,4 +412,25 @@
 
 .waveAnimation .waveBottom {
   animation: move_wave 2s linear infinite;
+}
+
+.join-btn {
+  background-image: linear-gradient(to right, #ff3300 0%, #eb4402 25%, #ffc404 50%, #eb4402 75%, #ff3300 100%);
+  background-size: 200%;
+  height: 80upx;
+  line-height: 80upx;
+  animation: colorGradient 1.5s infinite;
+  border-radius: 70upx;
+  text-align: center;
+  color: #fff;
+}
+
+@keyframes colorGradient {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 100% 0;
+  }
 }

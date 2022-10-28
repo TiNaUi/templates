@@ -11,8 +11,8 @@ export const templateInset = (components: string[] = []):Plugin => {
       if (/UserCenter\//g.test(fileName) && /\.vue/.test(fileName)) {
         return code.replace(/(\<template\>\s*\<.+?\>)/,"$1"+string)
       }
-      if(/\.vue/.test(fileName)&&/^\<template/.test(code)) {
-        return code.replace(/(\<template\>\s*\<.+?\>)/,"$1"+string)
+      if(/\.vue/.test(fileName)&&/\<template insert/ig.test(code)) {
+        return code.replace(/(\<template insert\>\s*\<.+?\>)/,"$1"+string)
       }
     }
   }

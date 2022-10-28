@@ -42,11 +42,10 @@ const isHidden = computed(() => props.hidden)
 onMounted(() => {
   ContentApi.wallpaper({ pageNum: 1, pageSize: 3, isHot: true }).then((res) => {
     if (res.data.success) {
-      hotList.value = wallpaperListHandler(res.data.data.rows || [])
+      hotList.value = wallpaperListHandler(res.data.data.rows || []).slice(0, 3)
     }
   })
 })
-
 
 const queryList = (params: { pageNo: number; pageSize: number; }):Promise<any[]> => {
   console.log(isHidden.value)
