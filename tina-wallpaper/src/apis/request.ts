@@ -35,7 +35,7 @@ export class Request {
     return this.instance.post(url, data, config)
   };
   put<T = any>(url: string, data?: AnyObject, config?: HttpRequestConfig<UniApp.RequestTask>): HttpPromise<ResponceResult<T>> {
-    return this.put(url, data, config)
+    return this.instance.put(url, data, config)
   };
 }
 

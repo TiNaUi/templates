@@ -28,7 +28,6 @@ defineOptions({
 const userStore = useUserStore()
 
 const visible = ref(false)
-
 const content = "点击按钮一键登录"
 
 const buttonConfig = [

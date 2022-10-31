@@ -1,6 +1,7 @@
 <template>
   <view class="container creator-apply-container">
-    <view class="tips">点击添加图片说明/长按图片排序</view>
+    <CustomerNavBarCapsule />
+    <view class="tips" :style="'margin-top:'+customerNavBarHeight + 'px;color: #999;'">点击添加图片说明/长按图片排序</view>
     <view class="drag__wrap tn-margin-top ">
       <tn-image-upload-drag :cols="3" :margin="1" v-model="list" :square="3 > 1" :itemHeight="40" :showDelete="true">
         <template #content="{ item, index }">
@@ -26,7 +27,7 @@
         >
           <tn-list-cell :arrow="false" :arrowRight="false" :unlined="false" :lineLeft="false" :lineRight="false" padding="0px">
             <view class="input-container">
-              <tn-input v-model="formData.title" @update:modelValue="inputHandler" type="text" placeholder="请输入标题"></tn-input>
+              <tn-input v-model="formData.title" @update:modelValue="inputHandler" type="text" placeholder="请输入标题" style="width: 100%;"></tn-input>
               <view class="input-number">{{ titleLength }}/50</view>
             </view>
           </tn-list-cell>
@@ -62,7 +63,7 @@
       </view>
     </view>
   </view>
-  <tn-button width="100%" height="104" shape="default" :border="false" class="bottom-button">投稿作品</tn-button>
+  <view class="bottom-button">投 稿 作 品</view>
   <!-- category -->
   <tn-select
     v-model="cateShow"
@@ -85,7 +86,7 @@
     @close="closedPopup"
   >
     <view class="tags-wrapper">
-      <tn-tag class="tag-item" :class="{ active: selectedIndexs.includes(index) }" v-for="(tag, index) in tags" :key="index" @click="selectTag(index)">{{ tag.name }}</tn-tag>
+      <tn-tag class="tag-item" :class="{ active: selectedIndexs.includes(index) }" v-for="(tag, index) in tags" :key="index" @click="selectTag(index)">{{ tag.tag_name }}</tn-tag>
     </view>
     <view class="tags-button">
       <tn-button class="tags-cancel" @click="cancelTags">取消</tn-button>
@@ -96,10 +97,16 @@
 
 <script lang="ts" setup>
 import { ref, computed, reactive, watch } from 'vue';
+import CustomerNavBarCapsule from '@/components/customer-navbar/capsule.vue'
+import { useAppStore, useTagsStore } from '@/store';
 
 defineOptions({
   name: 'CreatorApply'
 })
+
+const appStore = useAppStore()
+const tagStore = useTagsStore()
+const customerNavBarHeight = appStore.vuex_custom_bar_height
 
 const formData = reactive({
   title: '',
@@ -212,47 +219,7 @@ const confirmCateSelect = (event: any) => {
 
 // ====== TAGS =====
 const tagsShow = ref(false)
-const tags = ref([
-  {
-    name: "小清新",
-    color: "red"
-  },
-  {
-    name: "动漫",
-    color: "cyan"
-  },
-  {
-    name: "沙雕",
-    color: "blue"
-  },
-  {
-    name: "搞笑",
-    color: "green"
-  },
-  {
-    name: "王者荣耀",
-    color: "orange"
-  },
-  {
-    name: "明星",
-    color: "purplered"
-  },
-  {
-    name: "日系动漫",
-    color: "purple"
-  },
-  {
-    name: "和平精英",
-    color: "brown"
-  },
-  {
-    name: "泰国",
-    color: "yellowgreen"
-  },
-  {
-    name: "风景",
-    color: "grey"
-} ])
+const tags = computed(() => tagStore.tagList)
 const selectedIndexs = ref<number[]>([])
 const selectTag = (index: number) => {
   const _selectedIndex = selectedIndexs.value.indexOf(index)
@@ -269,7 +236,7 @@ const cancelTags = () => {
   tagsShow.value = false
 }
 const confirmTags = () => {
-  formData.tags = tags.value.filter((tag, index) => selectedIndexs.value.includes(index)).map(tag => tag.name)
+  formData.tags = tags.value.filter((tag, index) => selectedIndexs.value.includes(index)).map(tag => tag.tag_name)
   cancelTags()
 }
 const closedPopup = () => {
@@ -328,10 +295,13 @@ const closedPopup = () => {
 .bottom-button {
   width: 100%;
   height: 104upx;
+  line-height: 104upx;
   background: #17A0F7 !important;
   color: #fff;
   border: none;
   border-radius: 0 !important;
+  font-size: 36upx;
+  text-align: center;
 }
 
 .tags-wrapper {
@@ -340,7 +310,7 @@ const closedPopup = () => {
     border: 1px solid #dedede;
     border-radius: 16upx;
     padding: 8upx 32upx !important;
-    height: 60upx !important;
+    height: 48upx !important;
     margin-bottom: 16upx !important;
     margin-right: 16upx !important;
     &.active {

@@ -81,24 +81,49 @@
         <view class="wave waveBottom" :style="'background-image: url('+ useImagePath('/wave/wave-1.png') +')'"></view>
       </view>
     </view>
+    <ApplyCreator v-model="applyVisible" @success="applySuccess" />
   </view>
 </template>
 
 <script lang="ts" setup>
 import { useImagePath } from '@/hooks';
 import { useUserStore } from '@/store';
-import { computed, ref } from 'vue';
+import { computed, ref, onMounted } from 'vue';
+import ApplyCreator from './applyCreator.vue'
+import { UserApi } from '@/apis';
 
 defineOptions({
   name: 'NotCreator'
 })
 
-const emit = defineEmits(['doCreator'])
+const emit = defineEmits(['doCreator', 'applySuccess'])
 
 const userStore = useUserStore()
 const userInfo = computed(() => userStore.userInfo)
+const applyVisible = ref(false)
+const doCreator = (isRegister: boolean) => {
+  if (!isRegister) {
+    applyVisible.value = true
+    return
+  }
+  emit('doCreator',isRegister)
+ }
+const applySuccess = () => {
+  getUserInfo()
+  emit('applySuccess')
+}
 
-const doCreator = (isRegister: boolean) => { emit('doCreator', isRegister) }
+function getUserInfo() {
+  UserApi.info(userInfo.value?.id!).then(res => {
+    if (res.data.success) {
+      userStore.setUserInfo(res.data.data)
+    }
+  })
+}
+
+onMounted(() => {
+  getUserInfo()
+})
 
 </script>
 

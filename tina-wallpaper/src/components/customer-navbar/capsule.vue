@@ -23,7 +23,7 @@ function goBack() {
     const firstPage = pages[0]
     if (pages.length == 1 && (!firstPage.route || firstPage.route != 'pages/index/index')) {
       uni.reLaunch({
-        url: '/pages/index/index'
+        url: '/pages/Index/index'
       })
     } else {
       uni.navigateBack({
@@ -32,7 +32,7 @@ function goBack() {
     }
   } else {
     uni.reLaunch({
-      url: '/pages/index/index'
+      url: '/pages/Index/index'
     })
   }
 }

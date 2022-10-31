@@ -6,13 +6,17 @@
         <view class="user-info__container tn-flex tn-flex-direction-column tn-flex-col-center tn-flex-row-center">
           <view class="user-info__avatar tn-flex tn-flex-col-center tn-flex-row-center">
             <view class="tn-shadow-blur"
-              style="background-image:url('https://tnuiimage.tnkjapp.com/logo/tuniao.png');width: 170rpx;height: 170rpx;background-size: cover;">
+              v-if="userInfo"
+              :style="'background-image:url(' + userInfo?.profile.avatar +');width: 170rpx;height: 170rpx;background-size: cover;'">
             </view>
           </view>
-          <view class="user-info__nick-name">TaTa</view>
-          <view class="user-info__nick-desc">什么都没有留下，写点什么吧? <text class="tn-icon-write"></text></view>
+          <view class="user-info__nick-name">{{ userInfo?.profile.nickname }}</view>
+          <view class="user-info__nick-desc">{{ userInfo?.creator.remark || '什么都没没有留下！' }} <text class="tn-icon-write" @click="showUpdate()"></text></view>
         </view>
         <view class="header-bg"></view>
+      </view>
+      <view class="header-notice" v-if="userInfo?.creator.status !== 2">
+        <tn-notice-bar  backgroundColor="tn-main-gradient-indigo" :list="['您提交的星荐官申请正在审核中，请耐心等候~']"></tn-notice-bar>
       </view>
       <view class="container">
         <!-- 数据信息 -->
@@ -33,33 +37,69 @@
             </view>
           </block>
         </view>
-        <SectionTitle title="我的投稿" class="mt-30" :hasRight="false" />
-        <List :lists="list" style="margin-top: 30upx;" />
+        <!-- <SectionTitle title="我的投稿" class="mt-30" :hasRight="false" />
+        <List :lists="list" style="margin-top: 30upx;" /> -->
+        <view class="start-apply tn-main-gradient-indigo tn-shadow-indigo" @click="goApply()">立 即 开 始 投 稿</view>
       </view>
     </template>
-    <NotCreator v-else @doCreator="doCreator" />
+    <NotCreator v-else @doCreator="doCreator" @applySuccess="applySuccess" />
+    <UpdateDialog v-model="updateVsisble" @success="updateSucess" />
   </view>
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
+import { computed, ref, watch } from 'vue';
 import NotCreator from './components/NotCreator/index.vue'
-import List from '@/components/picture/list.vue';
-import SectionTitle from '@/components/sectionTitle/index.vue';
+import UpdateDialog from './components/UpdateDialog/index.vue'
+// import List from '@/components/picture/list.vue';
+// import SectionTitle from '@/components/sectionTitle/index.vue';
 import { useUserStore } from '@/store';
+import { message } from '@tina-ui/ui';
 
 defineOptions({
   name: 'Creator'
 })
+const props = defineProps({
+  hidden:  Boolean
+}) 
 const userStore = useUserStore()
 const userInfo = computed(() => userStore.userInfo)
-const isCreattor = computed(() => userStore.userInfo?.creator)
+const isCreattor = computed(() => userInfo.value?.creator)
+const updateVsisble = ref(false)
+function showUpdate() {
+  updateVsisble.value = true
+}
+function updateSucess() {
+  userStore.updateUserInfo()
+}
 
 const loginModel = ref<null | any>(null)
 function loginAct() {
   if (loginModel) {
     loginModel.value.show()
   }
+}
+
+const hidden = computed(() => props.hidden)
+
+watch(hidden, (val) => {
+  if (!val) {
+    userStore.updateUserInfo()
+  }
+}, { immediate: true })
+
+
+const goApply = () => {
+  if (!userInfo || userInfo.value?.creator.status !== 2) {
+    message.toast('请耐心等候审核结果!')
+    return
+  }
+  uni.navigateTo({
+    url: '/pages/Creator/apply'
+  })
+}
+
+const applySuccess = () => {
 }
 
 const doCreator = (isRegister: boolean) => {
@@ -74,42 +114,34 @@ const navigator = (url: string) => {
     url
   })
 }
-const list = ref([
-  {title: '', image: '', like: 233, download: 234},
-  {title: '', image: '', like: 233, download: 234},
-  {title: '', image: '', like: 233, download: 234},
-  {title: '', image: '', like: 233, download: 234},
-  {title: '', image: '', like: 233, download: 234},
-  {title: '', image: '', like: 233, download: 234}
-])
 
 const tuniaoData = [
   {
     title: '我的投稿',
     icon: 'medical',
     color: 'indigo',
-    value: '1.22 W',
+    value: 0,
     url: '/pages/Creator/applyLog'
   },
   {
     title: '收获点赞',
     icon: 'praise',
     color: 'orange',
-    value: '406',
+    value: '0',
     url: '/pages/Creator/applyLog'
   },
   {
     title: '收获积分',
     icon: 'topics',
     color: 'purplered',
-    value: '129',
+    value: '0',
     url: '/pages/Creator/applyLog'
   },
   {
     title: '总下载量',
     icon: 'fire',
     color: 'green',
-    value: '100',
+    value: '0',
     url: '/pages/Creator/applyLog'
   }
 ]
@@ -142,6 +174,7 @@ const tuniaoData = [
     position: absolute;
     top: 16vh;
     left: 50%;
+    padding-top: 80upx;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
     width: 100%;
@@ -160,7 +193,6 @@ const tuniaoData = [
 
   &__nick-name {
     color: #FFFFFF;
-    margin-top: 26rpx;
     font-size: 36rpx;
     font-weight: 600;
     text-align: center;
@@ -256,4 +288,13 @@ const tuniaoData = [
   }
 }
 /* 信息展示 end */
+
+.start-apply {
+  height: 88upx;
+  line-height: 88upx;
+  text-align: center;
+  width: 80%;
+  margin: 80upx auto 0 auto;
+  border-radius: 16upx;
+}
 </style>
