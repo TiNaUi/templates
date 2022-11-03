@@ -32,6 +32,7 @@ defineOptions({
 
 const currentIndex = ref(0)
 const tabberPageLoadFlag = ref<boolean[]>([])
+const title = ref('')
 
 const tabbarList = reactive([
   {

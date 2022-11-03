@@ -6,7 +6,7 @@
       <tn-image-upload-drag :cols="3" :margin="1" v-model="list" :square="3 > 1" :itemHeight="40" :showDelete="true">
         <template #content="{ item, index }">
           <view class="sort-img-item">
-            <image style="width: 100%; height: 100%; overflow: hidden;" :src="item" mode="aspectFill"></image>
+            <image style="width: 228rpx; height: 228rpx; overflow: hidden;" :src="item" mode="aspectFill"></image>
           </view>
         </template>
         <template #append>
@@ -19,12 +19,10 @@
         </template>
       </tn-image-upload-drag>
     </view>
+    
     <view class="upload-form">
       <view class="tn-margin-top">
-        <tn-list-view
-          :card="true"
-          backgroundColor="#EFEFEF"
-        >
+        <tn-list-view :card="true" backgroundColor="#EFEFEF">
           <tn-list-cell :arrow="false" :arrowRight="false" :unlined="false" :lineLeft="false" :lineRight="false" padding="0px">
             <view class="input-container">
               <tn-input v-model="formData.title" @update:modelValue="inputHandler" type="text" placeholder="请输入标题" style="width: 100%;"></tn-input>
@@ -44,7 +42,7 @@
               <view class="list__left">
                 <view class="list__left__text">选择标签</view>
               </view>
-              <view class="list__right">{{ formData.tags.join('/') }}</view>
+              <view class="list__right">{{ formData.tags.map(tag => tag.tag_name).join('/') }}</view>
             </view>
           </tn-list-cell>
           <tn-list-cell :arrow="true" :arrowRight="true" :unlined="false" :lineLeft="false" :lineRight="false">
@@ -56,14 +54,14 @@
             </view>
           </tn-list-cell>
           <tn-list-cell :arrow="false" :arrowRight="false" :unlined="true" :lineLeft="false" :lineRight="false">
-            <tn-input v-model="formData.desc" type="textarea" placeholder="请输入描述"></tn-input>
+            <tn-input v-model="formData.info" type="textarea" placeholder="请输入描述"></tn-input>
             <view class="input-number">0/200</view>
           </tn-list-cell>
         </tn-list-view>
       </view>
     </view>
   </view>
-  <view class="bottom-button">投 稿 作 品</view>
+  <view class="bottom-button" @click="applyHandler()">投 稿 作 品</view>
   <!-- category -->
   <tn-select
     v-model="cateShow"
@@ -89,8 +87,8 @@
       <tn-tag class="tag-item" :class="{ active: selectedIndexs.includes(index) }" v-for="(tag, index) in tags" :key="index" @click="selectTag(index)">{{ tag.tag_name }}</tn-tag>
     </view>
     <view class="tags-button">
-      <tn-button class="tags-cancel" @click="cancelTags">取消</tn-button>
-      <tn-button class="tags-confirm" @click="confirmTags">确定</tn-button>
+      <view class="tags-cancel" @click="cancelTags">取消</view>
+      <view class="tags-confirm" @click="confirmTags">确定</view>
     </view>
   </tn-popup>
 </template>
@@ -98,50 +96,48 @@
 <script lang="ts" setup>
 import { ref, computed, reactive, watch } from 'vue';
 import CustomerNavBarCapsule from '@/components/customer-navbar/capsule.vue'
-import { useAppStore, useTagsStore } from '@/store';
+import { useAppStore, useTagsStore, useUserStore } from '@/store';
+import { useCategoryStore } from '../../store/modules/category';
+import { Tag } from '@/apis';
+import { UserApi } from '../../apis/modules/user';
+import { message } from '@tina-ui/ui';
+import { useUpload } from '../../hooks/useUpload';
 
 defineOptions({
   name: 'CreatorApply'
 })
 
 const appStore = useAppStore()
+const userStore = useUserStore()
 const tagStore = useTagsStore()
+const cateStore = useCategoryStore()
 const customerNavBarHeight = appStore.vuex_custom_bar_height
 
+const userInfo = computed(() => userStore.userInfo)
+
 const formData = reactive({
-  title: '',
+  title: '火影忍者',
   categories: {
     label: '',
     value: ''
   },
-  tags: [] as string[],
+  tags: [] as Tag.Item[],
   downloadPermession: true,
-  desc: ''
+  info: ''
 })
 const titleLength = computed(() => formData.title.length)
 const inputHandler = (title: string) => {
   if(title.length > 50) {
-    console.log('=====')
     formData.title = title.substring(0, 50)
-    console.log('=====', formData.title)
   }
 }
 
-const list = ref([
-  'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fpic2.zhimg.com%2Fv2-bfeb00fba65b24a177b351798d2974c9_b.jpg&refer=http%3A%2F%2Fpic2.zhimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665968389&t=745e3e471e2349bf2daa3e41b39d6da1',
-  'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F202003%2F30%2F20200330172737_zgkvl.thumb.400_0.jpg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665968389&t=6847883b7b7b95c3d93e35c2e2a595d3',
-  'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F202006%2F27%2F20200627110821_jojos.jpeg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665968389&t=3eb56abb859ebe719d6e16ebe4b8eaa8',
-  'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201807%2F25%2F20180725020234_QYacy.thumb.400_0.jpeg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665968389&t=88e3bf16ec8e11ebca68c75a892ad42a',
-  'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F202005%2F17%2F20200517211523_twwlv.thumb.1000_0.jpg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665968389&t=5cba23be1d4dd905bc24b59f79f79265',
-  'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F201911%2F13%2F20191113184318_rwqxv.thumb.700_0.jpg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665968389&t=03e8d47f18a81b079d9a2dca6f6ba326',
-  'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201610%2F17%2F20161017225110_FXsRZ.jpeg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665968389&t=380fcfe79a9a1fa4db35f6296b457b53',
-  'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fc-ssl.duitang.com%2Fuploads%2Fitem%2F201703%2F18%2F20170318231357_RynUw.thumb.1000_0.jpeg&refer=http%3A%2F%2Fc-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1665968389&t=a9e54e923acf2fb48e261c55ee66daa9'
-])
+const list = ref<string[]>([])
 
-const maxFileLength = 20
+const maxFileLength = 9
 const canUploadLength = computed(() => maxFileLength - list.value.length)
+const fileList = ref<UniApp.ChooseFileSuccessCallbackResultFile[]>([])
 const selectFiles = () => {
-  console.log(uni)
   uni.chooseImage({
     count: canUploadLength.value > 9 ? 9 : canUploadLength.value,
     sourceType: ['album', 'camera'],
@@ -151,7 +147,7 @@ const selectFiles = () => {
         res.tempFilePaths.forEach(file => {
           list.value.push(file)
         })
-        doUpload()
+        fileList.value.push(...res.tempFiles as UniApp.ChooseFileSuccessCallbackResultFile[])
         console.log(res)
       }
     },
@@ -162,58 +158,12 @@ const doUpload = () => {}
 
 // ===== category ========
 const cateShow = ref(false)
-const cates = reactive([
-  {
-    value: 1,
-    label: '美女'
-  },
-  {
-    value: 2,
-    label: '帅哥'
-  },
-  {
-    value: 3,
-    label: '风景'
-  },
-  {
-    value: 4,
-    label: '明星'
-  },
-  {
-    value: 5,
-    label: '动漫'
-  },
-  {
-    value: 6,
-    label: '游戏'
-  },
-  {
-    value: 7,
-    label: '星空'
-  },
-  {
-    value: 8,
-    label: '海景'
-  },
-  {
-    value: 9,
-    label: '静物'
-  },
-  {
-    value: 10,
-    label: '萌宠'
-  },
-  {
-    value: 11,
-    label: '街景'
-  }
-])
+const cates = computed(() => cateStore.cateList.map(item => ({ label: item.name, value: item.id })) || [])
 const selectCategory = () => {
   cateShow.value = true
 }
 const cancelCateSelect = () => {}
 const confirmCateSelect = (event: any) => {
-  console.log(event)
   formData.categories = event[0]
 }
 
@@ -236,11 +186,32 @@ const cancelTags = () => {
   tagsShow.value = false
 }
 const confirmTags = () => {
-  formData.tags = tags.value.filter((tag, index) => selectedIndexs.value.includes(index)).map(tag => tag.tag_name)
+  formData.tags = tags.value.filter((tag, index) => selectedIndexs.value.includes(index))
   cancelTags()
 }
 const closedPopup = () => {
   tagsShow.value = false
+}
+
+const applyHandler = async () => {
+  console.log(formData)
+  const fileRes = await useUpload(fileList.value)
+  console.log("🚀 ~ file: apply.vue ~ line 199 ~ applyHandler ~ fileRes", fileRes)
+  const postData = {
+    ...formData,
+    category: +formData.categories.value,
+    tags: formData.tags.map(tag => tag.id),
+    user_id: userInfo.value?.id!,
+    resource: fileRes.map(item => item.key)
+  }
+  UserApi.contribution(postData).then(res => {
+    if (res.data.success) {
+      message.toast('投稿成功，请耐心等待审核')
+      uni.navigateTo({
+        url: '/pages/Creator/applyLog'
+      })
+    }
+  })
 }
 </script>
 
@@ -291,6 +262,7 @@ const closedPopup = () => {
   text-align: right;
   line-height: 1.4em;
   padding-top: 16upx;
+  flex: 1;
 }
 .bottom-button {
   width: 100%;
@@ -302,15 +274,19 @@ const closedPopup = () => {
   border-radius: 0 !important;
   font-size: 36upx;
   text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 
 .tags-wrapper {
   padding: 30upx;
+  display: flex;
+  flex-wrap: wrap;
   .tag-item {
     border: 1px solid #dedede;
     border-radius: 16upx;
     padding: 8upx 32upx !important;
-    height: 48upx !important;
     margin-bottom: 16upx !important;
     margin-right: 16upx !important;
     &.active {
@@ -331,6 +307,10 @@ const closedPopup = () => {
   width: 240upx !important;
   margin-right: 60upx;
   color: $tn-main-color;
+  height: 90upx;
+  line-height: 90upx;
+  text-align: center;
+  border-radius: 16upx;
 }
 .tags-confirm {
   background-color: $tn-main-color !important;
@@ -346,6 +326,7 @@ const closedPopup = () => {
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    width: 200upx;
     
     &__icon, &__image {
       margin-right: 18rpx;
@@ -362,5 +343,4 @@ const closedPopup = () => {
     margin-right: 20upx;
   }
 }
-  
 </style>

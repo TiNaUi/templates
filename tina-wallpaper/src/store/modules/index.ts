@@ -1,3 +1,5 @@
 export * from './app'
 export * from './user'
 export * from './tags'
+export * from './category'
+export * from './file'

@@ -9,3 +9,15 @@ declare module '*.vue' {
   const component: DefineComponent<{}, {}, any>
   export default component
 }
+
+declare interface AppDataItem {
+  title: string
+  key: string
+  label: string
+  value: string
+  desc: string
+}
+
+declare interface Dict {
+  appData: Record<string, AppDataItem>
+}

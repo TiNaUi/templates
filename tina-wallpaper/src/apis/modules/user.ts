@@ -1,4 +1,6 @@
+import { ResPage } from "../interface"
 import { request } from "../request"
+import { Resource } from "./content"
 
 export namespace User {
   export interface Creator {
@@ -26,6 +28,14 @@ export namespace User {
     profile: Profile
     vip_level: number
     score: number
+  }
+}
+
+export namespace Contribution {
+  export interface Item {
+    id: number
+    user: User.Item
+    resources: Resource.Item
   }
 }
 
@@ -65,5 +75,23 @@ export class UserApi {
 
   static updateCreator(id: number, params: { remark: string }) {
     return request.put<boolean>('/user-creator/' + id, params)
+  }
+
+  /**
+   * 投稿
+   * @param params 。
+   * @returns 
+   */
+  static contribution(params: { user_id: number; resource: string[]; title: string; info: string; tags: number[]; category: number }) {
+    return request.post('/user-creator/contribution', params)
+  }
+
+  /**
+   * 投稿列表
+   * @param param0 
+   * @returns 
+   */
+  static contributionList({ pageNum = 1, pageSize = 10, user_id }: { pageNum: number; pageSize: number; user_id: number }) {
+    return request.get<ResPage<Contribution.Item>>('/user-creator/contribution/list', { pageNum, pageSize, user_id })
   }
 }

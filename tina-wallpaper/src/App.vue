@@ -1,10 +1,11 @@
 <script setup lang="ts">
 import { onLaunch, onShow, onHide } from '@dcloudio/uni-app'
 import updateCustomBarInfo from '@tina-ui/ui/libs/function/updateCustomBarInfo'
-import { useAppStore, useTagsStore } from '@/store'
+import { useAppStore, useCategoryStore, useTagsStore } from '@/store'
 
 const appStore = useAppStore()
 const tagStore = useTagsStore()
+const cateStore = useCategoryStore()
 
 onLaunch(() => {
   console.log('App Launch')
@@ -21,6 +22,7 @@ onLaunch(() => {
   })
 
   tagStore.updateTagList()
+  cateStore.updateTagList()
 
   // #ifdef MP-WEIXIN
   //更新检测
