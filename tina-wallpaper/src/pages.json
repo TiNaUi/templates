@@ -30,6 +30,12 @@
         "navigationBarTitleText": ""
       }
     },
+    {
+      "path": "pages/Creator/center",
+      "style": {
+        "navigationBarTitleText": "center"
+      }
+    },
 		{
 			"path": "pages/Pictures/index",
 			"style": {
