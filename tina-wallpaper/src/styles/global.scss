@@ -12,4 +12,30 @@ $tnt-img-host: "http://img.zukmb.cn/icons";
   background-color: $tnt-main-color;
 }
 
+.flex {
+  display: flex;
+}
+
+.jc {
+  justify-content: center;
+}
+
+.fc {
+  flex-direction: column;
+}
+
+.ac {
+  align-items: center;
+}
+
+.jb {
+  justify-content: space-between;
+}
+
+.txt {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 @import 'page.scss';

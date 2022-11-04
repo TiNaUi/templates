@@ -1,0 +1,12 @@
+<view class="page flex ac jc">
+    <view class="index flex ac jc">
+        <view class="info">
+            <video autoplay loop class="myVideo" controls="{{false}}" objectFit="contain" poster="{{poster}}" src="{{video_url}}"></video>
+            <view bindtap="saveChange" class="save flex ac jc" data-index="0">
+                <image class="saveImg" mode="widthFix" src="https://p3.toutiaoimg.com/origin/pgc-image/f6592a803879452abe68f95c59285558"></image>
+                <view>看广告解锁下载</view>
+            </view>
+            <image bindtap="goPage" class="backIco" mode="widthFix" src="https://img.yugew.com/image/567fe8cda035e4e20c82707d99735ce0.png"></image>
+        </view>
+    </view>
+</view>

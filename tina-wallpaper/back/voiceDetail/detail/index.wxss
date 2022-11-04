@@ -1,0 +1,65 @@
+page {
+    background-color: #000;
+}
+
+.index,.page,page {
+    height: 100%;
+    width: 100%;
+}
+
+.index {
+    position: relative;
+}
+
+.topCon {
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.indexImg {
+    height: 100%;
+    width: 100%;
+}
+
+.info {
+    background-color: red;
+    height: 750rpx;
+    position: relative;
+    width: 750rpx;
+}
+
+.save {
+    background: linear-gradient(0deg,#78b1fd,#458ffc);
+    border-radius: 60rpx;
+    color: #fff;
+    font-size: 36rpx;
+    height: 100rpx;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 530rpx;
+    z-index: 100;
+}
+
+.saveImg {
+    height: 38rpx;
+    margin-right: 14rpx;
+    width: 40rpx;
+}
+
+.myVideo {
+    height: 100%;
+    width: 100%;
+}
+
+.backIco {
+    height: 28rpx;
+    position: absolute;
+    right: 50rpx;
+    top: -46rpx;
+    width: 28rpx;
+    z-index: 100;
+}

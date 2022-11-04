@@ -1,0 +1,66 @@
+<loading show="{{!imageLoaded&&file_type!='video'}}"></loading>
+<view class="index flex fc ac">
+    <view class="indexImgCon flex ac jc">
+        <image binderror="imageError" bindload="imageLoad" bindtap="goPage" class="indexImg" mode="heightFix" src="{{indexImg}}"></image>
+        <image bindtap="goPage" class="indexVoiceIco" mode="aspectFill" src="https://img.yugew.com/image/9d6d3d251129374e96fcc3b6240e8f14.png" wx:if="{{video_url}}"></image>
+        <image bindtap="nextChange" class="preIco" mode="widthFix" src="https://img.yugew.com/image/13fcfdbc175e62c0c3ea63e6102e5e61.png"></image>
+        <image bindtap="preChange" class="nextIco" mode="widthFix" src="https://img.yugew.com/image/b7f6fc9407e1983d57d795863dff5b89.png"></image>
+    </view>
+    <view class="saveBtnCon flex ac jc">
+        <view bindtap="saveBtnChange" class="saveBtn1 flex" data-index="0" wx:if="{{video_url}}">
+            <image class="save-ico" mode="widthFix" src="/image/ico_down.png"></image>
+            <text>下载语音表情包</text>
+        </view>
+        <view bindtap="saveBtnChange" class="saveBtn2 flex" data-index="1">
+            <image class="save-ico" mode="widthFix" src="/image/ico_down.png"></image>
+            <text>下载表情包</text>
+        </view>
+    </view>
+    <view class="save-tip">部分安卓机型下载gif图为静态,但不影响使用</view>
+</view>
+<view class="hotList">
+    <view class="hotTitCon flex ac">
+        <image class="hotTitIco" mode="widthFix" src="https://img.yugew.com/image/0c36c995d08cba4f69d1e8df4411bce8.png"></image>
+        <view class="hotTit">热门推荐</view>
+    </view>
+    <view class="list flex ac">
+        <view bindtap="selectChange" class="item {{item.id==id?'items':''}}" data-index="{{index}}" wx:for="{{list}}" wx:key="key">
+            <image class="itemImg" mode="aspectFill" src="{{item.cover}}"></image>
+            <image class="voiceIco" mode="widthFix" src="https://img.yugew.com/image/9d6d3d251129374e96fcc3b6240e8f14.png" wx:if="{{item.video_url}}"></image>
+            <view class="item-selected flex jc ac" wx:if="{{item.id==id}}">
+                <image mode="widthFix" src="/image/ico_select.png"></image>
+            </view>
+        </view>
+    </view>
+    <view class="loadmore">
+        <view class="loading-more" wx:if="{{hasMore}}">
+            <view class="more-bottom-line" style=" display: flex;">
+                <view class="more-loading"></view>
+                <text class="more-lineTxt">正在加载...</text>
+            </view>
+        </view>
+        <view class="more-finish" wx:if="{{!hasMore&&!empty}}">
+            <view class="more-bottom-line">
+                <view class="more-line"></view>
+                <text class="more-lineTxt">我们是有底线的</text>
+                <view class="more-line"></view>
+            </view>
+        </view>
+    </view>
+</view>
+<view class="saveCon flex ac jc" wx:if="{{isSave}}">
+    <view class="saveInfo">
+        <image bindtap="close" class="saveCloseIco" data-index="2" mode="widthFix" src="https://p3.toutiaoimg.com/origin/pgc-image/ab5d2f5d3a20470faed4f675bc61981e"></image>
+        <view class="saveItem flex ac jb">
+            <view class="saveItemInfo">
+                <view class="saveTit">超清无水印原图</view>
+                <view class="saveTxt">看完广告，即可获取</view>
+            </view>
+            <view bindtap="saveChange" class="saveBtn flex ac jc" data-index="0">
+                <image class="saveBtnIco" mode="widthFix" src="/image/icon_adv.png"></image>
+                <view>超清下载</view>
+            </view>
+        </view>
+        <view class="saveDesc">看{{advTimes}}次广告,当天可额外获得5次免广告高清下载</view>
+    </view>
+</view>

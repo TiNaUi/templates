@@ -1,0 +1,198 @@
+.index {
+    height: auto;
+    line-height: 0;
+    padding: 140rpx 24rpx 50rpx;
+    position: relative;
+    width: 750rpx;
+}
+
+.index,.searchCon {
+    background-color: #fff;
+}
+
+.searchCon {
+    height: max-content;
+    left: 0;
+    padding-bottom: 20rpx;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.search {
+    background-color: hsla(0,0%,100%,.94);
+    border: 1px solid #98f;
+    border-radius: 16rpx;
+    height: 84rpx;
+    margin: 0 auto;
+    position: relative;
+    width: 706rpx;
+    z-index: 3;
+}
+
+.searchIco {
+    height: 32rpx;
+    left: 32rpx;
+    width: 32rpx;
+}
+
+.searchIco,.submit {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.submit {
+    background: linear-gradient(0deg,#6f5ce3,#8575ef);
+    border-radius: 12rpx;
+    color: #fff;
+    font-size: 30rpx;
+    font-weight: 700;
+    height: 60rpx;
+    line-height: 60rpx;
+    right: 12rpx;
+    text-align: center;
+    width: 120rpx;
+}
+
+.searchValue {
+    color: #000;
+    font-size: 30rpx;
+    height: 100%;
+    left: 0;
+    line-height: 84rpx;
+    padding-left: 80rpx;
+    padding-right: 140rpx;
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.followList,.item {
+    height: max-content;
+    width: 100%;
+}
+
+.item {
+    background: #fff;
+    border-radius: 16rpx;
+    box-shadow: 0 0 8px 0 #888;
+    margin-bottom: 20rpx;
+}
+
+.itemTop {
+    height: 122rpx;
+    padding: 0 24rpx;
+    position: relative;
+    width: 100%;
+}
+
+.itemTop::after {
+    background: #f5f5f5;
+    bottom: 0;
+    content: "";
+    display: block;
+    height: 1px;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+    width: 662rpx;
+}
+
+.userImg {
+    border-radius: 50%;
+    flex-shrink: 0;
+    height: 76rpx;
+    width: 76rpx;
+}
+
+.userInfo {
+    flex-shrink: 0;
+    padding-left: 18rpx;
+    padding-right: 18rpx;
+    width: 318rpx;
+}
+
+.userName {
+    color: #000;
+    font-size: 28rpx;
+    font-weight: 700;
+    height: 28rpx;
+    line-height: 28rpx;
+    width: 100%;
+}
+
+.userId {
+    color: #8c8c8c;
+    font-size: 24rpx;
+    height: 24rpx;
+    line-height: 24rpx;
+    margin-top: 14rpx;
+    width: 100%;
+}
+
+.follow {
+    background: #f6f6f6;
+    color: #b3b3b3;
+    font-size: 22rpx;
+    line-height: 44rpx;
+    text-align: center;
+}
+
+.follow,.more {
+    border-radius: 10rpx;
+    flex-shrink: 0;
+    height: 44rpx;
+    width: 120rpx;
+}
+
+.more {
+    background: #6f5ce3;
+    color: #fff;
+    font-size: 20rpx;
+    margin-left: 20rpx;
+    overflow: hidden;
+    padding-left: 14rpx;
+}
+
+.rightIco {
+    height: 26rpx;
+    width: 26rpx;
+}
+
+.itemCon {
+    padding: 17rpx 20rpx 26rpx;
+    width: 100%;
+}
+
+.itemImgCon {
+    flex-shrink: 0;
+    height: 210rpx;
+    position: relative;
+    width: 210rpx;
+}
+
+.itemImg {
+    border-radius: 16rpx;
+    height: 100%;
+    width: 100%;
+}
+
+.itemBac {
+    height: 216rpx;
+    left: 6rpx;
+    position: absolute;
+    top: 6rpx;
+    width: 216rpx;
+}
+
+.itemImgCon1 {
+    margin: 0 16rpx;
+}
+
+.errorTit {
+    color: #aaaaea;
+    font-size: 26rpx;
+    line-height: 1;
+}

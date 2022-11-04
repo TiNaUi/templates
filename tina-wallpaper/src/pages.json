@@ -24,6 +24,12 @@
 				"navigationBarTitleText": "list"
 			}
 		},
+    {
+      "path": "pages/Creator/search",
+      "style": {
+        "navigationBarTitleText": ""
+      }
+    },
 		{
 			"path": "pages/Pictures/index",
 			"style": {
