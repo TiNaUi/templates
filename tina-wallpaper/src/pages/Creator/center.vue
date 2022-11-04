@@ -17,7 +17,7 @@
             <text class="show-list-txt">默认排序</text>
           </view>
           <view bindtap="dateShowChange" class="image-item flex jc ac {{isDateShow?'active':''}}">
-            <image mode="widthFix" :src="isDateShow ? imageStore.dateIcon : imageStore.iconListDefault">
+            <image mode="widthFix" :src="isDateShow ? imageStore.dateIcon : imageStore.dateIconDefault">
             </image>
             <text class="show-list-txt">日期排序</text>
           </view>
