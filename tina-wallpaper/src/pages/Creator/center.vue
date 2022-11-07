@@ -12,12 +12,12 @@
           </view>
         </view>
         <view class="show-list flex ac jc" v-if="dateShow && !empty">
-          <view bindtap="dateShowChange" class="image-item flex jc ac {{isDateShow?'':'active'}}">
+          <view @click="dateShowChange" :class="['image-item', 'flex', 'jc', 'ac', isDateShow?'':'active']">
             <image mode="widthFix" :src="isDateShow ? imageStore.iconList : imageStore.iconListDefault "></image>
             <text class="show-list-txt">默认排序</text>
           </view>
-          <view bindtap="dateShowChange" class="image-item flex jc ac {{isDateShow?'active':''}}">
-            <image mode="widthFix" :src="isDateShow ? imageStore.dateIcon : imageStore.dateIconDefault">
+          <view @click="dateShowChange" :class="['image-item', 'flex', 'jc', 'ac', isDateShow?'active':'']">
+            <image mode="widthFix" :src="isDateShow ? imageStore.dateIconDefault : imageStore.dateIcon">
             </image>
             <text class="show-list-txt">日期排序</text>
           </view>
@@ -27,10 +27,10 @@
       <view class="tab">
         <view class="parameterList flex ac">
           <view class="list-item flex ac jc">
-            <view bindtap="parameterListChange"
+            <view @click="parameterListChange(0)"
               :class="['parameterListItem', parameterListIndex==0?'parameterListItems':'']" data-index="0"> 作品({{ totalPhoto
               }})</view>
-            <view bindtap="parameterListChange"
+            <view @click="parameterListChange(1)"
               :class="['parameterListItem', parameterListIndex==1?'parameterListItems':'']" data-index="1"> 专辑({{ totalAlbum
               }})</view>
           </view>
@@ -44,6 +44,28 @@
               src="https://img.yugew.com/image/855942d49bf7f98c1fbd9fda1c59c8e1.png"></image>
           </view>
         </view>
+
+        <view class="resource-list container">
+          <view class="resource-list-item">
+            <view bindtap="goDetail" class="goodItem" data-action="3" data-id="{{item.id}}" data-type="{{item.file_type}}"
+              v-for="(item, index) in itemlist" :key="item.id">
+              <view class="goodItem-view">
+                <image class="goodImg goodType{{item.classify_id}}" :data-index="index" mode="aspectFill" :src="imgHost + '/' + item.resources.thumb_url"></image>
+                <image class="videoIco" mode="widthFix" src="https://img.yugew.com/image/2a5fd032afabaaecb44a1317fb4a4016.png"
+                  v-if="item.resources.type=='video'"></image>
+                <image class="voiceIco" mode="widthFix" src="https://img.yugew.com/image/9d6d3d251129374e96fcc3b6240e8f14.png"
+                  v-if="item.resources.type=='voice'"></image>
+                <view class="imgTop" v-if="item.resources.is_top">置顶</view>
+              </view>
+              <view class="image-loading-view" style="position: absolute;top:0;width:100%;height: 100%;">
+                <Loading :show="true" zIndex="0" :fixed="false"></Loading>
+              </view>
+            </view>
+          </view>
+        </view>
+        <view class="error-view" wx:if="{{albumList.length==0&&empty}}">
+          <!-- <image class="errorImg" mode="widthFix" src="/image/icon_empty.png"></image> -->
+        </view>
       </view>
     </view>
   </view>
@@ -52,9 +74,11 @@
 
 <script lang="ts" setup>
 import { useAppStore, useFileStore } from '@/store';
-import { computed, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import CustomerNavBarCapsule from '@/components/customer-navbar/capsule.vue'
 import { useUserStore } from '../../store/modules/user';
+import { Contribution, UserApi } from '@/apis';
+import Loading from '@/components/loading/index.vue'
 
 defineOptions({
   name: 'CreatorCenter'
@@ -78,22 +102,37 @@ const imageStore = computed(() => ({
 
 const totalPhoto = ref(0)
 const totalAlbum = ref(0)
+
 const parameterListIndex = ref(0)
+function parameterListChange(index: number) {
+  parameterListIndex.value = index
+}
+
 const dateShow = ref(true)
 const isDateShow = ref(false)
-const listindex = ref(0)
-const selectClassifyId = ref(2)
-const tabList = ref([{
-  title: '',
-  id: 1
-}])
+
+function dateShowChange() {
+  isDateShow.value = !isDateShow.value
+}
+
+const itemlist = ref<Contribution.Item[]>([])
 const empty = ref(false)
-const homepageInfo = ref({
-  search_code: '',
-  avatar: ''
-})
-const listitem = ref({
-  data: []
+
+function getContributeList() {
+  const params = {
+    user_id: userInfo.value?.id!,
+    pageNum: 1,
+    pageSize: 10
+  }
+
+  UserApi.contributionList(params).then(res => {
+    console.log(res)
+    itemlist.value.push(...res.data.data.rows)
+  })
+}
+
+onMounted(() => {
+  getContributeList()
 })
 
 </script>
@@ -407,11 +446,11 @@ image {
   width: 718rpx;
 }
 
-.goodList-item {
+.resource-list-item {
   width: 32%;
 }
 
-.goodList .goodList-item:nth-child(3n-1) {
+.resource-list .resource-list-item:nth-child(3n-1) {
   margin: 0 2%;
 }
 
@@ -449,48 +488,6 @@ image {
 .goodType6 {
   height: 230rpx;
   width: 230rpx;
-}
-
-.goodList0 {
-
-  .goodType1,
-  .goodType5 {
-    max-height: 400rpx;
-  }
-}
-
-.goodList2 {
-  .goodList-item {
-    width: 49%;
-  }
-
-  .goodType2 {
-    width: 100%;
-  }
-
-  .goodList-item:nth-child(2n-1) {
-    margin-left: 2%;
-  }
-}
-
-.goodList6 {
-  .goodList-item {
-    width: 24%;
-  }
-
-  .goodType6 {
-    height: 160rpx;
-    width: 100%;
-  }
-
-  .goodList-item {
-
-    &:nth-child(4n),
-    &:nth-child(4n-1),
-    &:nth-child(4n-2) {
-      margin: 0 0 0 2%;
-    }
-  }
 }
 
 .videoIco {

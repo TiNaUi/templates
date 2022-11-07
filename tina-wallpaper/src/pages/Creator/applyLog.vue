@@ -3,6 +3,7 @@
     ref="paging"
     use-virtual-list
     use-compatibility-mode
+    v-model="dataList"
     :extra-data="{ id: 'applyLogItem'}"
     @query="queryList"
   >
@@ -20,10 +21,11 @@
 import CustomerNavBarNormal from '@/components/customer-navbar/normal.vue';
 import { useNabbar } from '@/hooks';
 import NavIndexButton from '@/components/common/nav-index-button.vue';
-import { UserApi } from '@/apis';
-import { computed, ref } from 'vue';
+import { Contribution, UserApi } from '@/apis';
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
 import { useUserStore } from '@/store';
 import ZPaging from '@/components/z-paging/components/z-paging/z-paging.vue'
+import { contributionEmitter } from '@/utils';
 
 defineOptions({
   name: 'CreatorApolyLog'
@@ -33,6 +35,12 @@ const { vuex_custom_bar_height } = useNabbar()
 const userInfo = computed(() => useStore.userInfo)
 
 const paging = ref<typeof ZPaging | null>(null)
+
+const dataList = ref<Contribution.Item[]>([])
+
+watch(dataList, () => {
+  console.log(dataList)
+})
 
 function queryList(pageNo: number, pageSize: number) {
   const params = {
@@ -50,6 +58,17 @@ function queryList(pageNo: number, pageSize: number) {
     paging.value!.complete(false);
   })
 }
+
+onMounted(() => {
+  // 处理事件中线
+  contributionEmitter.on('changeItem', (item) => {
+    dataList.value[item.index] = item.item
+  })
+})
+
+onUnmounted(() => {
+  contributionEmitter.off('changeItem')
+})
 
 </script>
 

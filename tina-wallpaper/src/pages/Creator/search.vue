@@ -7,7 +7,7 @@
       <image class="searchIco" mode="widthFix" :src="imageStore.search"></image>
       <input @confirm="goSearch" v-model="searchValue" class="searchValue" confirmType="search" placeholder="请输入星荐官口令"
         placeholderStyle="color:#000000;font-size:18px;" type="text" />
-      <view bindtap="goSearch" class="submit">对口令</view>
+      <view @click="goSearch" class="submit">对口令</view>
     </view>
     <view class="flex jc">
       <image class="author-tip-img" mode="widthFix" :src="imageStore.title">
@@ -36,6 +36,8 @@
 import { useFileStore } from '@/store';
 import { computed, ref } from 'vue';
 import CustomerNavBarCapsule from '@/components/customer-navbar/capsule.vue'
+import { UserApi } from '../../apis/modules/user';
+import { message } from '@tina-ui/ui';
 
 defineOptions({
   name: 'CreatorSearch'
@@ -59,7 +61,21 @@ const indexAuthorList = ref([
   }
 ])
 
-const goSearch = () => {}
+const goSearch = () => {
+  message.loading('正在为您对口令')
+  UserApi.creatorSearch(searchValue.value).then(res => {
+    if (res.data.code === 40004) {
+      message.toast(res.data.message)
+      return
+    }
+    uni.navigateTo({
+      url: '/pages/Creator/center?id=' + res.data.data.id,
+    })
+    console.log(res)
+  }).finally(() => {
+    message.closeLoading()
+  })
+}
 
 </script>
 

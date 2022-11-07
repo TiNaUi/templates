@@ -78,6 +78,7 @@ export namespace Resource {
     vip_price: number
     is_hot: number
     is_recommend: number
+    is_top: number
     sort: number
     status: number
     is_deleted: boolean

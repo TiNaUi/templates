@@ -19,6 +19,9 @@
           </view>
           <view class="justify-content-item tn-color-gray tn-text-center tn-color-gray--disabled"
             style="padding-top: 5rpx;"> 共 {{ item.resources.url.length }} 张图 </view>
+          <view class="action-wrapper">
+            <view class="action-item" @click="toTop()" v-if="item.resources.status === 2">{{ item.resources.is_top ? '已置顶' : '置顶' }}</view>
+          </view>
         </view>
       </view>
       <view :class="['status-block',statusClass(item.resources.status)]">{{ item.resources.status === 1 ? '未审' :
@@ -31,8 +34,10 @@
 <script lang="ts" setup>
 import { Contribution } from '@/apis';
 import { useFileStore } from '@/store';
-import { random } from '@/utils';
+import { contributionEmitter, random } from '@/utils';
+import { message } from '@tina-ui/ui';
 import { computed } from 'vue';
+import { UserApi } from '../../../../apis/modules/user';
 
 const fileStore = useFileStore()
 
@@ -40,8 +45,9 @@ defineOptions({
   name: 'ApplyLogItem'
 })
 
-const { item } = defineProps<{
-  item: Contribution.Item
+const { item, index } = defineProps<{
+  item: Contribution.Item,
+  index: number
 }>()
 
 const imghost = computed(() => fileStore.imgHost)
@@ -57,6 +63,15 @@ const statusClass = (status: number) => {
 const colors = ['cyan','red','blue','green','orange','purplered','purple','brown']
 const getColor = () => {
   return colors[random(0,colors.length - 1)]
+}
+
+function toTop() {
+  const isTop = item.resources.is_top ? 0 : 1
+  UserApi.contributionToTop(item.id, isTop).then(res => {
+    message.toast((item.resources.is_top ? '取消' : '') + ('置顶成功'))
+    item.resources.is_top = isTop
+    contributionEmitter.emit('changeItem', { index, item: {...item, resources: {...item.resources, is_top: isTop}} })
+  })
 }
 
 </script>
@@ -111,6 +126,12 @@ const getColor = () => {
     &--prefix {
       padding-right: 10rpx;
     }
+  }
+}
+
+.action-wrapper {
+  .action-item {
+
   }
 }
 
