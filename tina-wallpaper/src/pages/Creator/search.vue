@@ -1,5 +1,6 @@
 <template>
   <view class="search-container">
+    <CustomerNavBarCapsule />
     <image class="bimg" mode="aspectFill" :src="imageStore.bg"></image>
     <image class="banner" mode="widthFix" :src="imageStore.bigIcon"></image>
     <view class="search flex ac">
@@ -34,6 +35,7 @@
 <script lang="ts" setup>
 import { useFileStore } from '@/store';
 import { computed, ref } from 'vue';
+import CustomerNavBarCapsule from '@/components/customer-navbar/capsule.vue'
 
 defineOptions({
   name: 'CreatorSearch'

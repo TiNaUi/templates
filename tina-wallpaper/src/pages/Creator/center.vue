@@ -6,9 +6,9 @@
     <view class="index " style="padding-top: {{menuInfo.top+menuInfo.height}}px">
       <view class="userInfoCon flex ac jb pad">
         <view class="userInfo flex ac ">
-          <image class="userImg" mode="aspectFill" :src="homepageInfo.avatar"></image>
+          <image class="userImg" mode="aspectFill" :src="userInfo?.profile.avatar"></image>
           <view class="userCon flex fc jc">
-            <view class="userName txt">{{ homepageInfo.search_code }}</view>
+            <view class="userName txt">{{ userInfo?.profile.nickname }}</view>
           </view>
         </view>
         <view class="show-list flex ac jc" v-if="dateShow && !empty">
@@ -54,14 +54,18 @@
 import { useAppStore, useFileStore } from '@/store';
 import { computed, ref } from 'vue';
 import CustomerNavBarCapsule from '@/components/customer-navbar/capsule.vue'
+import { useUserStore } from '../../store/modules/user';
 
 defineOptions({
   name: 'CreatorCenter'
 })
 const appStore = useAppStore()
 const fileStore = useFileStore()
+const userStore = useUserStore()
+
 const imgHost = computed(() => fileStore.imgHost)
 const customerNavBarHeight = computed(() => appStore.vuex_custom_bar_height)
+const userInfo = computed(() => userStore.userInfo)
 
 const imageStore = computed(() => ({
   // http://img.zukmb.cn/icons/creator/big_icon.png
