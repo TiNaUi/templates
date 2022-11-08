@@ -1,75 +1,80 @@
 <template>
-<view class="center-container" :style="'margin-top:'+customerNavBarHeight + 'px;color: #999;'">
-  <CustomerNavBarCapsule />
-  <image class="bimg" mode="widthFix" :src="imageStore.bg"></image>
-  <view class="page">
-    <view class="index " style="padding-top: {{menuInfo.top+menuInfo.height}}px">
-      <view class="userInfoCon flex ac jb pad">
-        <view class="userInfo flex ac ">
-          <image class="userImg" mode="aspectFill" :src="userInfo?.profile.avatar"></image>
-          <view class="userCon flex fc jc">
-            <view class="userName txt">{{ userInfo?.profile.nickname }}</view>
+  <view class="center-container" :style="'margin-top:'+customerNavBarHeight + 'px;color: #999;'">
+    <CustomerNavBarCapsule />
+    <image class="bimg" mode="widthFix" :src="imageStore.bg"></image>
+    <view class="page">
+      <view class="index " style="padding-top: {{menuInfo.top+menuInfo.height}}px">
+        <view class="userInfoCon flex ac jb pad">
+          <view class="userInfo flex ac ">
+            <image class="userImg" mode="aspectFill" :src="userInfo?.profile.avatar"></image>
+            <view class="userCon flex fc jc">
+              <view class="userName txt">{{ userInfo?.profile.nickname }}</view>
+            </view>
           </view>
-        </view>
-        <view class="show-list flex ac jc" v-if="dateShow && !empty">
-          <view @click="dateShowChange" :class="['image-item', 'flex', 'jc', 'ac', isDateShow?'':'active']">
-            <image mode="widthFix" :src="isDateShow ? imageStore.iconList : imageStore.iconListDefault "></image>
-            <text class="show-list-txt">默认排序</text>
-          </view>
-          <view @click="dateShowChange" :class="['image-item', 'flex', 'jc', 'ac', isDateShow?'active':'']">
-            <image mode="widthFix" :src="isDateShow ? imageStore.dateIconDefault : imageStore.dateIcon">
-            </image>
-            <text class="show-list-txt">日期排序</text>
-          </view>
-        </view>
-      </view>
-      <view class="signature">所有作品均在下方，请仔细查找，超清无水印原图下载为原画超清，感谢支持!</view>
-      <view class="tab">
-        <view class="parameterList flex ac">
-          <view class="list-item flex ac jc">
-            <view @click="parameterListChange(0)"
-              :class="['parameterListItem', parameterListIndex==0?'parameterListItems':'']" data-index="0"> 作品({{ totalPhoto
-              }})</view>
-            <view @click="parameterListChange(1)"
-              :class="['parameterListItem', parameterListIndex==1?'parameterListItems':'']" data-index="1"> 专辑({{ totalAlbum
-              }})</view>
-          </view>
-          <view style="flex:1;"></view>
+          <!-- <view class="show-list flex ac jc" v-if="dateShow && !empty">
+            <view @click="dateShowChange" :class="['image-item', 'flex', 'jc', 'ac', isDateShow?'':'active']">
+              <image mode="widthFix" :src="isDateShow ? imageStore.iconList : imageStore.iconListDefault "></image>
+              <text class="show-list-txt">默认排序</text>
+            </view>
+            <view @click="dateShowChange" :class="['image-item', 'flex', 'jc', 'ac', isDateShow?'active':'']">
+              <image mode="widthFix" :src="isDateShow ? imageStore.dateIconDefault : imageStore.dateIcon">
+              </image>
+              <text class="show-list-txt">日期排序</text>
+            </view>
+          </view> -->
           <view class="userInfoBtnCon flex ac ">
             <button class="shareBtn flex ac jc" openType="share">
-              <image class="shareIco" mode="widthFix"
-                src="https://img.yugew.com/image/dbc7742e2dec1e824053fbd9515fa6b0.png"></image>
+              <image class="shareIco" mode="widthFix" src="https://img.yugew.com/image/dbc7742e2dec1e824053fbd9515fa6b0.png">
+              </image>
             </button>
             <image bindtap="announce" class="tip" mode="widthFix"
               src="https://img.yugew.com/image/855942d49bf7f98c1fbd9fda1c59c8e1.png"></image>
           </view>
         </view>
-
-        <view class="resource-list container">
-          <view class="resource-list-item">
-            <view bindtap="goDetail" class="goodItem" data-action="3" data-id="{{item.id}}" data-type="{{item.file_type}}"
-              v-for="(item, index) in itemlist" :key="item.id">
-              <view class="goodItem-view">
-                <image class="goodImg goodType{{item.classify_id}}" :data-index="index" mode="aspectFill" :src="imgHost + '/' + item.resources.thumb_url"></image>
-                <image class="videoIco" mode="widthFix" src="https://img.yugew.com/image/2a5fd032afabaaecb44a1317fb4a4016.png"
-                  v-if="item.resources.type=='video'"></image>
-                <image class="voiceIco" mode="widthFix" src="https://img.yugew.com/image/9d6d3d251129374e96fcc3b6240e8f14.png"
-                  v-if="item.resources.type=='voice'"></image>
-                <view class="imgTop" v-if="item.resources.is_top">置顶</view>
-              </view>
-              <view class="image-loading-view" style="position: absolute;top:0;width:100%;height: 100%;">
-                <Loading :show="true" zIndex="0" :fixed="false"></Loading>
-              </view>
+        <view class="signature">所有作品均在下方，请仔细查找，超清无水印原图下载为原画超清，感谢支持!</view>
+        <view class="tab">
+          <view class="parameterList flex ac" style="height: 1px;">
+            <!-- <view class="list-item flex ac jc">
+              <view @click="parameterListChange(0)"
+                :class="['parameterListItem', parameterListIndex==0?'parameterListItems':'']" data-index="0"> 作品({{ totalPhoto
+                }})</view>
+              <view @click="parameterListChange(1)"
+                :class="['parameterListItem', parameterListIndex==1?'parameterListItems':'']" data-index="1"> 专辑({{ totalAlbum
+                }})</view>
             </view>
+            <view style="flex:1;"></view>
+            <view class="userInfoBtnCon flex ac ">
+              <button class="shareBtn flex ac jc" openType="share">
+                <image class="shareIco" mode="widthFix"
+                  src="https://img.yugew.com/image/dbc7742e2dec1e824053fbd9515fa6b0.png"></image>
+              </button>
+              <image bindtap="announce" class="tip" mode="widthFix"
+                src="https://img.yugew.com/image/855942d49bf7f98c1fbd9fda1c59c8e1.png"></image>
+            </view> -->
           </view>
-        </view>
-        <view class="error-view" wx:if="{{albumList.length==0&&empty}}">
-          <!-- <image class="errorImg" mode="widthFix" src="/image/icon_empty.png"></image> -->
+
+          <z-paging
+            ref="paging"
+            v-model="dataList"
+            :default-page-size="9"
+            :inside-more="true"
+            :lower-threshold="100"
+            :refresher-enabled="false"
+            use-page-scroll
+            loading-more-default-text="点击加载更多"
+            loading-more-loading-text="正在加载..."
+            loading-more-no-more-text="没有更多了"
+            loading-more-fail-text="加载失败，点击重新加载"
+            @query="queryList"
+          >
+            <view class="resource-list container">
+              <CenterCellItem class="center-cell-item" v-for="(item, index) in dataList" :item="item" :index="index" :key="index" />
+            </view>
+          </z-paging>
         </view>
       </view>
     </view>
   </view>
-</view>
 </template>
 
 <script lang="ts" setup>
@@ -78,7 +83,8 @@ import { computed, onMounted, ref } from 'vue';
 import CustomerNavBarCapsule from '@/components/customer-navbar/capsule.vue'
 import { useUserStore } from '../../store/modules/user';
 import { Contribution, UserApi } from '@/apis';
-import Loading from '@/components/loading/index.vue'
+import ZPaging from '@/components/z-paging/components/z-paging/z-paging.vue'
+import CenterCellItem from './components/CenterCell/index.vue'
 
 defineOptions({
   name: 'CreatorCenter'
@@ -118,22 +124,26 @@ function dateShowChange() {
 const itemlist = ref<Contribution.Item[]>([])
 const empty = ref(false)
 
-function getContributeList() {
-  const params = {
-    user_id: userInfo.value?.id!,
-    pageNum: 1,
-    pageSize: 10
-  }
+const paging = ref<typeof ZPaging | null>(null)
+const dataList = ref<Contribution.Item[]>([])
 
+function queryList(pageNo: number,pageSize: number) {
+  const params = {
+    pageNum: pageNo,
+    pageSize,
+    user_id: userInfo.value?.id!
+  }
   UserApi.contributionList(params).then(res => {
-    console.log(res)
-    itemlist.value.push(...res.data.data.rows)
+    if (res.data.success) {
+      paging.value!.complete(res.data.data.rows)
+    } else {
+      paging.value!.complete();
+    }
+  }).catch(() => {
+    paging.value!.complete(false);
   })
 }
 
-onMounted(() => {
-  getContributeList()
-})
 
 </script>
 
@@ -446,33 +456,73 @@ image {
   width: 718rpx;
 }
 
-.resource-list-item {
-  width: 32%;
-}
+::v-deep {
+  .resource-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .center-cell-item {
+    width: calc((100vw - 100upx) / 3);
+    overflow: hidden;
+    margin: 0 7upx;
+  }
+  .resource-list-item {
+    overflow: hidden;
+  }
 
-.resource-list .resource-list-item:nth-child(3n-1) {
-  margin: 0 2%;
-}
+  .goodItem-view {
+    border: 2rpx solid #fff;
+    border-radius: 16rpx;
+    height: 100%;
+    max-height: 400rpx;
+    z-index: 1;
+  }
 
-.goodItem-view {
-  border: 2rpx solid #fff;
-  border-radius: 16rpx;
-  height: 100%;
-  max-height: 400rpx;
-  z-index: 1;
-}
+  .goodItem,
+  .goodItem-view {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
 
-.goodItem,
-.goodItem-view {
-  overflow: hidden;
-  position: relative;
-  width: 100%;
-}
+  .goodItem {
+    background-color: #333;
+    border-radius: 16rpx;
+    margin-bottom: 16rpx;
+  }
 
-.goodItem {
-  background-color: #333;
-  border-radius: 16rpx;
-  margin-bottom: 16rpx;
+  .videoIco {
+    height: 76rpx;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 76rpx;
+  }
+
+  .voiceIco {
+    bottom: 16rpx;
+    height: 40rpx;
+    width: 40rpx;
+  }
+
+  .imgTop,
+  .voiceIco {
+    left: 16rpx;
+    position: absolute;
+  }
+
+  .imgTop {
+    background: #4739f4;
+    border-radius: 8rpx;
+    color: #fff;
+    font-size: 22rpx;
+    height: 36rpx;
+    line-height: 36rpx;
+    text-align: center;
+    top: 16rpx;
+    width: 68rpx;
+  }
 }
 
 .goodType1,
@@ -488,39 +538,6 @@ image {
 .goodType6 {
   height: 230rpx;
   width: 230rpx;
-}
-
-.videoIco {
-  height: 76rpx;
-  left: 50%;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 76rpx;
-}
-
-.voiceIco {
-  bottom: 16rpx;
-  height: 40rpx;
-  width: 40rpx;
-}
-
-.imgTop,
-.voiceIco {
-  left: 16rpx;
-  position: absolute;
-}
-
-.imgTop {
-  background: #4739f4;
-  border-radius: 8rpx;
-  color: #fff;
-  font-size: 22rpx;
-  height: 36rpx;
-  line-height: 36rpx;
-  text-align: center;
-  top: 16rpx;
-  width: 68rpx;
 }
 
 .atabListCon {
