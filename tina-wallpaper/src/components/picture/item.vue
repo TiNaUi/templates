@@ -23,7 +23,6 @@
 </template>
 
 <script lang="ts" setup>
-import { Resource } from '@/apis';
 import { number } from '@tina-ui/ui'
 defineOptions({
   name: 'PictureItem'

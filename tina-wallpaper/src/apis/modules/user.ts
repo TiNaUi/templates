@@ -3,13 +3,6 @@ import { request } from "../request"
 import { Resource } from "./content"
 
 export namespace User {
-  export interface Creator {
-    id: number
-    user_id: number
-    code: string
-    status: number
-    remark: number
-  }
   export interface Profile {
     nickname: string;
     avatar: string;
@@ -24,10 +17,17 @@ export namespace User {
   export interface Item {
     id: number
     pid: number
-    creator: Creator | null
     profile: Profile
     vip_level: number
     score: number
+  }
+   export interface Creator {
+    id: number
+    user_id: number
+    code: string
+    status: number
+    remark: number
+    user: Item
   }
 }
 
@@ -77,6 +77,10 @@ export class UserApi {
     return request.put<boolean>('/user-creator/' + id, params)
   }
 
+  static creatorInfo(cid: number) {
+    return request.get('/user-creator/info/' + cid)
+  }
+
   /**
    * 投稿
    * @param params 。
@@ -91,8 +95,8 @@ export class UserApi {
    * @param param0 
    * @returns 
    */
-  static contributionList({ pageNum = 1, pageSize = 10, user_id }: { pageNum: number; pageSize: number; user_id: number }) {
-    return request.get<ResPage<Contribution.Item>>('/user-creator/contribution/list', { pageNum, pageSize, user_id })
+  static contributionList({ pageNum = 1, pageSize = 10, user_id, isTop = 0 }: { pageNum: number; pageSize: number; user_id: number; isTop: number }) {
+    return request.get<ResPage<Contribution.Item>>('/user-creator/contribution/list', { pageNum, pageSize, user_id, isTop })
   }
 
   /**

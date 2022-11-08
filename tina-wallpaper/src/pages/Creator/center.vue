@@ -6,9 +6,9 @@
       <view class="index " style="padding-top: {{menuInfo.top+menuInfo.height}}px">
         <view class="userInfoCon flex ac jb pad">
           <view class="userInfo flex ac ">
-            <image class="userImg" mode="aspectFill" :src="userInfo?.profile.avatar"></image>
+            <image class="userImg" mode="aspectFill" :src="creatorInfo?.user.profile.avatar"></image>
             <view class="userCon flex fc jc">
-              <view class="userName txt">{{ userInfo?.profile.nickname }}</view>
+              <view class="userName txt">{{ creatorInfo?.user.profile.nickname }}</view>
             </view>
           </view>
           <!-- <view class="show-list flex ac jc" v-if="dateShow && !empty">
@@ -68,7 +68,7 @@
             @query="queryList"
           >
             <view class="resource-list container">
-              <CenterCellItem class="center-cell-item" v-for="(item, index) in dataList" :item="item" :index="index" :key="index" />
+              <CenterCellItem class="center-cell-item" v-for="(item, index) in dataList" @click="itemClick" :item="item" :index="index" :key="index" />
             </view>
           </z-paging>
         </view>
@@ -82,20 +82,19 @@ import { useAppStore, useFileStore } from '@/store';
 import { computed, onMounted, ref } from 'vue';
 import CustomerNavBarCapsule from '@/components/customer-navbar/capsule.vue'
 import { useUserStore } from '../../store/modules/user';
-import { Contribution, UserApi } from '@/apis';
+import { Contribution, User, UserApi } from '@/apis';
 import ZPaging from '@/components/z-paging/components/z-paging/z-paging.vue'
 import CenterCellItem from './components/CenterCell/index.vue'
+import { onLoad } from '@dcloudio/uni-app';
 
 defineOptions({
   name: 'CreatorCenter'
 })
 const appStore = useAppStore()
 const fileStore = useFileStore()
-const userStore = useUserStore()
 
 const imgHost = computed(() => fileStore.imgHost)
 const customerNavBarHeight = computed(() => appStore.vuex_custom_bar_height)
-const userInfo = computed(() => userStore.userInfo)
 
 const imageStore = computed(() => ({
   // http://img.zukmb.cn/icons/creator/big_icon.png
@@ -108,6 +107,27 @@ const imageStore = computed(() => ({
 
 const totalPhoto = ref(0)
 const totalAlbum = ref(0)
+
+const creatorInfo = ref<User.Creator>()
+
+function getCreatorInfo(cid: number) {
+  UserApi.creatorInfo(cid).then(res => {
+    if (res.data.success) {
+      creatorInfo.value = res.data.data
+    }
+  })
+}
+
+onLoad(res => {
+  const cid = +(res.cid || 0)
+  getCreatorInfo(cid)
+})
+
+function itemClick({ item, index }: { item: Contribution.Item; index: number }) {
+  uni.navigateTo({
+    url: '/pages/Pictures/detail?rid=' + item.resources.id + '&uid=' + creatorInfo.value?.id
+  })
+}
 
 const parameterListIndex = ref(0)
 function parameterListChange(index: number) {
@@ -127,11 +147,18 @@ const empty = ref(false)
 const paging = ref<typeof ZPaging | null>(null)
 const dataList = ref<Contribution.Item[]>([])
 
+/**
+ * query list
+ * @param pageNo 
+ * @param pageSize 
+ */
 function queryList(pageNo: number,pageSize: number) {
   const params = {
     pageNum: pageNo,
     pageSize,
-    user_id: userInfo.value?.id!
+    user_id: creatorInfo.value?.user.id!,
+    isTop: 1,
+    status: 'pass'
   }
   UserApi.contributionList(params).then(res => {
     if (res.data.success) {

@@ -1,6 +1,6 @@
 <template>
   <view class="resource-list-item">
-    <view bindtap="goDetail" class="goodItem">
+    <view @click="goDetail" class="goodItem">
       <view class="goodItem-view">
         <image class="goodImg goodType{{item.classify_id}}" :data-index="index" mode="aspectFill"
           :src="imgHost + '/' + item.resources.thumb_url"></image>
@@ -27,13 +27,20 @@ defineOptions({
   name: 'CenterCell'
 })
 
-const { item,index } = defineProps<{
+const emit = defineEmits(['click'])
+
+const { item,index,id } = defineProps<{
   item: Contribution.Item,
-  index: number
+  index: number,
+  id?: number
 }>()
 
 const fileStore = useFileStore()
 const imgHost = computed(() => fileStore.imgHost)
 
+function goDetail() {
+  console.log(id)
+  emit('click', { item, index })
+}
 </script>
 

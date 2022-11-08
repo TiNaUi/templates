@@ -56,8 +56,10 @@
         <view class="action-bar-icon icon-share"></view>
         <view class="action-bar-text">分享</view>
       </view>
+      <view class="action-bar-item">
+        <image :src="creatorInfo ? creatorInfo.user.profile.avatar : useImagePath('/logo.jpg')" mode="aspectFill" />
+      </view>
     </view>
-
     <view class="likes-people" :class="[ navBarState ? 'openCss' : 'closeCss']">
       <view class="tn-margin-sm tn-flex tn-flex-center" style="align-items: center;">
         <tn-avatar-group :lists="groupList"></tn-avatar-group>
@@ -71,10 +73,11 @@
 import { ref, computed, getCurrentInstance, onMounted, watch, nextTick } from 'vue';
 import { useGetCompnentRectByInstance } from '@tina-ui/ui/hooks/ComponentRect'
 import { onLoad } from '@dcloudio/uni-app';
-import { ContentApi, Resource } from '@/apis';
+import { ContentApi, Resource, User, UserApi } from '@/apis';
 import { wallpaperListHandler, random } from '@/utils'
 import { useUserStore } from '@/store';
 import { message } from '@tina-ui/ui';
+import { useImagePath } from '@/hooks'
 
  // #ifdef H5
 import { h5DownLoadImage } from '@/utils/file';
@@ -100,11 +103,19 @@ const isLogin = computed(() => userStore.isLogin)
 const userInfo = computed(() => userStore.userInfo)
 
 const loginModel = ref<null | any>(null)
-
 function loginAct() {
   if (loginModel) {
     loginModel.value.show()
   }
+}
+
+const creatorInfo = ref<User.Creator>()
+function getCreatorInfo(cid: number) {
+  UserApi.creatorInfo(cid).then(res => {
+    if (res.data.success) {
+      creatorInfo.value = res.data.data
+    }
+  })
 }
 
 function doLike() {
@@ -137,8 +148,9 @@ const swiper = ref()
 
 onLoad((res) => {
   const rid = +(res.rid || 0)
+  const uid = +(res.uid || 0)
   const index = +(res.index || 0)
-  console.log(rid)
+  getCreatorInfo(uid)
   ContentApi.wallpaperInfo({ rid: rid, userId: userInfo.value!.id }).then(res => {
     if (res.data.success) {
       info.value = res.data.data
@@ -329,6 +341,15 @@ function saveImageToLocal() {
     background-position: center center;
     background-repeat: no-repeat;
     background-size: 100% 100%;
+  }
+  image {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+  &-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .icon-back {
     background-image: url('#{$tnt-img-host}/picture/back.png');

@@ -69,7 +69,7 @@ const goSearch = () => {
       return
     }
     uni.navigateTo({
-      url: '/pages/Creator/center?id=' + res.data.data.id,
+      url: '/pages/Creator/center?cid=' + res.data.data.id,
     })
     console.log(res)
   }).finally(() => {
