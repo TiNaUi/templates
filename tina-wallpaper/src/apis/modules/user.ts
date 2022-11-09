@@ -1,6 +1,7 @@
 import { ResPage } from "../interface"
 import { request } from "../request"
 import { Resource } from "./content"
+import { ReqPage } from '../interface/index';
 
 export namespace User {
   export interface Profile {
@@ -82,6 +83,15 @@ export class UserApi {
   }
 
   /**
+   * 创作者
+   * @param params 
+   * @returns 
+   */
+  static creatorList(params: ReqPage) {
+    return request.get('/user-creator/list', params)
+  }
+
+  /**
    * 投稿
    * @param params 。
    * @returns 
@@ -95,7 +105,7 @@ export class UserApi {
    * @param param0 
    * @returns 
    */
-  static contributionList({ pageNum = 1, pageSize = 10, user_id, isTop = 0 }: { pageNum: number; pageSize: number; user_id: number; isTop: number }) {
+  static contributionList({ pageNum = 1, pageSize = 10, user_id, isTop = 0 }: { pageNum: number; pageSize: number; user_id: number; isTop?: number }) {
     return request.get<ResPage<Contribution.Item>>('/user-creator/contribution/list', { pageNum, pageSize, user_id, isTop })
   }
 

@@ -1,14 +1,14 @@
 <template>
   <view>
     <ApplyLogItem v-if="extraData.id === 'applyLogItem'" :item="item" :index="index" :extraData="extraData" />
-    <CenterCellItem v-if="extraData.id === 'center'" :item="item" :index="index" :extraData="extraData" />
+    <CreatorListItem v-if="extraData.id === 'creatorList'" :item="item" :index="index" :extraData="extraData" />
   </view>
 </template>
 
 <script lang="ts" setup>
 import { PropType, computed, defineAsyncComponent, markRaw } from 'vue';
 import ApplyLogItem from '@/pages/Creator/components/ApplyLogItem/index.vue'
-import CenterCellItem from '@/pages/Creator/components/CenterCell/index.vue'
+import CreatorListItem from '@/pages/Creator/components/creatorListItem/index.vue'
 
 defineOptions({
   name: 'ZpPublicVirtualCell'

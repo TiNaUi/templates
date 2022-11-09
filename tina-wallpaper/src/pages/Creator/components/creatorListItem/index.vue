@@ -1,34 +1,46 @@
 <template>
-  <view class="creator-list-item">
-    <view class="creator-info">
-      <tn-avatar
-        shape="circle"
-        size="140upx"
-        :shadow="true"
-        :border="true"
-        borderColor="rgba(255, 255, 255, 1)"
-        :borderSize="3"
-        style="border: 6upx solid #fff;"
-        src="https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201902%2F14%2F20190214175912_Ue24j.jpeg&refer=http%3A%2F%2Fb-ssl.duitang.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1666166444&t=7e3204a5924bbe05c9e9669ae409aea0"></tn-avatar>
-      <view class="creator-info-content">
-        <view class="creator-name">一颗草莓</view>
-        <view class="creator-desc">不想做厨师的设计师不是一个好吃货。</view>
+  <view class="container">
+    <view class="creator-list-item" style="margin-top: 40rpx;">
+      <view class="creator-info">
+        <tn-avatar shape="circle" size="140upx" :shadow="true" :border="true" borderColor="rgba(255, 255, 255, 1)"
+          :borderSize="3" style="border: 6upx solid #fff;"
+          :src="item.user.profile.avatar">
+        </tn-avatar>
+        <view class="creator-info-content">
+          <view class="creator-name">{{item.user.profile.nickname}}</view>
+          <view class="creator-desc">{{item.remark}}</view>
+        </view>
       </view>
-    </view>
-    <view class="creator-images">
-      <view class="creator-image-item" v-for="(item, index) in lists" :key="index">
-        <image :src="item.url" mode="scaleToFill" />
+      <view class="creator-images">
+        <view class="creator-image-item" v-for="(contribute, idx) in item.contribution" :key="contribute.id">
+          <image :src="imgHost + '/' + (contribute.resources?.thumb_url || '')" mode="aspectFill" />
+        </view>
       </view>
     </view>
   </view>
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
+import { Contribution, User } from '@/apis';
+import { useImagePath } from '@/hooks';
+import { useFileStore } from '@/store';
+import { computed, ref } from 'vue';
+
+type Item = User.Creator & {
+  contribution: Contribution.Item[]
+}
+
+const fileStore = useFileStore()
+const imgHost = computed(() => fileStore.imgHost)
 
 defineOptions({
   name: ''
 })
+
+const { item, index } = defineProps<{
+  item: Item,
+  index: number
+}>()
 
 const lists = ref([
   {
@@ -56,7 +68,6 @@ const lists = ref([
     display: flex;
     flex-wrap: nowrap;
     &-content {
-      padding-top: 14upx;
       margin-left: 24upx;
     }
     .creator-name {
