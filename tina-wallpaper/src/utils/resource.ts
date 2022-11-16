@@ -14,15 +14,22 @@ export function wallpaperListHandler(list: Resource.Item[], params?: { w?: numbe
 
   for (let i = 0; i < list.length; i++) {
     const item = list[i]
-    
-    item.url.forEach((url, idx) => {
-      res.push({
-        id: item.id,
-        index: `${i}_${idx}`,
-        like: item.like_num,
-        download: item.download_num,
-        url: `http://img.zukmb.cn/${url}?imageView2/4/w/${w}/q/${q}/interlace/1/format/jpg`
-      })
+
+    // item.url.forEach((url, idx) => {
+    //   res.push({
+    //     id: item.id,
+    //     index: `${i}_${idx}`,
+    //     like: item.like_num,
+    //     download: item.download_num,
+    //     url: `http://img.zukmb.cn/${url}?imageView2/4/w/${w}/q/${q}/interlace/1/format/jpg`
+    //   })
+    // })
+    res.push({
+      id: item.id,
+      index: `${i}`,
+      like: item.like_num,
+      download: item.download_num,
+      url: `http://img.zukmb.cn/${item.thumb_url}?imageView2/4/w/${w}/q/${q}/interlace/1/format/jpg`
     })
   }
 
