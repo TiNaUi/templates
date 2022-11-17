@@ -60,7 +60,7 @@ function doLogin() {
     success: async (loginRes) => {
       if (loginRes.errMsg.indexOf('ok') > -1) {
         state.wechatCode = loginRes.code
-        const userRes = await UserApi.getOpenId(state.wechatCode) 
+        const userRes = await UserApi.getOpenId(state.wechatCode, userStore.shareUserId) 
         if (userRes.data.success && userRes.data.data.needUpdate) {
           getUserProfile(userRes)
         } else {

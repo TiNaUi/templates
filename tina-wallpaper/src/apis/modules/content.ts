@@ -134,5 +134,3 @@ export class ContentApi {
     return request.post('/content/wallpaper/collect', params)
   }
 }
-
-

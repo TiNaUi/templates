@@ -1,11 +1,19 @@
 <script setup lang="ts">
-import { onLaunch, onShow, onHide } from '@dcloudio/uni-app'
+import { onLaunch, onShow, onHide, onLoad } from '@dcloudio/uni-app';
 import updateCustomBarInfo from '@tina-ui/ui/libs/function/updateCustomBarInfo'
-import { useAppStore, useCategoryStore, useTagsStore } from '@/store'
+import { useAppStore, useCategoryStore, useTagsStore, useUserStore } from '@/store'
+import { shareUserIdField } from './config'
 
 const appStore = useAppStore()
 const tagStore = useTagsStore()
 const cateStore = useCategoryStore()
+const userStore = useUserStore()
+
+onLoad((res) => {
+  if (res && Object.prototype.hasOwnProperty.call(res, shareUserIdField)) {
+    userStore.setShareUserId(res[shareUserIdField] as string)
+  }
+})
 
 onLaunch(() => {
   console.log('App Launch')

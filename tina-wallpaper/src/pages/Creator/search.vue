@@ -33,17 +33,21 @@
 </template>
 
 <script lang="ts" setup>
-import { useFileStore } from '@/store';
+import { useFileStore, useUserStore } from '@/store';
 import { computed, ref } from 'vue';
 import CustomerNavBarCapsule from '@/components/customer-navbar/capsule.vue'
 import { UserApi } from '../../apis/modules/user';
 import { message } from '@tina-ui/ui';
+import { onLoad, onShareAppMessage, onShareTimeline } from '@dcloudio/uni-app';
+import { useImagePath, useShare, useTimelineContent } from '@/hooks';
+import { shareUserIdField } from '@/config';
 
 defineOptions({
   name: 'CreatorSearch'
 })
 
 const fileStore = useFileStore()
+const userStore = useUserStore()
 const imgHost = computed(() => fileStore.imgHost)
 
 const imageStore = computed(() => ({
@@ -60,6 +64,39 @@ const indexAuthorList = ref([
     
   }
 ])
+
+onLoad((res) => {
+  const code = res?.code
+  console.log(code)
+  searchValue.value = code
+  if (code) {
+    goSearch()
+  }
+  uni.showShareMenu({
+    withShareTicket: true,
+    //设置下方的Menus菜单，才能够让发送给朋友与分享到朋友圈两个按钮可以点击
+    menus: ["shareAppMessage", "shareTimeline"]
+  })
+})
+
+// 定义分享逻辑
+const shareOptions = useShare({
+  path: '/pages/Creator/search',
+  imageUrl: imageStore.value.bg,
+  query: {
+    [shareUserIdField]: String(userStore.userInfo?.id || 0)
+  }
+})
+
+const shareTimelineContent = useTimelineContent({
+  imageUrl: imageStore.value.bg,
+  query: {
+    [shareUserIdField]: String(userStore.userInfo?.id || 0)
+  }
+})
+
+onShareAppMessage(() => shareOptions)
+onShareTimeline(() => shareTimelineContent)
 
 const goSearch = () => {
   message.loading('正在为您对口令')

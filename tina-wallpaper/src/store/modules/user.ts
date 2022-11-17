@@ -9,13 +9,17 @@ export const useUserStore = defineStore('user', {
   state() {
     return {
       userInfo: null as UserModel | null,
-      isLogin: false
+      isLogin: false,
+      shareUserId: null as string | null
     }
   },
   actions: {
     setUserInfo(userInfo: UserModel) {
       this.userInfo = userInfo
       this.isLogin = true
+    },
+    setShareUserId(id: string | null) {
+      this.shareUserId = id
     },
     updateUserInfo() {
       if (!this.userInfo) return

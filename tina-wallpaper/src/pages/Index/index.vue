@@ -23,8 +23,11 @@ import Home from '../Home/index.vue';
 import Category from '../Category/index.vue';
 import Creator from '../Creator/index.vue';
 import UserCenter from '../UserCenter/index.vue';
-import { onLoad, onReachBottom } from '@dcloudio/uni-app';
+import { onLoad, onShareAppMessage, onShareTimeline } from '@dcloudio/uni-app';
 import { useImagePath } from '@/hooks';
+import { useShare, useTimelineContent } from '../../hooks/useShare';
+import { shareUserIdField } from '@/config';
+import { useUserStore } from '@/store';
 
 defineOptions({
   name: 'IndexPage'
@@ -32,7 +35,7 @@ defineOptions({
 
 const currentIndex = ref(0)
 const tabberPageLoadFlag = ref<boolean[]>([])
-const title = ref('')
+const userStore = useUserStore()
 
 const tabbarList = reactive([
   {
@@ -58,17 +61,33 @@ const tabbarList = reactive([
 ])
 
 onLoad((options) => {
-  const index = Number(options.index || 0)
+  const index = Number(options?.index || 0)
   tabberPageLoadFlag.value = tabbarList.map((item, tabbarIndex) => {
     return index === tabbarIndex
   })
   switchTabbar(index)
+  uni.showShareMenu({
+    withShareTicket: true,
+    //设置下方的Menus菜单，才能够让发送给朋友与分享到朋友圈两个按钮可以点击
+    menus: ["shareAppMessage", "shareTimeline"]
+  })
 })
 
-onReachBottom(() => {
-  
+// 定义分享逻辑
+const shareOptions = useShare({
+  query: {
+    [shareUserIdField]: String(userStore.userInfo?.id || 0)
+  }
 })
 
+const shareTimelineContent = useTimelineContent({
+  query: {
+    [shareUserIdField]: String(userStore.userInfo?.id || 0)
+  }
+})
+
+onShareAppMessage(() => shareOptions)
+onShareTimeline(() => shareTimelineContent)
 
 const switchTabbar = (index: number) => {
   const selectPageFlag = tabberPageLoadFlag.value[index]
@@ -85,9 +104,4 @@ const switchTabbar = (index: number) => {
     duration: 0
   })
 }
-
 </script>
-
-<style lang="scss" scoped>
-
-</style>

@@ -48,8 +48,8 @@ export class UserApi {
    * @param code 
    * @returns 
    */
-  static getOpenId(code: string) {
-    return request.get('/user/openId', { code })
+  static getOpenId(code: string, sharedId: string | null) {
+    return request.get('/user/openId', { code, sharedId: sharedId || '' })
   }
 
   /**

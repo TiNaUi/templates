@@ -72,15 +72,16 @@
 <script lang="ts" setup>
 import { ref, computed, getCurrentInstance, onMounted, watch, nextTick } from 'vue';
 import { useGetCompnentRectByInstance } from '@tina-ui/ui/hooks/ComponentRect'
-import { onLoad } from '@dcloudio/uni-app';
+import { onLoad, onShareAppMessage, onShareTimeline } from '@dcloudio/uni-app';
 import { ContentApi, Resource, User, UserApi } from '@/apis';
 import { wallpaperListHandler, random } from '@/utils'
 import { useUserStore } from '@/store';
 import { message } from '@tina-ui/ui';
-import { useImagePath } from '@/hooks'
+import { useImagePath, useShare, useTimelineContent } from '@/hooks'
 
  // #ifdef H5
 import { h5DownLoadImage } from '@/utils/file';
+import { shareUserIdField } from '@/config';
 // #endif
 
 defineOptions({
@@ -147,14 +148,14 @@ function doCollect() {
 const swiper = ref()
 
 onLoad((res) => {
-  const rid = +(res.rid || 0)
-  const uid = +(res.uid || 0)
-  const index = +(res.index || 0)
+  const rid = +(res?.rid || 0)
+  const uid = +(res?.uid || 0)
+  const index = +(res?.index || 0)
   getCreatorInfo(uid)
   ContentApi.wallpaperInfo({ rid: rid, userId: userInfo.value!.id }).then(res => {
     if (res.data.success) {
       info.value = res.data.data
-      const infoList = wallpaperListHandler([res.data.data], { w: 375, q: 100 })
+      const infoList = wallpaperListHandler([res.data.data], true, { w: 375, q: 100 })
       list.value = infoList.map(item => {
         return {
           image: item.url
@@ -163,7 +164,33 @@ onLoad((res) => {
       getScrollWidth()
     }
   })
+  uni.showShareMenu({
+    withShareTicket: true,
+    //设置下方的Menus菜单，才能够让发送给朋友与分享到朋友圈两个按钮可以点击
+    menus: ["shareAppMessage", "shareTimeline"]
+  })
 })
+
+// 定义分享逻辑
+const shareOptions = useShare({
+  path: '/pages/Pictures/recommend',
+  imageUrl: useImagePath(info.value?.thumb_url!),
+  query: {
+    [shareUserIdField]: String(userStore.userInfo?.id || 0),
+    id: String(info.value?.id)
+  }
+})
+
+const shareTimelineContent = useTimelineContent({
+  imageUrl: useImagePath(info.value?.thumb_url!),
+  query: {
+    [shareUserIdField]: String(userStore.userInfo?.id || 0),
+    id: String(info.value?.id)
+  }
+})
+
+onShareAppMessage(() => shareOptions)
+onShareTimeline(() => shareTimelineContent)
 
 const swiperWidth = computed(() => {
   return uni.upx2px(list.value.length * 150 + 10)

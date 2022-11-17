@@ -12,30 +12,30 @@
 				"navigationBarTitleText": "apply"
 			}
 		},
-    {
-      "path": "pages/Creator/applyLog",
-      "style": {
-        "navigationBarTitleText": "applyLog"
-      }
-    },
+		{
+			"path": "pages/Creator/applyLog",
+			"style": {
+				"navigationBarTitleText": "applyLog"
+			}
+		},
 		{
 			"path": "pages/Creator/list",
 			"style": {
 				"navigationBarTitleText": "list"
 			}
 		},
-    {
-      "path": "pages/Creator/search",
-      "style": {
-        "navigationBarTitleText": ""
-      }
-    },
-    {
-      "path": "pages/Creator/center",
-      "style": {
-        "navigationBarTitleText": "center"
-      }
-    },
+		{
+			"path": "pages/Creator/search",
+			"style": {
+				"navigationBarTitleText": ""
+			}
+		},
+		{
+			"path": "pages/Creator/center",
+			"style": {
+				"navigationBarTitleText": "center"
+			}
+		},
 		{
 			"path": "pages/Pictures/index",
 			"style": {
@@ -49,21 +49,15 @@
 			}
 		},
 		{
-			"path": "pages/testZpaging/index",
-			"style": {
-				"navigationBarTitleText": "testZpaging"
-			}
-		},
-		{
-			"path": "components/customer-navbar/index",
-			"style": {
-				"navigationBarTitleText": "customer-navbar"
-			}
-		},
-		{
 			"path": "pages/rank/index",
 			"style": {
 				"navigationBarTitleText": "rank"
+			}
+		},
+		{
+			"path": "pages/Pictures/recommend",
+			"style": {
+				"navigationBarTitleText": "recommend"
 			}
 		}
 	],
@@ -81,7 +75,7 @@
 			"^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue",
 			"^tn-(.*)": "@tina-ui/ui/components/tn-$1/tn-$1.vue",
 			"^(?!z-paging-refresh|z-paging-load-more)z-paging(.*)": "@/components/z-paging/components/z-paging$1/z-paging$1.vue",
-      "zp-public-virtual-cell": "@/components/zp-public-virtual-cell/zp-public-virtual-cell.vue"
+			"zp-public-virtual-cell": "@/components/zp-public-virtual-cell/zp-public-virtual-cell.vue"
 		}
 	}
 }

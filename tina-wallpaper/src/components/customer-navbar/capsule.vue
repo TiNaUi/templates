@@ -1,10 +1,9 @@
 <template>
   <!-- 顶部自定义导航 -->
   <tn-nav-bar fixed alpha customBack>
-    <view slot="back" class='tn-custom-nav-bar__back'
-      @click="goBack">
-      <text class='icon tn-icon-left'></text>
-      <text class='icon tn-icon-home-capsule-fill'></text>
+    <view slot="back" class='tn-custom-nav-bar__back'>
+      <text class='icon tn-icon-left' @click="goBack"></text>
+      <text class='icon tn-icon-home-capsule-fill' @click="goHome"></text>
     </view>
   </tn-nav-bar>
 </template>
@@ -35,6 +34,12 @@ function goBack() {
       url: '/pages/Index/index'
     })
   }
+}
+
+function goHome() {
+  uni.reLaunch({
+      url: '/pages/Index/index'
+    })
 }
 
 </script>

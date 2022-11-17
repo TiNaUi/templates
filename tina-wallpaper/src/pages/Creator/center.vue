@@ -79,13 +79,15 @@
 
 <script lang="ts" setup>
 import { useAppStore, useFileStore } from '@/store';
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, ref, watchEffect } from 'vue';
 import CustomerNavBarCapsule from '@/components/customer-navbar/capsule.vue'
 import { useUserStore } from '../../store/modules/user';
 import { Contribution, User, UserApi } from '@/apis';
 import ZPaging from '@/components/z-paging/components/z-paging/z-paging.vue'
 import CenterCellItem from './components/CenterCell/index.vue'
-import { onLoad } from '@dcloudio/uni-app';
+import { onLoad, onShareAppMessage, onShareTimeline } from '@dcloudio/uni-app';
+import { useShare, useTimelineContent } from '@/hooks';
+import { shareUserIdField } from '@/config';
 
 defineOptions({
   name: 'CreatorCenter'
@@ -94,6 +96,7 @@ const appStore = useAppStore()
 const fileStore = useFileStore()
 
 const imgHost = computed(() => fileStore.imgHost)
+const userStore = useUserStore()
 const customerNavBarHeight = computed(() => appStore.vuex_custom_bar_height)
 
 const imageStore = computed(() => ({
@@ -119,9 +122,43 @@ function getCreatorInfo(cid: number) {
 }
 
 onLoad(res => {
-  const cid = +(res.cid || 0)
+  const cid = +(res?.cid || 0)
   getCreatorInfo(cid)
+  uni.showShareMenu({
+    withShareTicket: true,
+    //设置下方的Menus菜单，才能够让发送给朋友与分享到朋友圈两个按钮可以点击
+    menus: ["shareAppMessage", "shareTimeline"]
+  })
 })
+
+const shareImg = computed(() => {
+  return creatorInfo.value?.user.profile.avatar
+})
+
+// 定义分享逻辑
+const shareOptions = computed(() => useShare({
+  path: '/pages/Creator/search',
+  imageUrl: shareImg.value,
+  title: creatorInfo.value?.user.profile.nickname,
+  query: {
+    [shareUserIdField]: String(creatorInfo.value?.user.id || 0),
+    code: String(creatorInfo.value?.code)
+  }
+}))
+
+const shareTimelineContent = useTimelineContent({
+  imageUrl: shareImg.value,
+  query: {
+    [shareUserIdField]: String(creatorInfo.value?.user.id || 0),
+    code: creatorInfo.value?.code
+  }
+})
+
+onShareAppMessage(() => {
+  console.log(shareOptions.value)
+  return shareOptions.value
+})
+onShareTimeline(() => shareTimelineContent)
 
 function itemClick({ item, index }: { item: Contribution.Item; index: number }) {
   uni.navigateTo({
