@@ -116,7 +116,7 @@ const customerNavBarHeight = appStore.vuex_custom_bar_height
 const userInfo = computed(() => userStore.userInfo)
 
 const formData = reactive({
-  title: '火影忍者',
+  title: '',
   categories: {
     label: '',
     value: ''
@@ -195,23 +195,27 @@ const closedPopup = () => {
 
 const applyHandler = async () => {
   console.log(formData)
-  const fileRes = await useUpload(fileList.value)
-  console.log("🚀 ~ file: apply.vue ~ line 199 ~ applyHandler ~ fileRes", fileRes)
-  const postData = {
-    ...formData,
-    category: +formData.categories.value,
-    tags: formData.tags.map(tag => tag.id),
-    user_id: userInfo.value?.id!,
-    resource: fileRes.map(item => item.key)
-  }
-  UserApi.contribution(postData).then(res => {
-    if (res.data.success) {
-      message.toast('投稿成功，请耐心等待审核')
-      uni.navigateTo({
-        url: '/pages/Creator/applyLog'
-      })
+  try {
+    const fileRes = await useUpload(fileList.value, { prefix: String(userInfo.value?.id || 'user') + '/' })
+    console.log("🚀 ~ file: apply.vue ~ line 199 ~ applyHandler ~ fileRes", fileRes)
+    const postData = {
+      ...formData,
+      category: +formData.categories.value,
+      tags: formData.tags.map(tag => tag.id),
+      user_id: userInfo.value?.id!,
+      resource: fileRes.map(item => item.key)
     }
-  })
+    UserApi.contribution(postData).then(res => {
+      if (res.data.success) {
+        message.toast('投稿成功，请耐心等待审核')
+        uni.navigateTo({
+          url: '/pages/Creator/applyLog'
+        })
+      }
+    })
+  } catch (e) {
+    message.toast('上传失败，请重试')
+  }
 }
 </script>
 
