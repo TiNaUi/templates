@@ -13,12 +13,9 @@ onLoad((res) => {
   if (res && Object.prototype.hasOwnProperty.call(res, shareUserIdField)) {
     userStore.setShareUserId(res[shareUserIdField] as string)
   }
-})
-
-onLaunch(() => {
-  console.log('App Launch')
   // 获取设备的状态栏信息和自定义顶栏信息
   updateCustomBarInfo().then((res) => {
+    console.log('系统信息', res)
     appStore.updateStore({
       name: 'vuex_status_bar_height',
       value: res.statusBarHeight
@@ -27,6 +24,26 @@ onLaunch(() => {
       name: 'vuex_custom_bar_height',
       value: res.customBarHeight
     })
+  }).catch(e => {
+    console.error(e)
+  })
+})
+
+onLaunch(() => {
+  console.log('App Launch')
+  // 获取设备的状态栏信息和自定义顶栏信息
+  updateCustomBarInfo().then((res) => {
+    console.log('系统信息', res)
+    appStore.updateStore({
+      name: 'vuex_status_bar_height',
+      value: res.statusBarHeight
+    })
+    appStore.updateStore({
+      name: 'vuex_custom_bar_height',
+      value: res.customBarHeight
+    })
+  }).catch(e => {
+    console.error(e)
   })
 
   tagStore.updateTagList()

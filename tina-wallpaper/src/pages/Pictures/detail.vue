@@ -73,16 +73,15 @@
 import { ref, computed, getCurrentInstance, onMounted, watch, nextTick } from 'vue';
 import { useGetCompnentRectByInstance } from '@tina-ui/ui/hooks/ComponentRect'
 import { onLoad, onShareAppMessage, onShareTimeline } from '@dcloudio/uni-app';
+// #ifdef H5
+import { h5DownLoadImage } from '@/utils/file';
+// #endif
 import { ContentApi, Resource, User, UserApi } from '@/apis';
 import { wallpaperListHandler, random } from '@/utils'
 import { useUserStore } from '@/store';
 import { message } from '@tina-ui/ui';
 import { useImagePath, useShare, useTimelineContent } from '@/hooks'
-
- // #ifdef H5
-import { h5DownLoadImage } from '@/utils/file';
 import { shareUserIdField } from '@/config';
-// #endif
 
 defineOptions({
   name: 'PictureDetail'
@@ -155,7 +154,7 @@ onLoad((res) => {
   ContentApi.wallpaperInfo({ rid: rid, userId: userInfo.value!.id }).then(res => {
     if (res.data.success) {
       info.value = res.data.data
-      const infoList = wallpaperListHandler([res.data.data], true, { w: 375, q: 100 })
+      const infoList = wallpaperListHandler([res.data.data], true, { w: 750, q: 100 })
       list.value = infoList.map(item => {
         return {
           image: item.url

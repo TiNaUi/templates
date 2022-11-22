@@ -12,13 +12,17 @@
 import CustomerNavBarNormal from '@/components/customer-navbar/normal.vue';
 import { useNabbar } from '@/hooks';
 import List from '@/components/picture/list.vue';
-import { ref } from 'vue';
+import { ref, watchEffect } from 'vue';
 import { ContentApi } from '@/apis';
 import { wallpaperListHandler } from '../../utils/resource';
-import { onLoad } from '@dcloudio/uni-app';
+import { onLaunch, onLoad } from '@dcloudio/uni-app';
 import NavIndexButton from '@/components/common/nav-index-button.vue';
 
 const { vuex_custom_bar_height } = useNabbar()
+
+watchEffect(() => {
+  console.log(vuex_custom_bar_height)
+})
 
 defineOptions({
   name: 'Recommend'
@@ -37,6 +41,7 @@ function queryList(id: number) {
 onLoad((res) => {
   const id = +(res?.id || 0)
   queryList(id)
+  console.log(vuex_custom_bar_height)
 })
 
 </script>
