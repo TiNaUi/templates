@@ -1,0 +1,19 @@
+{
+    "id": "wanzi-cxcatcom",
+    "name": "【丸子小程序】wordpress开源资讯博客模板(含后端全套)",
+    "version": "1.0.5",
+    "description": "丸子小程序开源版，基于WordPress的微信小程序，基于强大的WordPress Mini Program API 小程序插件创建。 从开源到目前丸子团队出了三款开源小程序，除了本次的这个新模板，其",
+    "keywords": [
+        "wordpress",
+        "小程序",
+        "开源多端小程序",
+        "免费小程序",
+        "丸子小程序"
+    ],
+    "dcloudext": {
+        "category": [
+            "uni-app前端模板",
+            "uni-app前端项目模板"
+        ]
+    }
+}
