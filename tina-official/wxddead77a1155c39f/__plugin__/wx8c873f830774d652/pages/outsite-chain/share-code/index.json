@@ -1,0 +1,9 @@
+{
+    "navigationStyle": "default",
+    "navigationBarTitleText": "百度网盘分享",
+    "usingComponents": {
+        "user-info": "./user-info/index",
+        "share-form": "./share-form/index",
+        "Toast": "../../../components/Toast/Toast"
+    }
+}

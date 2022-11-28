@@ -1,0 +1,29 @@
+<view class="content" id="{{jqTheme}}">
+    <view class="jiangqie-recom">
+        <view class="jiangqie-recom-header">
+            <text class="navigator">滑动查看</text>分类推荐</view>
+        <view class="jiangqie-scroll-wide-box">
+            <scroll-view class="jiangqie-scroll-x-box" scrollX="{{true}}">
+                <view bindtap="__e" class="jiangqie-scroll-box" data-event-opts="{{[ [ 'tap',[ [ 'clickCat',['$0'],[ [ ['top_cats','',index,'id'] ] ] ] ] ] ]}}" wx:for="{{top_cats}}" wx:key="index">
+                    <image-loader bind:__l="__l" defaultImage="/static/images/placeholder800x400.png" lazyLoad="{{true}}" mode="aspectFill" originalImage="{{item.cover}}" vueId="{{'90db5ec0-1-'+index}}"></image-loader>
+                    <view>{{item.name}}</view>
+                </view>
+            </scroll-view>
+        </view>
+    </view>
+    <view class="jiangqie-new-type" wx:for="{{sort_cats}}" wx:key="index">
+        <view bindtap="__e" class="jiangqie-new-type-group" data-event-opts="{{[ [ 'tap',[ [ 'clickCat',['$0'],[ [ ['sort_cats','',index,'id'] ] ] ] ] ] ]}}">{{item.name}}</view>
+        <view bindtap="__e" class="jiangqie-new-type-block" data-event-opts="{{[ [ 'tap',[ [ 'clickCat',['$0'],[ [ ['sort_cats','',index],['cats','',indexCat,'id'] ] ] ] ] ] ]}}" wx:for="{{item.cats}}" wx:for-index="indexCat" wx:for-item="cat" wx:key="indexCat">
+            <view class="jiangqie-new-type-side">
+                <view class="jiangqie-new-type-img">
+                    <image mode="aspectFill" src="{{cat.cover}}"></image>
+                </view>
+                <view class="jiangqie-new-type-info">
+                    <view>{{cat.name}}</view>
+                    <view>{{cat.description}}</view>
+                </view>
+            </view>
+            <view class="jiangqie-new-type-btn">{{'总计 '+cat.count+' 篇'}}</view>
+        </view>
+    </view>
+</view>

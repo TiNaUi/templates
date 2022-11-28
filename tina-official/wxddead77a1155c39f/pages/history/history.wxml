@@ -1,0 +1,131 @@
+<view class="content data-v-753239fa" id="{{jqTheme}}">
+    <view class="tab-box data-v-753239fa">
+        <scroll-view class="tab-view data-v-753239fa" scrollLeft="0">
+            <view bindtap="__e" class="{{[ 'data-v-753239fa','tab-bar-item '+(currentTab=='views'?'active':'') ]}}" data-event-opts="{{[ [ 'tap',[ [ 'swichNav',['$event'] ] ] ] ]}}" data-tab="views">
+                <text class="tab-bar-title data-v-753239fa">{{'浏览 '+stat.view_count}}</text>
+            </view>
+            <view bindtap="__e" class="{{[ 'data-v-753239fa','tab-bar-item '+(currentTab=='likes'?'active':'') ]}}" data-event-opts="{{[ [ 'tap',[ [ 'swichNav',['$event'] ] ] ] ]}}" data-tab="likes">
+                <text class="tab-bar-title data-v-753239fa">{{'点赞 '+stat.like_count}}</text>
+            </view>
+            <view bindtap="__e" class="{{[ 'data-v-753239fa','tab-bar-item '+(currentTab=='favorites'?'active':'') ]}}" data-event-opts="{{[ [ 'tap',[ [ 'swichNav',['$event'] ] ] ] ]}}" data-tab="favorites">
+                <text class="tab-bar-title data-v-753239fa">{{'收藏 '+stat.favorite_count}}</text>
+            </view>
+            <view bindtap="__e" class="{{[ 'data-v-753239fa','tab-bar-item '+(currentTab=='comments'?'active':'') ]}}" data-event-opts="{{[ [ 'tap',[ [ 'swichNav',['$event'] ] ] ] ]}}" data-tab="comments">
+                <text class="tab-bar-title data-v-753239fa">{{'评论 '+stat.comment_count}}</text>
+            </view>
+        </scroll-view>
+    </view>
+    <view class="jiangqie-list-box data-v-753239fa">
+        <block wx:if="{{posts.length>0}}">
+            <block wx:for="{{posts}}" wx:key="index">
+                <view class="jiangqie-list-view data-v-753239fa" wx:if="{{list_mode==0}}">
+                    <view bindtap="__e" class="jiangqie-list-block data-v-753239fa" data-event-opts="{{[ [ 'tap',[ [ 'clickPost',['$0'],[ [ ['posts','',index] ] ] ] ] ] ]}}">
+                        <view class="jiangqie-list-title data-v-753239fa">{{item.title}}</view>
+                        <view class="jiangqie-list-describe data-v-753239fa" wx:if="{{show_excerpt==1}}">{{item.excerpt}}</view>
+                        <view class="jiangqie-list-info data-v-753239fa">
+                            <view class="jiangqie-list-cmt data-v-753239fa">{{'浏览 '+item.views+''}}</view>
+                            <view class="jiangqie-list-cmt data-v-753239fa">{{'点赞 '+item.likes+''}}</view>
+                        </view>
+                    </view>
+                </view>
+                <block wx:else>
+                    <view class="jiangqie-list-view jiangqie-list-float-l data-v-753239fa" wx:if="{{list_mode==1}}">
+                        <view bindtap="__e" class="jiangqie-list-block jiangqie-list-float data-v-753239fa" data-event-opts="{{[ [ 'tap',[ [ 'clickPost',['$0'],[ [ ['posts','',index] ] ] ] ] ] ]}}">
+                            <view class="jiangqie-list-image data-v-753239fa">
+                                <image class="data-v-753239fa" lazyLoad="{{true}}" mode="aspectFill" src="{{item.thumbnails[0]}}"></image>
+                            </view>
+                            <view class="jiangqie-list-title data-v-753239fa">{{item.title}}</view>
+                            <view class="jiangqie-list-info data-v-753239fa">
+                                <view class="jiangqie-list-cmt data-v-753239fa">{{'浏览 '+item.views+''}}</view>
+                                <view class="jiangqie-list-cmt data-v-753239fa">{{'点赞 '+item.likes+''}}</view>
+                            </view>
+                        </view>
+                    </view>
+                    <block wx:else>
+                        <view class="jiangqie-list-view jiangqie-list-float-r data-v-753239fa" wx:if="{{list_mode==2}}">
+                            <view bindtap="__e" class="jiangqie-list-block jiangqie-list-float data-v-753239fa" data-event-opts="{{[ [ 'tap',[ [ 'clickPost',['$0'],[ [ ['posts','',index] ] ] ] ] ] ]}}">
+                                <view class="jiangqie-list-image data-v-753239fa">
+                                    <image-loader bind:__l="__l" class="data-v-753239fa" defaultImage="/static/images/placeholder800x400.png" lazyLoad="{{true}}" mode="aspectFill" originalImage="{{item.thumbnails[0]}}" vueId="{{'7335a0d6-1-'+index}}"></image-loader>
+                                </view>
+                                <view class="jiangqie-list-title data-v-753239fa">{{item.title}}</view>
+                                <view class="jiangqie-list-info data-v-753239fa">
+                                    <view class="jiangqie-list-cmt data-v-753239fa">{{'浏览 '+item.views+''}}</view>
+                                    <view class="jiangqie-list-cmt data-v-753239fa">{{'点赞 '+item.likes+''}}</view>
+                                </view>
+                            </view>
+                        </view>
+                        <block wx:else>
+                            <view class="jiangqie-list-view img-max data-v-753239fa" wx:if="{{list_mode==3}}">
+                                <view bindtap="__e" class="jiangqie-list-block data-v-753239fa" data-event-opts="{{[ [ 'tap',[ [ 'clickPost',['$0'],[ [ ['posts','',index] ] ] ] ] ] ]}}">
+                                    <view class="jiangqie-list-title data-v-753239fa">{{item.title}}</view>
+                                    <view class="jiangqie-list-image data-v-753239fa">
+                                        <image-loader bind:__l="__l" class="data-v-753239fa" defaultImage="/static/images/placeholder800x400.png" lazyLoad="{{true}}" mode="aspectFill" originalImage="{{item.thumbnails[0]}}" vueId="{{'7335a0d6-2-'+index}}"></image-loader>
+                                    </view>
+                                    <view class="jiangqie-list-info data-v-753239fa">
+                                        <view class="jiangqie-list-cmt data-v-753239fa">{{'浏览 '+item.views+''}}</view>
+                                        <view class="jiangqie-list-cmt data-v-753239fa">{{'点赞 '+item.likes+''}}</view>
+                                    </view>
+                                </view>
+                            </view>
+                            <block wx:else>
+                                <view class="jiangqie-list-view jiangqie-list-float-r data-v-753239fa" wx:if="{{list_mode==4}}">
+                                    <view bindtap="__e" class="jiangqie-list-block data-v-753239fa" data-event-opts="{{[ [ 'tap',[ [ 'clickPost',['$0'],[ [ ['posts','',index] ] ] ] ] ] ]}}" wx:if="{{item.thumbnails.length==0}}">
+                                        <view class="jiangqie-list-title data-v-753239fa">{{item.title}}</view>
+                                        <view class="jiangqie-list-describe data-v-753239fa" wx:if="{{show_excerpt==1}}">{{item.excerpt}}</view>
+                                        <view class="jiangqie-list-info data-v-753239fa">
+                                            <view class="jiangqie-list-cmt data-v-753239fa">{{'浏览 '+item.views+''}}</view>
+                                            <view class="jiangqie-list-cmt data-v-753239fa">{{'点赞 '+item.likes+''}}</view>
+                                        </view>
+                                    </view>
+                                    <block wx:else>
+                                        <block wx:if="{{item.thumbnails.length<3}}">
+                                            <view bindtap="__e" class="jiangqie-list-block jiangqie-list-float data-v-753239fa" data-event-opts="{{[ [ 'tap',[ [ 'clickPost',['$0'],[ [ ['posts','',index] ] ] ] ] ] ]}}" wx:if="{{index%5!=4}}">
+                                                <view class="jiangqie-list-image data-v-753239fa">
+                                                    <image-loader bind:__l="__l" class="data-v-753239fa" defaultImage="/static/images/placeholder800x400.png" lazyLoad="{{true}}" mode="aspectFill" originalImage="{{item.thumbnails[0]}}" vueId="{{'7335a0d6-3-'+index}}"></image-loader>
+                                                </view>
+                                                <view class="jiangqie-list-title data-v-753239fa">{{item.title}}</view>
+                                                <view class="jiangqie-list-info data-v-753239fa">
+                                                    <view class="jiangqie-list-cmt data-v-753239fa">{{'浏览 '+item.views+''}}</view>
+                                                    <view class="jiangqie-list-cmt data-v-753239fa">{{'点赞 '+item.likes+''}}</view>
+                                                </view>
+                                            </view>
+                                            <view bindtap="__e" class="jiangqie-list-block img-max data-v-753239fa" data-event-opts="{{[ [ 'tap',[ [ 'clickPost',['$0'],[ [ ['posts','',index] ] ] ] ] ] ]}}" wx:else>
+                                                <view class="jiangqie-list-title data-v-753239fa">{{item.title}}</view>
+                                                <view class="jiangqie-list-image data-v-753239fa">
+                                                    <image-loader bind:__l="__l" class="data-v-753239fa" defaultImage="/static/images/placeholder800x400.png" lazyLoad="{{true}}" mode="aspectFill" originalImage="{{item.thumbnails[0]}}" vueId="{{'7335a0d6-4-'+index}}"></image-loader>
+                                                </view>
+                                                <view class="jiangqie-list-info data-v-753239fa">
+                                                    <view class="jiangqie-list-cmt data-v-753239fa">{{'浏览 '+item.views+''}}</view>
+                                                    <view class="jiangqie-list-cmt data-v-753239fa">{{'点赞 '+item.likes+''}}</view>
+                                                </view>
+                                            </view>
+                                        </block>
+                                        <block wx:else>
+                                            <view bindtap="__e" class="jiangqie-list-block img-max data-v-753239fa" data-event-opts="{{[ [ 'tap',[ [ 'clickPost',['$0'],[ [ ['posts','',index] ] ] ] ] ] ]}}" wx:if="{{item.thumbnails.length>=3}}">
+                                                <view class="jiangqie-list-title data-v-753239fa">{{item.title}}</view>
+                                                <view class="jiangqie-list-image jiangqie-list-image-treble data-v-753239fa">
+                                                    <image-loader bind:__l="__l" class="data-v-753239fa" defaultImage="/static/images/placeholder800x400.png" lazyLoad="{{true}}" mode="aspectFill" originalImage="{{item.thumbnails[0]}}" vueId="{{'7335a0d6-5-'+index}}"></image-loader>
+                                                    <image-loader bind:__l="__l" class="data-v-753239fa" defaultImage="/static/images/placeholder800x400.png" lazyLoad="{{true}}" mode="aspectFill" originalImage="{{item.thumbnails[1]}}" vueId="{{'7335a0d6-6-'+index}}"></image-loader>
+                                                    <image-loader bind:__l="__l" class="data-v-753239fa" defaultImage="/static/images/placeholder800x400.png" lazyLoad="{{true}}" mode="aspectFill" originalImage="{{item.thumbnails[2]}}" vueId="{{'7335a0d6-7-'+index}}"></image-loader>
+                                                </view>
+                                                <view class="jiangqie-list-info data-v-753239fa">
+                                                    <view class="jiangqie-list-cmt data-v-753239fa">{{'浏览 '+item.views+''}}</view>
+                                                    <view class="jiangqie-list-cmt data-v-753239fa">{{'点赞 '+item.likes+''}}</view>
+                                                </view>
+                                            </view>
+                                        </block>
+                                    </block>
+                                </view>
+                            </block>
+                        </block>
+                    </block>
+                </block>
+            </block>
+            <jiangqie-loadmore bind:__l="__l" class="data-v-753239fa" visible="{{loadding}}" vueId="7335a0d6-8"></jiangqie-loadmore>
+            <jiangqie-nomore bind:__l="__l" class="data-v-753239fa" visible="{{!pullUpOn}}" vueId="7335a0d6-9"></jiangqie-nomore>
+        </block>
+        <block wx:else>
+            <jiangqie-nodata bind:__l="__l" class="data-v-753239fa" vueId="7335a0d6-10" wx:if="{{loaded}}"></jiangqie-nodata>
+        </block>
+    </view>
+</view>

@@ -1,0 +1,112 @@
+.jiangqie-shortcode-box.data-v-42244b47 {
+    border: 2rpx solid #eee;
+    border-radius: 8rpx;
+    height: 200rpx;
+    margin: 20rpx 0;
+    overflow: hidden;
+    padding-left: 220rpx;
+}
+
+.jiangqie-shortcode-box image.data-v-42244b47 {
+    border-radius: 8rpx 0 0 8rpx;
+    float: left;
+    height: 200rpx!important;
+    margin: 0 0 0 -220rpx;
+    width: 200rpx!important;
+}
+
+.jiangqie-shortcode-title.data-v-42244b47 {
+    color: #333;
+    font-size: 32rpx;
+    font-weight: 500;
+    height: 50rpx;
+    overflow: hidden;
+    padding-top: 16rpx;
+}
+
+.jiangqie-shortcode-synopsis.data-v-42244b47 {
+    color: #555;
+    font-size: 26rpx;
+    font-weight: 300;
+    height: 64rpx;
+    line-height: 64rpx;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.jiangqie-shortcode-operation.data-v-42244b47 {
+    margin-top: -4rpx;
+}
+
+.jiangqie-shortcode-operation text.data-v-42244b47 {
+    color: #f30;
+    font-size: 36rpx;
+    font-weight: 600;
+}
+
+.jiangqie-shortcode-operation .jiangqie-shortcode-operation-unit text.data-v-42244b47 {
+    color: #f30;
+    font-size: 24rpx;
+    font-weight: 300;
+}
+
+.jiangqie-shortcode-operation .button.data-v-42244b47 {
+    background: #363b51;
+    border-radius: 60rpx;
+    color: #fff;
+    float: right;
+    height: 48rpx;
+    line-height: 46rpx;
+    margin-right: 20rpx;
+    margin-top: 6rpx;
+    overflow: hidden;
+    padding: 0rpx 24rpx;
+    text-align: center;
+}
+
+.jiangqie-shortcode-operation .button .wxParse-inline.data-v-42244b47 {
+    line-height: 48rpx;
+}
+
+.jiangqie-shortcode-operation .button text.data-v-42244b47 {
+    color: #fff;
+    font-size: 24rpx;
+    font-weight: 400;
+    height: 48rpx;
+    line-height: 48rpx;
+}
+
+.jiangqie-shortcode-netdisk.data-v-42244b47 {
+    margin: 30rpx;
+    text-align: center;
+}
+
+.jiangqie-shortcode-netdisk .button.data-v-42244b47 {
+    background: #363b51;
+    border-radius: 50rpx;
+    color: #fff;
+    display: block!important;
+    font-size: 30rpx;
+    font-weight: 400;
+    padding: 16rpx;
+}
+
+.jiangqie-shortcode-netdisk ._hover.data-v-42244b47 {
+    opacity: .9;
+    text-decoration: unset;
+}
+
+.jiangqie-page-body.data-v-42244b47 {
+    background: #fff;
+    border-radius: 12rpx;
+    line-height: 2.2em;
+    margin: 20rpx 20rpx 80rpx;
+    padding: 30rpx;
+}
+
+.wxParse-p.data-v-42244b47 {
+    font-size: 30rpx;
+    font-weight: 400;
+    line-height: 70rpx;
+}

@@ -1,0 +1,21 @@
+<view class="content data-v-264cf0ec" id="{{jqTheme}}">
+    <view class="jiangqie-order-group data-v-264cf0ec">
+        <block wx:if="{{orders.length>0}}">
+            <view bindtap="__e" class="jiangqie-order-block data-v-264cf0ec" data-event-opts="{{[ [ 'tap',[ [ 'postClickAction',['$event'] ] ] ] ]}}" data-id="{{item.extra}}" wx:for="{{orders}}" wx:key="index">
+                <image class="jiangqie-order-img data-v-264cf0ec" mode="aspectFill" src="{{item.thumbnail}}"></image>
+                <view class="jiangqie-order-info data-v-264cf0ec">
+                    <view class="jiangqie-order-rate data-v-264cf0ec">
+                        <text class="data-v-264cf0ec">{{''+item.score+' 分'}}</text>
+                    </view>
+                    <text class="jiangqie-order-time data-v-264cf0ec">{{item.time}}</text>
+                </view>
+                <view class="jiangqie-order-title data-v-264cf0ec">{{item.title}}</view>
+            </view>
+            <jiangqie-loadmore bind:__l="__l" class="data-v-264cf0ec" visible="{{loadding}}" vueId="306939e0-1"></jiangqie-loadmore>
+            <jiangqie-nomore bind:__l="__l" class="data-v-264cf0ec" visible="{{!pullUpOn}}" vueId="306939e0-2"></jiangqie-nomore>
+        </block>
+        <block wx:else>
+            <jiangqie-nodata bind:__l="__l" class="data-v-264cf0ec" text="暂无账单信息..." vueId="306939e0-3" wx:if="{{loaded}}"></jiangqie-nodata>
+        </block>
+    </view>
+</view>

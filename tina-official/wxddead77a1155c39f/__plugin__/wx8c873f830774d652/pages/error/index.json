@@ -1,0 +1,7 @@
+{
+    "navigationStyle": "default",
+    "navigationBarTitleText": "百度网盘分享",
+    "usingComponents": {
+        "GeneralButton": "../../components/generalButton/generalButton"
+    }
+}

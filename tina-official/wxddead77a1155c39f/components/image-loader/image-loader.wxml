@@ -1,0 +1,2 @@
+<image class="image-class" mode="{{mode}}" src="{{defaultImage}}" style="{{(width?'width:'+width:'')+';'+(height?'height:'+height:'')}}" wx:if="{{!finishLoadFlag}}"></image>
+<image bindload="__e" class="{{[finishLoadFlag?'':'before-load']}}" data-event-opts="{{[ [ 'load',[ [ 'finishLoad',['$event'] ] ] ] ]}}" mode="{{mode}}" src="{{originalImage}}" style="{{(finishLoadFlag&&width?'width:'+width:'')+';'+(finishLoadFlag&&height?'height:'+height:'')}}"></image>

@@ -1,0 +1,174 @@
+.content.data-v-5e851b6f,page.data-v-5e851b6f {
+    background: #f5f5f5;
+}
+
+.jiangqie-points-goods-img.data-v-5e851b6f {
+    position: relative;
+}
+
+.jiangqie-points-goods-img image.data-v-5e851b6f,.jiangqie-points-goods-img swiper-item.data-v-5e851b6f,.jiangqie-points-goods-img swiper.data-v-5e851b6f,.jiangqie-points-goods-img.data-v-5e851b6f {
+    height: 600rpx;
+    width: 100%;
+}
+
+.jiangqie-point-goods.data-v-5e851b6f {
+    margin-top: -50rpx;
+    padding: 0 30rpx 200rpx;
+    position: relative;
+    z-index: 2;
+}
+
+.jiangqie-point-goods-share.data-v-5e851b6f {
+    background: #363b51;
+    border-radius: 50%;
+    height: 100rpx;
+    line-height: 100rpx;
+    position: absolute;
+    right: 60rpx;
+    text-align: center;
+    top: -50rpx;
+    width: 100rpx;
+    z-index: 3;
+}
+
+.jiangqie-point-goods-share image.data-v-5e851b6f {
+    height: 44rpx;
+    margin-top: 24rpx;
+    width: 44rpx;
+}
+
+.jiangqie-point-goods-title.data-v-5e851b6f {
+    background: #fff;
+    border-radius: 16rpx;
+    margin-bottom: 30rpx;
+}
+
+.jiangqie-point-goods-title view.data-v-5e851b6f:nth-child(1) {
+    font-size: 34rpx;
+    font-weight: 600;
+    padding: 50rpx 30rpx 10rpx;
+}
+
+.jiangqie-point-goods-title view.data-v-5e851b6f:nth-child(2) {
+    align-items: center;
+    border-bottom: 1rpx solid #ddd;
+    display: flex;
+    padding: 0rpx 30rpx 30rpx;
+}
+
+.jiangqie-point-goods-title view:nth-child(2) text.data-v-5e851b6f:nth-child(1) {
+    background: #363b51;
+    border-radius: 8rpx;
+    color: #fff;
+    font-size: 20rpx;
+    font-weight: 200;
+    margin-right: 12rpx;
+    padding: 6rpx 16rpx;
+    word-break: keep-all;
+}
+
+.jiangqie-point-goods-title view:nth-child(2) text.data-v-5e851b6f:nth-child(2),.jiangqie-point-goods-title view:nth-child(3) text.data-v-5e851b6f:nth-child(2) {
+    color: #666;
+    font-size: 26rpx;
+    font-weight: 400;
+}
+
+.jiangqie-point-goods-title view.data-v-5e851b6f:nth-child(3) {
+    align-items: center;
+    display: flex;
+    padding: 20rpx 30rpx 35rpx;
+}
+
+.jiangqie-point-goods-title view:nth-child(3) text.data-v-5e851b6f:nth-child(1) {
+    color: #ff6146;
+    font-size: 40rpx;
+    font-weight: 600;
+    padding-right: 20rpx;
+}
+
+.jiangqie-point-goods-tags.data-v-5e851b6f {
+    background: #fff;
+    border-radius: 16rpx;
+    display: flex;
+    margin-bottom: 30rpx;
+    padding: 40rpx 20rpx;
+}
+
+.jiangqie-point-goods-tags view.data-v-5e851b6f {
+    align-items: center;
+    display: flex;
+    margin-right: 2%;
+    width: 23.5%;
+}
+
+.jiangqie-point-goods-tags view.data-v-5e851b6f:last-of-type {
+    margin: 0;
+}
+
+.jiangqie-point-goods-tags view image.data-v-5e851b6f {
+    height: 40rpx;
+    margin-right: 6rpx;
+    width: 40rpx;
+}
+
+.jiangqie-point-goods-tags view text.data-v-5e851b6f {
+    font-size: 24rpx;
+    line-height: 40rpx;
+}
+
+.jiangqie-point-goods-info.data-v-5e851b6f {
+    background: #fff;
+    border-radius: 16rpx;
+    margin-bottom: 30rpx;
+    padding: 30rpx;
+}
+
+.jiangqie-point-goods-header.data-v-5e851b6f {
+    font-size: 36rpx;
+    font-weight: 600;
+    padding-bottom: 30rpx;
+}
+
+.wxParse-p.data-v-5e851b6f {
+    font-weight: 300;
+    min-height: 1.4em;
+}
+
+.jiangqie-point-goods-btn.data-v-5e851b6f {
+    bottom: 80rpx;
+    display: flex;
+    margin: 0 15%;
+    position: fixed;
+    width: 70%;
+    z-index: 39;
+}
+
+.jiangqie-point-goods-btn .view.data-v-5e851b6f {
+    border-radius: 12rpx;
+    color: #fff;
+    font-weight: 400;
+    height: 96rpx;
+    line-height: 96rpx;
+    text-align: center;
+}
+
+.jiangqie-point-goods-btn .view image.data-v-5e851b6f {
+    height: 48rpx;
+    margin-top: 22rpx;
+    width: 48rpx;
+}
+
+.jiangqie-point-goods-btn .view.data-v-5e851b6f:nth-child(1) {
+    background: #363b51;
+    margin-right: 2%;
+    width: 28%;
+}
+
+.jiangqie-point-goods-btn .view.data-v-5e851b6f:nth-child(2) {
+    background: #ff6146;
+    width: 70%;
+}
+
+.jiangqie-points-goods-img swiper .wx-swiper-dot.data-v-5e851b6f,.jiangqie-points-goods-img uni-swiper .uni-swiper-dot.data-v-5e851b6f {
+    margin-bottom: 50rpx;
+}

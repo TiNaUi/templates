@@ -1,0 +1,182 @@
+<view class="content" id="{{jqTheme}}">
+    <view class="jiangqie-list-header" wx:if="{{cat}}">
+        <view class="jiangqie-list-group-info">
+            <view class="jiangqie-list-cover">
+                <image mode="aspectFill" src="{{cat.cover}}"></image>
+            </view>
+            <view class="jiangqie-list-text">
+                <view>{{cat.name}}</view>
+                <view>{{'总计 '+cat.count+' 篇文章'}}</view>
+            </view>
+        </view>
+        <view class="jiangqie-list-cover-bg">
+            <view class="jiangqie-list-cover-mask"></view>
+            <image class="jiangqie-list-bg" mode="aspectFill" src="{{cat.cover}}"></image>
+        </view>
+    </view>
+    <view class="{{[cat?'jiangqie-list-view-cat':'']}}">
+        <block wx:if="{{posts.length>0}}">
+            <block wx:for="{{posts}}" wx:key="index">
+                <view class="jiangqie-list-view" wx:if="{{list_mode==0}}">
+                    <view>
+                        <view bindtap="__e" class="jiangqie-list-block" data-event-opts="{{[ [ 'tap',[ [ 'clickPost',['$0'],[ [ ['posts','',index] ] ] ] ] ] ]}}">
+                            <view class="jiangqie-list-title">{{item.title}}</view>
+                            <view class="jiangqie-list-describe" wx:if="{{show_excerpt==1}}">{{item.excerpt}}</view>
+                            <view class="jiangqie-list-info">
+                                <view class="jiangqie-list-cmt">{{'浏览 '+item.views+''}}</view>
+                                <view class="jiangqie-list-cmt">{{'点赞 '+item.likes+''}}</view>
+                                <view class="jiangqie-list-time">{{item.time}}</view>
+                            </view>
+                            <view class="jiangqie-list-prix jiangqie-list-prix-big" wx:if="{{item.require_score}}">
+                                <text>{{item.require_score}}</text>积分</view>
+                        </view>
+                    </view>
+                </view>
+                <block wx:else>
+                    <view class="jiangqie-list-view" wx:if="{{list_mode==1}}">
+                        <view class="jiangqie-list-float-l">
+                            <view bindtap="__e" class="jiangqie-list-block jiangqie-list-float" data-event-opts="{{[ [ 'tap',[ [ 'clickPost',['$0'],[ [ ['posts','',index] ] ] ] ] ] ]}}">
+                                <view class="jiangqie-list-image">
+                                    <text wx:if="{{item.badge}}">{{item.badge}}</text>
+                                    <image-loader bind:__l="__l" defaultImage="/static/images/placeholder800x400.png" lazyLoad="{{true}}" mode="aspectFill" originalImage="{{item.thumbnails[0]}}" vueId="{{'2e637200-1-'+index}}"></image-loader>
+                                </view>
+                                <view class="jiangqie-list-title">{{item.title}}</view>
+                                <view class="jiangqie-list-info">
+                                    <view class="jiangqie-list-cmt">{{'浏览 '+item.views+''}}</view>
+                                    <view class="jiangqie-list-cmt">{{'点赞 '+item.likes+''}}</view>
+                                    <view class="jiangqie-list-time">{{item.time}}</view>
+                                </view>
+                                <view class="jiangqie-list-prix jiangqie-list-prix-big" wx:if="{{item.require_score}}">
+                                    <text>{{item.require_score}}</text>积分</view>
+                            </view>
+                        </view>
+                    </view>
+                    <block wx:else>
+                        <view class="jiangqie-list-view" wx:if="{{list_mode==2}}">
+                            <view class="jiangqie-list-float-r">
+                                <view bindtap="__e" class="jiangqie-list-block jiangqie-list-float" data-event-opts="{{[ [ 'tap',[ [ 'clickPost',['$0'],[ [ ['posts','',index] ] ] ] ] ] ]}}">
+                                    <view class="jiangqie-list-image">
+                                        <text wx:if="{{item.badge}}">{{item.badge}}</text>
+                                        <image-loader bind:__l="__l" defaultImage="/static/images/placeholder800x400.png" lazyLoad="{{true}}" mode="aspectFill" originalImage="{{item.thumbnails[0]}}" vueId="{{'2e637200-2-'+index}}"></image-loader>
+                                    </view>
+                                    <view class="jiangqie-list-title">{{item.title}}</view>
+                                    <view class="jiangqie-list-info">
+                                        <view class="jiangqie-list-cmt">{{'浏览 '+item.views+''}}</view>
+                                        <view class="jiangqie-list-cmt">{{'点赞 '+item.likes+''}}</view>
+                                        <view class="jiangqie-list-time">{{item.time}}</view>
+                                    </view>
+                                    <view class="jiangqie-list-prix jiangqie-list-prix-big" wx:if="{{item.require_score}}">
+                                        <text>{{item.require_score}}</text>积分</view>
+                                </view>
+                            </view>
+                        </view>
+                        <block wx:else>
+                            <view class="jiangqie-list-view" wx:if="{{list_mode==3}}">
+                                <view>
+                                    <view bindtap="__e" class="jiangqie-list-block img-max" data-event-opts="{{[ [ 'tap',[ [ 'clickPost',['$0'],[ [ ['posts','',index] ] ] ] ] ] ]}}">
+                                        <view class="jiangqie-list-title">{{item.title}}</view>
+                                        <view class="jiangqie-list-describe" wx:if="{{show_excerpt==1}}">{{item.excerpt}}</view>
+                                        <view class="jiangqie-list-image">
+                                            <text wx:if="{{item.badge}}">{{item.badge}}</text>
+                                            <image-loader bind:__l="__l" defaultImage="/static/images/placeholder800x400.png" lazyLoad="{{true}}" mode="aspectFill" originalImage="{{item.thumbnails[0]}}" vueId="{{'2e637200-3-'+index}}"></image-loader>
+                                        </view>
+                                        <view class="jiangqie-list-info">
+                                            <view class="jiangqie-list-cmt">{{'浏览 '+item.views+''}}</view>
+                                            <view class="jiangqie-list-cmt">{{'点赞 '+item.likes+''}}</view>
+                                            <view class="jiangqie-list-time">{{item.time}}</view>
+                                        </view>
+                                        <view class="jiangqie-list-prix jiangqie-list-prix-big" wx:if="{{item.require_score}}">
+                                            <text>{{item.require_score}}</text>积分</view>
+                                    </view>
+                                </view>
+                            </view>
+                            <block wx:else>
+                                <view class="jiangqie-list-view" wx:if="{{list_mode==4}}">
+                                    <view class="jiangqie-list-float-r">
+                                        <view bindtap="__e" class="jiangqie-list-block" data-event-opts="{{[ [ 'tap',[ [ 'clickPost',['$0'],[ [ ['posts','',index] ] ] ] ] ] ]}}" wx:if="{{item.thumbnails.length==0}}">
+                                            <view class="jiangqie-list-title">{{item.title}}</view>
+                                            <view class="jiangqie-list-describe" wx:if="{{show_excerpt==1}}">{{item.excerpt}}</view>
+                                            <view class="jiangqie-list-info">
+                                                <view class="jiangqie-list-cmt">{{'浏览 '+item.views+''}}</view>
+                                                <view class="jiangqie-list-cmt">{{'点赞 '+item.likes+''}}</view>
+                                                <view class="jiangqie-list-time">{{item.time}}</view>
+                                            </view>
+                                            <view class="jiangqie-list-prix jiangqie-list-prix-big" wx:if="{{item.require_score}}">
+                                                <text>{{item.require_score}}</text>积分</view>
+                                        </view>
+                                        <block wx:else>
+                                            <block wx:if="{{item.thumbnails.length<3}}">
+                                                <view bindtap="__e" class="jiangqie-list-block jiangqie-list-float" data-event-opts="{{[ [ 'tap',[ [ 'clickPost',['$0'],[ [ ['posts','',index] ] ] ] ] ] ]}}" wx:if="{{index%5!=4}}">
+                                                    <view class="jiangqie-list-image">
+                                                        <text wx:if="{{item.badge}}">{{item.badge}}</text>
+                                                        <image-loader bind:__l="__l" defaultImage="/static/images/placeholder800x400.png" lazyLoad="{{true}}" mode="aspectFill" originalImage="{{item.thumbnails[0]}}" vueId="{{'2e637200-4-'+index}}"></image-loader>
+                                                    </view>
+                                                    <view class="jiangqie-list-title">{{item.title}}</view>
+                                                    <view class="jiangqie-list-info">
+                                                        <view class="jiangqie-list-cmt">{{'浏览 '+item.views+''}}</view>
+                                                        <view class="jiangqie-list-cmt">{{'点赞 '+item.likes+''}}</view>
+                                                        <view class="jiangqie-list-time">{{item.time}}</view>
+                                                    </view>
+                                                    <view class="jiangqie-list-prix jiangqie-list-prix-big" wx:if="{{item.require_score}}">
+                                                        <text>{{item.require_score}}</text>积分</view>
+                                                </view>
+                                                <view bindtap="__e" class="jiangqie-list-block img-max" data-event-opts="{{[ [ 'tap',[ [ 'clickPost',['$0'],[ [ ['posts','',index] ] ] ] ] ] ]}}" wx:else>
+                                                    <view class="jiangqie-list-title">{{item.title}}</view>
+                                                    <view class="jiangqie-list-describe" wx:if="{{show_excerpt==1}}">{{item.excerpt}}</view>
+                                                    <view class="jiangqie-list-image">
+                                                        <text wx:if="{{item.badge}}">{{item.badge}}</text>
+                                                        <image-loader bind:__l="__l" defaultImage="/static/images/placeholder800x400.png" lazyLoad="{{true}}" mode="aspectFill" originalImage="{{item.thumbnails[0]}}" vueId="{{'2e637200-5-'+index}}"></image-loader>
+                                                    </view>
+                                                    <view class="jiangqie-list-info">
+                                                        <view class="jiangqie-list-cmt">{{'浏览 '+item.views+''}}</view>
+                                                        <view class="jiangqie-list-cmt">{{'点赞 '+item.likes+''}}</view>
+                                                        <view class="jiangqie-list-time">{{item.time}}</view>
+                                                    </view>
+                                                    <view class="jiangqie-list-prix jiangqie-list-prix-big" wx:if="{{item.require_score}}">
+                                                        <text>{{item.require_score}}</text>积分</view>
+                                                </view>
+                                            </block>
+                                            <block wx:else>
+                                                <view bindtap="__e" class="jiangqie-list-block img-max" data-event-opts="{{[ [ 'tap',[ [ 'clickPost',['$0'],[ [ ['posts','',index] ] ] ] ] ] ]}}" wx:if="{{item.thumbnails.length>=3}}">
+                                                    <view class="jiangqie-list-title">{{item.title}}</view>
+                                                    <view class="jiangqie-list-image jiangqie-list-image-treble">
+                                                        <text wx:if="{{item.badge}}">{{item.badge}}</text>
+                                                        <image-loader bind:__l="__l" class="image-treble" defaultImage="/static/images/placeholder800x400.png" lazyLoad="{{true}}" mode="aspectFill" originalImage="{{item.thumbnails[0]}}" vueId="{{'2e637200-6-'+index}}"></image-loader>
+                                                        <image-loader bind:__l="__l" class="image-treble" defaultImage="/static/images/placeholder800x400.png" lazyLoad="{{true}}" mode="aspectFill" originalImage="{{item.thumbnails[1]}}" vueId="{{'2e637200-7-'+index}}"></image-loader>
+                                                        <image-loader bind:__l="__l" class="image-treble" defaultImage="/static/images/placeholder800x400.png" lazyLoad="{{true}}" mode="aspectFill" originalImage="{{item.thumbnails[2]}}" vueId="{{'2e637200-8-'+index}}"></image-loader>
+                                                    </view>
+                                                    <view class="jiangqie-list-info">
+                                                        <view class="jiangqie-list-cmt">{{'浏览 '+item.views+''}}</view>
+                                                        <view class="jiangqie-list-cmt">{{'点赞 '+item.likes+''}}</view>
+                                                        <view class="jiangqie-list-time">{{item.time}}</view>
+                                                    </view>
+                                                    <view class="jiangqie-list-prix jiangqie-list-prix-big" wx:if="{{item.require_score}}">
+                                                        <text>{{item.require_score}}</text>积分</view>
+                                                </view>
+                                            </block>
+                                        </block>
+                                    </view>
+                                </view>
+                            </block>
+                        </block>
+                    </block>
+                </block>
+                <view class="jiangqie-list-view" wx:if="{{index%ad.frequency_banner==ad.frequency_banner-1}}">
+                    <view class="jiangqie-list-block" wx:if="{{ad.switch_banner=='yes'&&ad.id_banner!=''}}">
+                        <ad unitId="{{ad.id_banner}}"></ad>
+                    </view>
+                    <view class="jiangqie-list-block" wx:if="{{ad.switch_video=='yes'&&ad.id_video!=''}}">
+                        <ad-custom bind:__l="__l" unitId="{{ad.id_video}}" vueId="{{'2e637200-9-'+index}}"></ad-custom>
+                    </view>
+                </view>
+            </block>
+        </block>
+        <block wx:else>
+            <jiangqie-nodata bind:__l="__l" vueId="2e637200-10" wx:if="{{loaded}}"></jiangqie-nodata>
+        </block>
+    </view>
+    <block wx:if="{{posts.length>0}}">
+        <jiangqie-loadmore bind:__l="__l" visible="{{loadding}}" vueId="2e637200-11"></jiangqie-loadmore>
+        <jiangqie-nomore bgcolor="#F5F5F5" bind:__l="__l" visible="{{!pullUpOn}}" vueId="2e637200-12"></jiangqie-nomore>
+    </block>
+</view>

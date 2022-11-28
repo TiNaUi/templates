@@ -1,0 +1,55 @@
+<view class="content data-v-5e851b6f" id="{{jqTheme}}">
+    <view class="jiangqie-points-goods-img data-v-5e851b6f" wx:if="{{goods}}">
+        <swiper autoplay="autoplay" circular="ture" class="data-v-5e851b6f" duration="150" easingFunction="linear" indicatorActiveColor="rgba(255,255,255, 0.8)" indicatorColor="rgba(255,255,255, 0.3)" indicatorDots="{{true}}" interval="5000">
+            <swiper-item class="data-v-5e851b6f" wx:for="{{goods.slide}}" wx:key="index">
+                <image class="data-v-5e851b6f" mode="aspectFill" src="{{item.icon}}"></image>
+            </swiper-item>
+        </swiper>
+    </view>
+    <view class="jiangqie-point-goods data-v-5e851b6f" wx:if="{{goods}}">
+        <button class="jiangqie-point-goods-share data-v-5e851b6f" openType="share">
+            <image class="data-v-5e851b6f" mode="aspectFill" src="/static/images/share.png"></image>
+        </button>
+        <view class="jiangqie-point-goods-title data-v-5e851b6f">
+            <view class="data-v-5e851b6f">{{goods.title}}</view>
+            <view class="data-v-5e851b6f">
+                <text class="data-v-5e851b6f">品牌保障</text>
+                <text class="data-v-5e851b6f">{{goods.excerpt}}</text>
+            </view>
+            <view class="data-v-5e851b6f">
+                <text class="data-v-5e851b6f">{{goods.price+'积分'}}</text>
+                <text class="data-v-5e851b6f">{{'已兑 '+goods.quantity}}</text>
+            </view>
+        </view>
+        <view class="jiangqie-point-goods-tags data-v-5e851b6f">
+            <view class="data-v-5e851b6f">
+                <image class="data-v-5e851b6f" mode="aspectFill" src="/static/images/icon01.png"></image>
+                <text class="data-v-5e851b6f">厂家直供</text>
+            </view>
+            <view class="data-v-5e851b6f">
+                <image class="data-v-5e851b6f" mode="aspectFill" src="/static/images/icon02.png"></image>
+                <text class="data-v-5e851b6f">专属售后</text>
+            </view>
+            <view class="data-v-5e851b6f">
+                <image class="data-v-5e851b6f" mode="aspectFill" src="/static/images/icon03.png"></image>
+                <text class="data-v-5e851b6f">正品保障</text>
+            </view>
+            <view class="data-v-5e851b6f">
+                <image class="data-v-5e851b6f" mode="aspectFill" src="/static/images/icon04.png"></image>
+                <text class="data-v-5e851b6f">假一赔三</text>
+            </view>
+        </view>
+        <view class="jiangqie-point-goods-info data-v-5e851b6f">
+            <view class="jiangqie-point-goods-header data-v-5e851b6f">产品详情</view>
+            <view class="jiangqie-point-goods-cont data-v-5e851b6f">
+                <mp-html bind:__l="__l" class="data-v-5e851b6f" content="{{goods.content}}" vueId="576f0adc-1"></mp-html>
+            </view>
+        </view>
+    </view>
+    <view class="jiangqie-point-goods-btn data-v-5e851b6f">
+        <button class="view data-v-5e851b6f" openType="contact">
+            <image class="data-v-5e851b6f" mode="aspectFill" src="/static/images/sim.png"></image>
+        </button>
+        <view bindtap="__e" class="view data-v-5e851b6f" data-event-opts="{{[ [ 'tap',[ [ 'exchangeClick',['$event'] ] ] ] ]}}">立即兑换</view>
+    </view>
+</view>

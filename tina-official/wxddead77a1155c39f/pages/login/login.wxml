@@ -1,0 +1,18 @@
+<view class="data-v-a8bc4404" id="{{jqTheme}}">
+    <view class="jiangqie-login data-v-a8bc4404" style="{{'background: url('+background+');background-size:cover; background-position:center;'}}">
+        <view class="jiangqie-logo data-v-a8bc4404">
+            <image class="data-v-a8bc4404" mode="aspectFill" src="{{logo}}"></image>
+        </view>
+        <view class="jiangqie-slogan data-v-a8bc4404">{{title}}</view>
+        <view class="jiangqie-slogan data-v-a8bc4404" wx:if="{{type=='mobile'}}">绑定手机号才能评论</view>
+        <view class="jiangqie-option data-v-a8bc4404">
+            <button bindtap="__e" class="data-v-a8bc4404" data-event-opts="{{[ [ 'tap',[ [ 'handlerLoginClick',['$event'] ] ] ] ]}}" wx:if="{{type=='login'}}">授权登录</button>
+            <button bindgetphonenumber="__e" class="data-v-a8bc4404" data-event-opts="{{[ [ 'getphonenumber',[ [ 'getPhoneNumber',['$event'] ] ] ] ]}}" openType="getPhoneNumber" type="default" wx:if="{{type=='mobile'}}">绑定手机号</button>
+            <button bindtap="__e" class="data-v-a8bc4404" data-event-opts="{{[ [ 'tap',[ [ 'cancelClick',['$event'] ] ] ] ]}}">随便逛逛</button>
+            <view class="jiangqie-option-text data-v-a8bc4404">授权登录即同意<text bindtap="__e" class="data-v-a8bc4404" data-event-opts="{{[ [ 'tap',[ [ 'yhxyClick',['$event'] ] ] ] ]}}" wx:if="{{yhxy}}">《用户协议》</text>
+                <block wx:else>用户协议</block>及<text bindtap="__e" class="data-v-a8bc4404" data-event-opts="{{[ [ 'tap',[ [ 'ystkClick',['$event'] ] ] ] ]}}" wx:if="{{ystk}}">《隐私条款》</text>
+                <block wx:else>隐私条款</block>
+            </view>
+        </view>
+    </view>
+</view>

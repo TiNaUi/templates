@@ -1,0 +1,22 @@
+.comment-tip.data-v-5462c949 {
+    margin: 25rpx;
+    text-align: right;
+    width: 700rpx;
+}
+
+.text-content.data-v-5462c949 {
+    border: 1rpx solid #f0f0f0;
+    border-radius: 10rpx;
+    margin: 25rpx;
+    padding: 10rpx;
+    width: 678rpx;
+}
+
+.btn-submit.data-v-5462c949 {
+    background-color: #363b51;
+    border-radius: 60rpx;
+    color: #fff;
+    margin: 50rpx;
+    padding: 20rpx;
+    text-align: center;
+}

@@ -1,0 +1,123 @@
+._contain {
+    background-color: #fcfcfc;
+    border: 1rpx solid #e0e0e0;
+    border-radius: 4px;
+    display: inline-flex;
+    position: relative;
+    width: 99%;
+}
+
+._button {
+    align-items: center;
+    background-color: rgba(0,0,0,.2);
+    border: 1rpx solid #fff;
+    border-radius: 50%;
+    display: flex;
+    height: 20px;
+    justify-content: center;
+    opacity: .9;
+    overflow: hidden;
+    width: 20px;
+}
+
+._play {
+    border-bottom: 4px solid transparent;
+    border-left: 8px solid #fff;
+    border-top: 4px solid transparent;
+    margin-left: 2px;
+}
+
+._pause {
+    background-color: #fff;
+    height: 8px;
+    width: 8px;
+}
+
+._poster {
+    align-items: center;
+    background-color: #f5f5f5;
+    background-position-x: center;
+    background-position-y: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 4px 0 0 4px;
+    display: flex;
+    height: 70px;
+    justify-content: center;
+    width: 70px;
+}
+
+._title {
+    flex: 1;
+    margin: 4rpx 0 0 14px;
+    text-align: left;
+}
+
+._author {
+    color: #888;
+    font-size: 12px;
+    width: 90px;
+}
+
+._name {
+    font-size: 15px;
+    line-height: 34px;
+    width: 140px;
+}
+
+._author,._name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+._slider {
+    bottom: 8px;
+    margin: 0;
+    position: absolute;
+    right: 16px;
+    width: 146px;
+}
+
+._time {
+    color: #888;
+    font-size: 12px;
+    margin: 7px 14px 0 0;
+}
+
+@media (min-width:400px) {
+    ._contain {
+        width: 380px;
+    }
+
+    ._button {
+        height: 26px;
+        width: 26px;
+    }
+
+    ._poster {
+        height: 90px;
+        width: 90px;
+    }
+
+    ._author {
+        font-size: 15px;
+        width: 60px;
+    }
+
+    ._name {
+        font-size: 19px;
+        line-height: 55px;
+        width: 180px;
+    }
+
+    ._slider {
+        bottom: 10px;
+        right: 20px;
+        width: 180px;
+    }
+
+    ._time {
+        font-size: 15px;
+    }
+}

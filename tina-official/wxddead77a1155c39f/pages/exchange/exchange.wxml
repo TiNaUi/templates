@@ -1,0 +1,32 @@
+<view class="content data-v-5098b4d6" id="{{jqTheme}}">
+    <view class="jiangqie-exchange data-v-5098b4d6">
+        <view class="jiangqie-exchange-goods data-v-5098b4d6" wx:if="goods">
+            <image class="data-v-5098b4d6" mode="aspectFill" src="{{goods.thumbnail}}"></image>
+            <view class="jiangqie-exchange-info data-v-5098b4d6">
+                <view class="data-v-5098b4d6">{{goods.title}}</view>
+                <view class="data-v-5098b4d6">
+                    <text class="data-v-5098b4d6">{{goods.price}}</text>积分</view>
+            </view>
+        </view>
+        <view class="jiangqie-exchange-form data-v-5098b4d6">
+            <view class="jiangqie-exchange-title data-v-5098b4d6">联系信息：</view>
+            <view class="jiangqie-exchange-form-line data-v-5098b4d6">
+                <view class="data-v-5098b4d6">姓名：</view>
+                <input bindinput="__e" class="data-v-5098b4d6" data-event-opts="{{[ [ 'input',[ [ 'onInputAddressee',['$event'] ] ] ] ]}}" type="text"></input>
+            </view>
+            <view class="jiangqie-exchange-form-line data-v-5098b4d6">
+                <view class="data-v-5098b4d6">电话：</view>
+                <input bindinput="__e" class="data-v-5098b4d6" data-event-opts="{{[ [ 'input',[ [ 'onInputMobile',['$event'] ] ] ] ]}}" type="text"></input>
+            </view>
+            <view class="jiangqie-exchange-form-line data-v-5098b4d6">
+                <view class="data-v-5098b4d6">地址：</view>
+                <input bindinput="__e" class="data-v-5098b4d6" data-event-opts="{{[ [ 'input',[ [ 'onInputAddress',['$event'] ] ] ] ]}}" type="text"></input>
+            </view>
+            <view class="jiangqie-exchange-form-line data-v-5098b4d6">
+                <view class="data-v-5098b4d6">备注：</view>
+                <textarea bindinput="__e" class="data-v-5098b4d6" data-event-opts="{{[ [ 'input',[ [ 'onInputRemark',['$event'] ] ] ] ]}}" placeholder="想说点什么吗？"></textarea>
+            </view>
+            <view bindtap="__e" class="jiangqie-exchange-btn data-v-5098b4d6" data-event-opts="{{[ [ 'tap',[ [ 'exchangeClick',['$event'] ] ] ] ]}}" wx:if="goods">{{'支付'+goods.price+'积分，立即兑换'}}</view>
+        </view>
+    </view>
+</view>

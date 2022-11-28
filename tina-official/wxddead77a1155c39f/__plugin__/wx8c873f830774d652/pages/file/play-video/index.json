@@ -1,0 +1,11 @@
+{
+    "navigationStyle": "default",
+    "navigationBarTitleText": "百度网盘分享",
+    "disableScroll": true,
+    "usingComponents": {
+        "bottom-bar": "../../../components/bottom-bar/bottom-bar",
+        "Confirm": "../../../components/confirm/confirm",
+        "Dialog": "../../../components/Dialogs/ShowDialog/ShowDialog",
+        "Toast": "../../../components/Toast/Toast"
+    }
+}

@@ -1,0 +1,3 @@
+<view class="data-v-5a06b491">
+    <web-view class="data-v-5a06b491" src="{{url}}"></web-view>
+</view>

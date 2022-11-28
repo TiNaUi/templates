@@ -1,0 +1,34 @@
+<view class="content" id="{{jqTheme}}">
+    <view class="jiangqie-rank">
+        <view class="jiangqie-rank-cover" wx:if="{{background}}">
+            <image mode="aspectFill" src="{{background}}"></image>
+        </view>
+    </view>
+    <view class="jiangqie-rank">
+        <view class="jiangqie-rank-tab">
+            <view bindtap="__e" class="{{[cur_sort==item.sort?'active':'']}}" data-event-opts="{{[ [ 'tap',[ [ 'clickTab',['$0'],[ [ ['tabs','',index] ] ] ] ] ] ]}}" wx:for="{{tabs}}" wx:key="index">{{item.name}}</view>
+        </view>
+    </view>
+    <view class="jiangqie-rank-list">
+        <view bindtap="__e" class="jiangqie-rank-list-block" data-event-opts="{{[ [ 'tap',[ [ 'clickPost',['$0'],[ [ ['posts','',index] ] ] ] ] ] ]}}" wx:for="{{posts}}" wx:key="index">
+            <view class="jiangqie-rank-list-cover">
+                <text>{{index+1}}</text>
+                <image mode="aspectFill" src="{{item.thumbnail}}"></image>
+            </view>
+            <view class="jiangqie-rank-list-text">
+                <view class="jiangqie-rank-list-title">{{item.title}}</view>
+                <view class="jiangqie-rank-list-info">
+                    <text wx:if="{{cur_sort=='view'}}">{{'浏览 '+item.views}}</text>
+                    <block wx:else>
+                        <text wx:if="{{cur_sort=='like'}}">{{'点赞 '+item.likes}}</text>
+                        <block wx:else>
+                            <text wx:if="{{cur_sort=='favorite'}}">{{'收藏 '+item.favorites}}</text>
+                            <text wx:else>{{'评论 '+item.comment_count}}</text>
+                        </block>
+                    </block>
+                    <text>{{item.time}}</text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

@@ -1,0 +1,10 @@
+{
+    "navigationStyle": "default",
+    "usingComponents": {
+        "Toast": "../../components/Toast/Toast",
+        "BlueButton": "../../UI/Components/Base/Buttons/Button/Button",
+        "ShowDialog": "../../components/Dialogs/ShowDialog/ShowDialog",
+        "SharePoster": "../../components/SharePoster/SharePoster/SharePoster"
+    },
+    "disableScroll": true
+}

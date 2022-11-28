@@ -1,0 +1,6 @@
+<view class="none_tip">
+    <image class="image" mode="widthFix" src="/static/images/none_tip.png"></image>
+    <view class="none_tip_text">
+        <text class="text">{{text}}</text>
+    </view>
+</view>

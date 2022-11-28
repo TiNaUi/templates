@@ -1,0 +1,50 @@
+page {
+    background: #f5f5f5;
+}
+
+.tags-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10rpx 0;
+}
+
+.place-holder {
+    height: 50rpx;
+    width: 100%;
+}
+
+.tags-item {
+    background: #fff;
+    border: 1rpx solid #eee;
+    border-radius: 8rpx;
+    margin: 14rpx 2%;
+    padding: 40rpx 0;
+    text-align: center;
+    width: 46%;
+}
+
+.tags-item:nth-child(2n) {
+    margin-left: 0;
+}
+
+.tags-item image {
+    border-radius: 12rpx;
+    height: 120rpx;
+    margin-bottom: 10rpx;
+    width: 120rpx;
+}
+
+.tags-name {
+    font-size: 32rpx;
+    padding: 12rpx 0;
+}
+
+.tags-describe {
+    color: #555;
+    font-size: 26rpx;
+    font-weight: 300;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

@@ -1,0 +1,4 @@
+<view class="jiangqie-loadmore-class jiangqie-loadmore" wx:if="{{visible}}">
+    <view class="{{[ 'jiangqie-loading-'+index+' '+(index==3&&type?'jiangqie-loading-'+type:'') ]}}"></view>
+    <view class="jiangqie-loadmore-tips">{{text}}</view>
+</view>

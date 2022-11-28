@@ -1,0 +1,60 @@
+<view class="content data-v-3a53e072" id="{{jqTheme}}">
+    <view class="jiangqie-type-banner data-v-3a53e072">
+        <view class="jiangqie-type-title data-v-3a53e072">{{setting.title}}</view>
+        <text class="jiangqie-type-text data-v-3a53e072">{{setting.description}}</text>
+        <image class="jiangqie-type-image data-v-3a53e072" mode="aspectFill" src="{{setting.background}}"></image>
+    </view>
+    <view class="jiangqie-type-box data-v-3a53e072">
+        <scroll-view class="tab-view data-v-3a53e072" scrollLeft="0">
+            <view bindtap="__e" class="{{[ 'data-v-3a53e072','tab-bar-item '+(currentTab=='task'?'active':'') ]}}" data-event-opts="{{[ [ 'tap',[ [ 'swichNav',['$event'] ] ] ] ]}}" data-tab="task">
+                <text class="tab-bar-title data-v-3a53e072">积分任务</text>
+            </view>
+            <view bindtap="__e" class="{{[ 'data-v-3a53e072','tab-bar-item '+(currentTab=='record'?'active':'') ]}}" data-event-opts="{{[ [ 'tap',[ [ 'swichNav',['$event'] ] ] ] ]}}" data-tab="record">
+                <text class="tab-bar-title data-v-3a53e072">积分记录</text>
+            </view>
+        </scroll-view>
+        <view class="jiqngqie-count-list data-v-3a53e072" wx:if="{{currentTab=='task'}}">
+            <view class="jiqngqie-count-head data-v-3a53e072">
+                <view class="data-v-3a53e072">今日任务</view>
+                <text class="data-v-3a53e072">{{'我的积分：'+my_score}}</text>
+            </view>
+            <view class="jiqngqie-count-block data-v-3a53e072" wx:for="{{task_once}}" wx:key="sid">
+                <image class="data-v-3a53e072" mode="aspectFill" src="{{item.icon}}"></image>
+                <button bindtap="__e" class="data-v-3a53e072" data-event-opts="{{[ [ 'tap',[ [ 'taskClickAction',['$event'] ] ] ] ]}}" data-tid="{{item.tid}}">去完成</button>
+                <view class="jiqngqie-count-text data-v-3a53e072">
+                    <view class="data-v-3a53e072">{{item.title}}</view>
+                    <text class="data-v-3a53e072">{{item.score+'积分/次'}}</text>
+                </view>
+            </view>
+            <view class="jiqngqie-count-block data-v-3a53e072" wx:for="{{task_daily}}" wx:key="sid">
+                <image class="data-v-3a53e072" mode="aspectFill" src="{{item.icon}}"></image>
+                <button class="data-v-3a53e072" openType="share" wx:if="{{item.tid=='share'}}">{{'('+item.count+'/'+item.limit+')'}}</button>
+                <block wx:else>
+                    <button bindtap="__e" class="data-v-3a53e072" data-event-opts="{{[ [ 'tap',[ [ 'taskClickAction',['$event'] ] ] ] ]}}" data-tid="{{item.tid}}" wx:if="{{item.tid=='jili'}}">去完成</button>
+                    <button bindtap="__e" class="data-v-3a53e072" data-event-opts="{{[ [ 'tap',[ [ 'taskClickAction',['$event'] ] ] ] ]}}" data-tid="{{item.tid}}" wx:else>{{'('+item.count+'/'+item.limit+')'}}</button>
+                </block>
+                <view class="jiqngqie-count-text data-v-3a53e072">
+                    <view class="data-v-3a53e072">{{item.title}}</view>
+                    <text class="data-v-3a53e072">{{item.score+'积分/次'}}</text>
+                </view>
+            </view>
+        </view>
+        <block wx:else>
+            <view class="jiqngqie-count-list jiqngqie-count-score-box data-v-3a53e072" wx:if="{{bills.length>0}}">
+                <view class="jiqngqie-count-block data-v-3a53e072" wx:for="{{bills}}" wx:key="id">
+                    <text class="jiqngqie-count-score data-v-3a53e072" wx:if="{{item.score>0}}">{{'+'+item.score+'分'}}</text>
+                    <text class="jiqngqie-count-score minus data-v-3a53e072" wx:else>{{item.score+'分'}}</text>
+                    <view class="jiqngqie-count-text data-v-3a53e072">
+                        <view class="data-v-3a53e072">{{item.title}}</view>
+                        <text class="data-v-3a53e072">{{item.time}}</text>
+                    </view>
+                </view>
+            </view>
+            <block wx:else>
+                <jiangqie-nodata bind:__l="__l" class="data-v-3a53e072" vueId="7cbec9c0-1" wx:if="{{loaded}}"></jiangqie-nodata>
+            </block>
+            <jiangqie-loadmore bind:__l="__l" class="data-v-3a53e072" visible="{{loadding}}" vueId="7cbec9c0-2"></jiangqie-loadmore>
+            <jiangqie-nomore bind:__l="__l" class="data-v-3a53e072" visible="{{!pullUpOn}}" vueId="7cbec9c0-3"></jiangqie-nomore>
+        </block>
+    </view>
+</view>

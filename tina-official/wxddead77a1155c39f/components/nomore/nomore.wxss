@@ -1,0 +1,68 @@
+.jiangqie-loadmore {
+    font-size: 24rpx;
+    line-height: 2.5em;
+    margin: 2.5em auto;
+    text-align: center;
+    width: 48%;
+}
+
+.jiangqie-nomore {
+    clear: both;
+    display: flex;
+    justify-content: center;
+    margin-top: 10rpx;
+    padding-bottom: 44rpx;
+    position: relative;
+    text-align: center;
+}
+
+.jiangqie-nomore::before {
+    border-bottom: 1rpx solid #e5e5e5;
+    content: "";
+    position: absolute;
+    top: 18rpx;
+    transform: scaleY(.5);
+    width: 360rpx;
+}
+
+.jiangqie-text {
+    color: #999;
+    font-size: 24rpx;
+    height: 36rpx;
+    line-height: 36rpx;
+    padding: 0 18rpx;
+    position: absolute;
+    text-align: center;
+    z-index: 1;
+}
+
+.jiangqie-nomore-dot {
+    display: flex;
+    justify-content: center;
+    margin-top: 10rpx;
+    padding-bottom: 40rpx;
+    position: relative;
+    text-align: center;
+}
+
+.jiangqie-nomore-dot::before {
+    border-bottom: 1rpx solid #e5e5e5;
+    content: "";
+    position: absolute;
+    top: 18rpx;
+    transform: scaleY(.5);
+    width: 360rpx;
+}
+
+.jiangqie-dot-text {
+    color: #e5e5e5;
+    font-size: 10px;
+    height: 36rpx;
+    line-height: 36rpx;
+    position: absolute;
+    text-align: center;
+    transform: scale(.8);
+    transform-origin: center center;
+    width: 50rpx;
+    z-index: 1;
+}

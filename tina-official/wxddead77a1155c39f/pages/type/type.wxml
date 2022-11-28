@@ -1,0 +1,24 @@
+<view class="data-v-13e6ee63" id="{{jqTheme}}">
+    <view class="container data-v-13e6ee63">
+        <view class="jiangqie-type-banner data-v-13e6ee63">
+            <image class="data-v-13e6ee63" mode="aspectFill" src="{{setting.background}}"></image>
+        </view>
+        <view class="right-box data-v-13e6ee63">
+            <scroll-view class="tab-view data-v-13e6ee63" scrollTop="{{scrollTop}}" scrollWithAnimation="{{true}}" scrollY="{{true}}" style="{{'height:'+menuHeight-144+'px'}}">
+                <view bindtap="__e" class="{{[ 'data-v-13e6ee63','tab-bar-item '+(currentTab==index?'active':'') ]}}" data-current="{{index}}" data-event-opts="{{[ [ 'tap',[ [ 'swichNav',['$event'] ] ] ] ]}}" wx:for="{{tabbar}}" wx:key="index">
+                    <text class="data-v-13e6ee63">{{item.name}}</text>
+                </view>
+            </scroll-view>
+            <view class="page-view data-v-13e6ee63" wx:if="{{currentTab===index}}" wx:for="{{tabbar}}" wx:key="index">
+                <view class="class-box data-v-13e6ee63">
+                    <view bindtap="__e" class="class-item data-v-13e6ee63" data-cat="{{cat.name}}" data-event-opts="{{[ [ 'tap',[ [ 'subCatClick',['$event'] ] ] ] ]}}" data-id="{{cat.id}}" wx:for="{{item.cats}}" wx:for-index="icat" wx:for-item="cat" wx:key="id">
+                        <image class="data-v-13e6ee63" mode="aspectFill" src="{{cat.cover}}"></image>
+                        <view class="class-name data-v-13e6ee63">{{''+cat.name+''}}<text bindtap="__e" class="data-v-13e6ee63" data-event-opts="{{[ [ 'tap',[ [ 'subscribeClick',['$event'] ] ] ] ]}}">订阅</text>
+                        </view>
+                        <view class="class-describe data-v-13e6ee63">{{cat.description}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

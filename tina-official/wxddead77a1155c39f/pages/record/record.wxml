@@ -1,0 +1,30 @@
+<view class="content data-v-4d2cd6fc" id="{{jqTheme}}">
+    <block wx:if="{{orders.length>0}}">
+        <view class="jiangqie-exchange data-v-4d2cd6fc" wx:for="{{orders}}" wx:key="index">
+            <view class="jiangqie-exchange-goods data-v-4d2cd6fc">
+                <image class="data-v-4d2cd6fc" mode="aspectFill" src="{{item.goods_image}}"></image>
+                <view class="jiangqie-exchange-info data-v-4d2cd6fc">
+                    <view class="data-v-4d2cd6fc">{{item.goods_title}}</view>
+                    <text class="data-v-4d2cd6fc">{{item.goods_price+'积分'}}</text>
+                </view>
+            </view>
+            <view class="jiangqie-exchange-contact data-v-4d2cd6fc">
+                <view class="jiangqie-exchange-addimg data-v-4d2cd6fc">
+                    <image class="data-v-4d2cd6fc" src="/static/images/addr.png"></image>
+                </view>
+                <view class="jiangqie-exchange-contact-info data-v-4d2cd6fc">
+                    <view class="data-v-4d2cd6fc">{{item.addressee+' - '+item.mobile}}</view>
+                    <view class="data-v-4d2cd6fc">{{'地址：'+item.address}}</view>
+                    <view class="data-v-4d2cd6fc">{{'备注：'+item.remark}}</view>
+                    <view class="jiangqie-exchange-express_no data-v-4d2cd6fc" wx:if="{{item.express_type&&item.express_no}}">{{''+item.express_type+'：'}}<text class="data-v-4d2cd6fc">{{item.express_no}}</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <jiangqie-loadmore bind:__l="__l" class="data-v-4d2cd6fc" visible="{{loadding}}" vueId="3267e520-1"></jiangqie-loadmore>
+        <jiangqie-nomore bind:__l="__l" class="data-v-4d2cd6fc" visible="{{!pullUpOn}}" vueId="3267e520-2"></jiangqie-nomore>
+    </block>
+    <block wx:else>
+        <jiangqie-nodata bind:__l="__l" class="data-v-4d2cd6fc" vueId="3267e520-3" wx:if="{{loaded}}"></jiangqie-nodata>
+    </block>
+</view>

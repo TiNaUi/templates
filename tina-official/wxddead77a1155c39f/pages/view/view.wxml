@@ -1,0 +1,164 @@
+<view class="content data-v-70409867" id="{{jqTheme}}">
+    <view class="zhuige-view-cover data-v-70409867" wx:if="{{post.show_header}}">
+        <image class="data-v-70409867" mode="aspectFill" src="{{post.thumbnail}}"></image>
+    </view>
+    <view class="jiangqie-article jiangqie-article-view data-v-70409867" style="{{post.show_header?'margin-top: -80rpx;':''}}">
+        <view class="jiangqie-view-head data-v-70409867">
+            <view class="jiangqie-view-head-icon data-v-70409867" wx:if="{{post.show_header}}">
+                <view bindtap="__e" class="data-v-70409867" data-event-opts="{{[ [ 'tap',[ [ 'clickPoster',['$event'] ] ] ] ]}}">
+                    <uni-icons bind:__l="__l" class="data-v-70409867" color="#ffffff" size="22" type="pyq" vueId="3f3801a0-1"></uni-icons>
+                </view>
+                <button class="data-v-70409867" openType="share">
+                    <view class="data-v-70409867">
+                        <uni-icons bind:__l="__l" class="data-v-70409867" color="#ffffff" size="22" type="redo-filled" vueId="3f3801a0-2"></uni-icons>
+                    </view>
+                </button>
+            </view>
+            <view class="jiangqie-title-opt data-v-70409867">
+                <text class="jiangqie-title-time data-v-70409867">{{post.time}}</text>
+                <text class="jiangqie-title-type data-v-70409867">{{post.cats[0].name}}</text>
+                <text class="jiangqie-title-count data-v-70409867">{{'浏览 '+post.views}}</text>
+            </view>
+            <view class="jiangqie-title-text data-v-70409867">{{post.title}}</view>
+        </view>
+        <view bindtap="__e" class="jiangqie-article-head-ad data-v-70409867" data-event-opts="{{[ [ 'tap',[ [ 'adTopClick',['$event'] ] ] ] ]}}" data-link="{{ad_top.link}}" wx:if="{{ad_top}}">
+            <image class="data-v-70409867" mode="widthFix" src="{{ad_top.image}}"></image>
+        </view>
+        <view class="jiangqie-view-body data-v-70409867">
+            <mp-html bind:__l="__l" class="data-v-70409867" content="{{post_content}}" vueId="3f3801a0-3"></mp-html>
+            <block wx:if="{{post.switch_score==1&&post.switch_certify==1}}">
+                <view bindtap="__e" class="btn-jili data-v-70409867" data-event-opts="{{[ [ 'tap',[ [ 'clickCertify',['$event'] ] ] ] ]}}">
+                    <text class="data-v-70409867">{{post.certify_require+' 可直接阅读全文/下载'}}</text>
+                </view>
+                <view class="jiangqie-consume data-v-70409867">
+                    <button bindtap="__e" class="data-v-70409867" data-event-opts="{{[ [ 'tap',[ [ 'buyPostClick',['$event'] ] ] ] ]}}">{{post.require_score+'积分阅读全文'}}</button>
+                </view>
+            </block>
+            <block wx:else>
+                <view class="jiangqie-consume data-v-70409867" wx:if="{{post.switch_score==1}}">
+                    <button bindtap="__e" class="data-v-70409867" data-event-opts="{{[ [ 'tap',[ [ 'buyPostClick',['$event'] ] ] ] ]}}">{{post.require_score+'积分阅读全文'}}</button>
+                </view>
+                <block wx:else>
+                    <view class="jiangqie-identity-tips data-v-70409867" wx:if="{{post.switch_certify==1}}">
+                        <view bindtap="__e" class="btn-jili data-v-70409867" data-event-opts="{{[ [ 'tap',[ [ 'clickCertify',['$event'] ] ] ] ]}}">
+                            <view class="data-v-70409867">认证阅读全文</view>
+                        </view>
+                        <text class="data-v-70409867">{{post.certify_require+' 可直接阅读全文/下载'}}</text>
+                    </view>
+                    <block wx:else>
+                        <view bindtap="__e" class="btn-jili data-v-70409867" data-event-opts="{{[ [ 'tap',[ [ 'adJiliClick',['$event'] ] ] ] ]}}" wx:if="{{post.switch_jili==1&&show_jili}}">观看完整视频，阅读更多...<image class="data-v-70409867" mode="aspectFill" src="/static/images/more.png"></image>
+                        </view>
+                        <block wx:else>
+                            <view bindtap="__e" class="jiangqie-identity-tips data-v-70409867" data-event-opts="{{[ [ 'tap',[ [ 'baiduDiskClick',['$event'] ] ] ] ]}}" wx:if="{{post.baidu_disk&&post.baidu_disk.url&&post.baidu_disk.name}}">
+                                <view class="data-v-70409867" wx:if="{{post.baidu_disk.jili==1&&show_baidu_jili}}">观看视频，获取网盘连接</view>
+                                <view class="data-v-70409867" wx:else>百度网盘下载</view>
+                            </view>
+                        </block>
+                    </block>
+                </block>
+            </block>
+            <view bindtap="__e" class="jiangqie-side-icon data-v-70409867" data-event-opts="{{[ [ 'tap',[ [ 'sideBackClick',['$event'] ] ] ] ]}}">
+                <view class="data-v-70409867">首页</view>
+            </view>
+            <view class="jiangqie-article-end data-v-70409867">—— The End ——</view>
+            <view class="jiangqie-cpinfo data-v-70409867" wx:if="{{copyright}}">{{''+copyright+''}}</view>
+            <view class="jiangqie-article-tag data-v-70409867">
+                <text bindtap="__e" class="data-v-70409867" data-event-opts="{{[ [ 'tap',[ [ 'handlerTagClick',['$event'] ] ] ] ]}}" data-id="{{item.id}}" data-tag="{{item.name}}" wx:for="{{post.tags}}" wx:key="id">{{item.name}}</text>
+            </view>
+            <view class="jiangqie-article-adbox data-v-70409867" wx:if="{{ad.switch_banner=='yes'&&ad.id_banner!=''}}">
+                <ad class="data-v-70409867" unitId="{{ad.id_banner}}"></ad>
+            </view>
+        </view>
+    </view>
+    <view class="jiangqie-article-opt data-v-70409867">
+        <view class="jiangqie-article-line data-v-70409867">
+            <view bindtap="__e" class="jiangqie-article-btn data-v-70409867" data-event-opts="{{[ [ 'tap',[ [ 'subscribeClick',['$event'] ] ] ] ]}}">
+                <text class="data-v-70409867">订阅更新</text>
+                <image class="data-v-70409867" mode="aspectFill" src="/static/images/dingyue.png"></image>
+            </view>
+            <view bindtap="__e" class="jiangqie-article-btn data-v-70409867" data-event-opts="{{[ [ 'tap',[ [ 'clickPoster',['$event'] ] ] ] ]}}">
+                <text class="data-v-70409867">分享海报</text>
+                <image class="data-v-70409867" mode="aspectFill" src="/static/images/poster.png"></image>
+            </view>
+        </view>
+        <view class="jiangqie-article-like data-v-70409867">
+            <view class="jiangqie-article-like-title data-v-70409867">{{'- '+like_count+'人已赞 -'}}</view>
+            <view class="jiangqie-article-like-list data-v-70409867">
+                <image bindtap="__e" class="data-v-70409867" data-event-opts="{{[ [ 'tap',[ [ 'avatarClickAction',['$event'] ] ] ] ]}}" data-user_id="{{item.user_id}}" mode="aspectFill" src="{{item.avatar.length>0?item.avatar:'/static/images/default_avatar.jpg'}}" wx:for="{{like_list}}" wx:key="index"></image>
+            </view>
+        </view>
+    </view>
+    <view class="jiangqie-article-adbox data-v-70409867" wx:if="{{ad.switch_video=='yes'&&ad.id_video!=''}}">
+        <ad-custom bind:__l="__l" class="data-v-70409867" unitId="{{ad.id_video}}" vueId="3f3801a0-4"></ad-custom>
+    </view>
+    <view class="jiangqie-list-view jiangqie-list-float-l data-v-70409867" wx:if="{{recommend.length>0}}">
+        <view class="jiangqie-cmt-title data-v-70409867">
+            <text class="data-v-70409867">猜你喜欢</text>
+        </view>
+        <view bindtap="__e" class="jiangqie-list-block jiangqie-list-float data-v-70409867" data-event-opts="{{[ [ 'tap',[ [ 'recPostClickAction',['$event'] ] ] ] ]}}" data-id="{{item.id}}" data-link="{{item.direct_link}}" data-swith="{{item.direct_link_switch}}" wx:for="{{recommend}}" wx:key="index">
+            <view class="jiangqie-list-image data-v-70409867">
+                <image-loader bind:__l="__l" class="data-v-70409867" defaultImage="/static/images/placeholder800x400.png" lazyLoad="{{true}}" mode="aspectFill" originalImage="{{item.thumbnail}}" vueId="{{'3f3801a0-5-'+index}}"></image-loader>
+            </view>
+            <view class="jiangqie-list-title data-v-70409867">{{item.title}}</view>
+            <view class="jiangqie-list-info data-v-70409867">
+                <view class="jiangqie-list-cmt data-v-70409867">{{'浏览 '+item.views+''}}</view>
+                <view class="jiangqie-list-cmt data-v-70409867">{{'点赞 '+item.likes+''}}</view>
+            </view>
+        </view>
+    </view>
+    <view bindtap="__e" class="jiangqie-view-adbox data-v-70409867" data-event-opts="{{[ [ 'tap',[ [ 'adBottomClick',['$event'] ] ] ] ]}}" data-link="{{ad_bottom.link}}" wx:if="{{ad_bottom}}">
+        <image class="data-v-70409867" mode="widthFix" src="{{ad_bottom.image}}"></image>
+    </view>
+    <view class="jiangqie-cmtbox data-v-70409867" wx:if="{{post.switch_comment==1}}">
+        <view class="jiangqie-cmt-title data-v-70409867">
+            <text class="data-v-70409867">热门评论</text>
+        </view>
+        <block wx:if="{{comments.length>0}}">
+            <view class="jiangqie-cmt-content data-v-70409867" wx:for="{{comments}}" wx:key="id">
+                <view class="jiangqie-cmt-avatar data-v-70409867">
+                    <image bindtap="__e" class="data-v-70409867" data-event-opts="{{[ [ 'tap',[ [ 'avatarClickAction',['$event'] ] ] ] ]}}" data-user_id="{{item.user.id}}" mode="aspectFill" src="{{item.user.avatar.length>0?item.user.avatar:'/static/images/default_avatar.jpg'}}"></image>
+                </view>
+                <view class="jiangqie-cmt-head data-v-70409867">{{''+item.user.name+''}}<block wx:if="{{item.reply}}">
+                        <text class="data-v-70409867">回复</text>{{item.reply}}</block>
+                </view>
+                <view class="jiangqie-cmt-text data-v-70409867">
+                    <text class="jiangqie-cmt-text-world data-v-70409867">{{item.content}}</text>
+                </view>
+                <view class="jiangqie-cmt-time data-v-70409867">{{''+item.time+''}}<text class="jiangqie-cmt-time data-v-70409867" wx:if="{{item.approved!=1}}">待审核</text>
+                    <text bindtap="__e" class="data-v-70409867" data-event-opts="{{[ [ 'tap',[ [ 'commentReplyClickAction',['$event'] ] ] ] ]}}" data-id="{{item.id}}">回复</text>
+                    <text bindtap="__e" class="comment-action data-v-70409867" data-event-opts="{{[ [ 'tap',[ [ 'commentDeleteClickAction',['$event'] ] ] ] ]}}" data-id="{{item.id}}" wx:if="{{item.user.is_me==1}}">删除</text>
+                </view>
+            </view>
+            <jiangqie-loadmore bind:__l="__l" class="data-v-70409867" visible="{{loadding}}" vueId="3f3801a0-6"></jiangqie-loadmore>
+            <jiangqie-nomore bind:__l="__l" class="data-v-70409867" visible="{{!pullUpOn}}" vueId="3f3801a0-7"></jiangqie-nomore>
+        </block>
+        <block wx:else>
+            <jiangqie-nodata bind:__l="__l" class="data-v-70409867" text="暂无评论，好尴尬啊..." vueId="3f3801a0-8" wx:if="{{loaded}}"></jiangqie-nodata>
+        </block>
+    </view>
+    <view class="jiangqie-operation data-v-70409867" wx:if="{{post.switch_comment==1}}">
+        <view class="jiangqie-operation-left jiangqie-col-5 jiangqie-height-full jiangqie-ptop-zero data-v-70409867">
+            <view bindtap="__e" class="jiangqie-btn-comment data-v-70409867" data-event-opts="{{[ [ 'tap',[ [ 'commentClickAction',['$event'] ] ] ] ]}}">发表你的评论...</view>
+        </view>
+        <view class="jiangqie-operation-right jiangqie-right-flex jiangqie-col-7 data-v-70409867">
+            <view bindtap="__e" class="jiangqie-operation-item data-v-70409867" data-event-opts="{{[ [ 'tap',[ [ 'commentClickAction',['$event'] ] ] ] ]}}" hoverClass="opcity" hoverStayTime="150">
+                <image class="data-v-70409867" mode="widthFix" src="/static/images/btn_com.png"></image>
+                <text class="data-v-70409867">{{post.comment_count}}</text>
+            </view>
+            <view bindtap="__e" class="jiangqie-operation-item data-v-70409867" data-event-opts="{{[ [ 'tap',[ [ 'likeClickAction',['$event'] ] ] ] ]}}">
+                <image class="data-v-70409867" mode="widthFix" src="/static/images/btn_fav_on.png" wx:if="{{post_like==1}}"></image>
+                <image class="data-v-70409867" mode="widthFix" src="/static/images/btn_fav.png" wx:else></image>
+                <text class="data-v-70409867">{{like_count}}</text>
+            </view>
+            <view bindtap="__e" class="jiangqie-operation-item data-v-70409867" data-event-opts="{{[ [ 'tap',[ [ 'favoriteClickAction',['$event'] ] ] ] ]}}">
+                <image class="data-v-70409867" mode="widthFix" src="/static/images/btn_star_on.png" wx:if="{{post_favorite==1}}"></image>
+                <image class="data-v-70409867" mode="widthFix" src="/static/images/btn_star.png" wx:else></image>
+                <text class="data-v-70409867">{{post.favorites}}</text>
+            </view>
+            <button class="jiangqie-operation-item data-v-70409867" hoverClass="opcity" hoverStayTime="150" openType="share">
+                <image class="data-v-70409867" mode="widthFix" src="/static/images/btn_share.png"></image>
+            </button>
+        </view>
+    </view>
+    <l-painter bind:__l="__l" bind:success="__e" board="{{base}}" class="data-v-70409867" customStyle="position: fixed; left: 200%;" data-event-opts="{{[ [ '^success',[ ['onPainterSuccess'] ] ] ]}}" isRenderImage="{{true}}" vueId="3f3801a0-9" wx:if="{{isShowPainter}}"></l-painter>
+</view>

@@ -1,0 +1,72 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/ranking/ranking",
+        "pages/goods/goods",
+        "pages/store/store",
+        "pages/record/record",
+        "pages/exchange/exchange",
+        "pages/mine/mine",
+        "pages/login/login",
+        "pages/list/list",
+        "pages/type/type",
+        "pages/search/search",
+        "pages/view/view",
+        "pages/order_list/order_list",
+        "pages/comment/comment",
+        "pages/integral/integral",
+        "pages/tags/tags",
+        "pages/history/history",
+        "pages/certification/certification",
+        "pages/webview/webview",
+        "pages/viewhtml/viewhtml",
+        "pages/userinfo/userinfo",
+        "pages/type-new/type-new"
+    ],
+    "window": {
+        "backgroundColorTop": "#F5F5F5",
+        "backgroundColorBottom": "#F2F2F2",
+        "navigationBarBackgroundColor": "#FFFFFF",
+        "backgroundTextStyle": "dark",
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": ""
+    },
+    "tabBar": {
+        "color": "#8a8a8a",
+        "selectedColor": "#363B51",
+        "borderStyle": "white",
+        "backgroundColor": "#FFFFFF",
+        "list": [
+            {
+                "pagePath": "pages/index/index",
+                "text": "首页",
+                "iconPath": "static/images/tabbar/index_gray.png",
+                "selectedIconPath": "static/images/tabbar/index_active.png"
+            },
+            {
+                "pagePath": "pages/type-new/type-new",
+                "text": "分类",
+                "iconPath": "static/images/tabbar/type_gray.png",
+                "selectedIconPath": "static/images/tabbar/type_active.png"
+            },
+            {
+                "pagePath": "pages/ranking/ranking",
+                "text": "榜单",
+                "iconPath": "static/images/tabbar/rank_gray.png",
+                "selectedIconPath": "static/images/tabbar/rank_active.png"
+            },
+            {
+                "pagePath": "pages/mine/mine",
+                "text": "我的",
+                "iconPath": "static/images/tabbar/my_gray.png",
+                "selectedIconPath": "static/images/tabbar/my_active.png"
+            }
+        ]
+    },
+    "networkTimeout": {
+        "request": 10000,
+        "connectSocket": 10000,
+        "uploadFile": 10000,
+        "downloadFile": 10000
+    }
+}

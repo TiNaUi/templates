@@ -1,0 +1,5 @@
+<view class="jiangqie-nomore-class jiangqie-loadmore" wx:if="{{visible}}">
+    <view class="{{[isDot?'jiangqie-nomore-dot':'jiangqie-nomore']}}">
+        <view class="{{[isDot?'jiangqie-dot-text':'jiangqie-text']}}" style="{{'background:'+bgcolor}}">{{isDot?dotText:text}}</view>
+    </view>
+</view>

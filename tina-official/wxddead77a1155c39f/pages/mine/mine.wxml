@@ -1,0 +1,183 @@
+<view class="content data-v-1ecf528a" id="{{jqTheme}}">
+    <view class="jiangqie-mine data-v-1ecf528a" style="{{'background: url('+background+') no-repeat;background-size: 124%; background-position-x:center;'}}">
+        <view bindtap="__e" class="jiangqie-mine-info data-v-1ecf528a" data-event-opts="{{[ [ 'tap',[ [ 'clickLink',['/pages/userinfo/userinfo'] ] ] ] ]}}" wx:if="{{user}}">
+            <view class="jiangqie-userv data-v-1ecf528a" wx:if="{{user.certify==1}}">
+                <image class="data-v-1ecf528a" mode="aspectFill" src="{{user.certify_icon}}"></image>
+            </view>
+            <image class="data-v-1ecf528a" mode="aspectFill" src="{{user.avatar}}"></image>
+            <text class="data-v-1ecf528a">{{user.nickname}}</text>
+        </view>
+        <view bindtap="__e" class="jiangqie-mine-info data-v-1ecf528a" data-event-opts="{{[ [ 'tap',[ [ 'clickLink',['/pages/login/login'] ] ] ] ]}}" wx:else>
+            <image class="data-v-1ecf528a" mode="aspectFill" src="/static/images/default_avatar.jpg"></image>
+            <text class="data-v-1ecf528a">立即登录</text>
+        </view>
+        <view bindtap="__e" class="jiangqie-vip-banner data-v-1ecf528a" data-event-opts="{{[ [ 'tap',[ [ 'vipClickAction',['$event'] ] ] ] ]}}" wx:if="{{is_certify=='1'}}">
+            <image class="data-v-1ecf528a" mode="aspectFill" src="{{banner}}"></image>
+        </view>
+    </view>
+    <view class="jiangqie-mybox data-v-1ecf528a">
+        <view class="jiangqie-myicon data-v-1ecf528a">
+            <view bindtap="__e" class="jiangqie-myiconblock data-v-1ecf528a" data-event-opts="{{[ [ 'tap',[ [ 'integralCllick',['$event'] ] ] ] ]}}">
+                <view class="jiangqie-myicon-img data-v-1ecf528a">
+                    <image class="data-v-1ecf528a" mode="aspectFill" src="/static/images/points.png"></image>
+                </view>
+                <view class="jiangqie-myicon-text data-v-1ecf528a">积分/任务</view>
+            </view>
+            <view bindtap="__e" class="jiangqie-myiconblock data-v-1ecf528a" data-event-opts="{{[ [ 'tap',[ [ 'orderCllick',['$event'] ] ] ] ]}}">
+                <view class="jiangqie-myicon-img data-v-1ecf528a">
+                    <image class="data-v-1ecf528a" mode="aspectFill" src="/static/images/bill.png"></image>
+                </view>
+                <view class="jiangqie-myicon-text data-v-1ecf528a">购买记录</view>
+            </view>
+            <view bindtap="__e" class="jiangqie-myiconblock data-v-1ecf528a" data-event-opts="{{[ [ 'tap',[ [ 'historyCllick',['$event'] ] ] ] ]}}">
+                <view class="jiangqie-myicon-img data-v-1ecf528a">
+                    <image class="data-v-1ecf528a" mode="aspectFill" src="/static/images/history.png"></image>
+                </view>
+                <view class="jiangqie-myicon-text data-v-1ecf528a">历史记录</view>
+            </view>
+            <view bindtap="__e" class="jiangqie-myiconblock data-v-1ecf528a" data-event-opts="{{[ [ 'tap',[ [ 'subscribeClick',['$event'] ] ] ] ]}}">
+                <view class="jiangqie-myicon-img data-v-1ecf528a">
+                    <image class="data-v-1ecf528a" mode="aspectFill" src="/static/images/msg.png"></image>
+                </view>
+                <view class="jiangqie-myicon-text data-v-1ecf528a">订阅更新</view>
+            </view>
+        </view>
+    </view>
+    <view class="jiangqie-mybox data-v-1ecf528a" wx:if="{{views.length>0}}">
+        <view class="jiangqie-recom data-v-1ecf528a">
+            <view class="jiangqie-recom-header data-v-1ecf528a">
+                <navigator class="navigator data-v-1ecf528a" url="/pages/history/history?track=views">
+                    <text class="data-v-1ecf528a">查看更多</text>
+                </navigator>浏览记录</view>
+            <scroll-view class="jiangqie-scroll-x-box data-v-1ecf528a" scrollX="{{true}}">
+                <view bindtap="__e" class="jiangqie-scroll-box data-v-1ecf528a" data-event-opts="{{[ [ 'tap',[ [ 'postClickAction',['$event'] ] ] ] ]}}" data-id="{{item.id}}" wx:for="{{views}}" wx:key="id">
+                    <image class="data-v-1ecf528a" mode="aspectFill" src="{{item.thumbnail}}"></image>
+                    <view class="data-v-1ecf528a">{{item.title}}</view>
+                </view>
+            </scroll-view>
+        </view>
+    </view>
+    <view class="jiangqie-mybox jiangqie-mask-fix data-v-1ecf528a">
+        <view class="jiangqie-listbox data-v-1ecf528a">
+            <block wx:for="{{menu}}" wx:key="index">
+                <view bindtap="__e" class="{{[ 'data-v-1ecf528a','jiangqie-listblock '+(item.line=='yes'?'jiangqie-listblock-line':'') ]}}" data-event-opts="{{[ [ 'tap',[ [ 'itemViewsClick',['$event'] ] ] ] ]}}" wx:if="{{item.tp=='views'}}">
+                    <view class="jiangqie-listcont data-v-1ecf528a">
+                        <image class="data-v-1ecf528a" mode="aspectFill" src="/static/images/more.png"></image>
+                    </view>
+                    <view class="jiangqie-listtitle data-v-1ecf528a">
+                        <text class="data-v-1ecf528a">{{item.title}}</text>
+                        <image class="data-v-1ecf528a" mode="aspectFill" src="{{item.icon}}" wx:if="{{item.icon}}"></image>
+                    </view>
+                </view>
+                <block wx:else>
+                    <view bindtap="__e" class="{{[ 'data-v-1ecf528a','jiangqie-listblock '+(item.line=='yes'?'jiangqie-listblock-line':'') ]}}" data-event-opts="{{[ [ 'tap',[ [ 'itemLikesClick',['$event'] ] ] ] ]}}" wx:if="{{item.tp=='likes'}}">
+                        <view class="jiangqie-listcont data-v-1ecf528a">
+                            <image class="data-v-1ecf528a" mode="aspectFill" src="/static/images/more.png"></image>
+                        </view>
+                        <view class="jiangqie-listtitle data-v-1ecf528a">
+                            <text class="data-v-1ecf528a">{{item.title}}</text>
+                            <image class="data-v-1ecf528a" mode="aspectFill" src="{{item.icon}}" wx:if="{{item.icon}}"></image>
+                        </view>
+                    </view>
+                    <block wx:else>
+                        <view bindtap="__e" class="{{[ 'data-v-1ecf528a','jiangqie-listblock '+(item.line=='yes'?'jiangqie-listblock-line':'') ]}}" data-event-opts="{{[ [ 'tap',[ [ 'itemFavouritesClick',['$event'] ] ] ] ]}}" wx:if="{{item.tp=='favourites'}}">
+                            <view class="jiangqie-listcont data-v-1ecf528a">
+                                <image class="data-v-1ecf528a" mode="aspectFill" src="/static/images/more.png"></image>
+                            </view>
+                            <view class="jiangqie-listtitle data-v-1ecf528a">
+                                <text class="data-v-1ecf528a">{{item.title}}</text>
+                                <image class="data-v-1ecf528a" mode="aspectFill" src="{{item.icon}}" wx:if="{{item.icon}}"></image>
+                            </view>
+                        </view>
+                        <block wx:else>
+                            <view bindtap="__e" class="{{[ 'data-v-1ecf528a','jiangqie-listblock '+(item.line=='yes'?'jiangqie-listblock-line':'') ]}}" data-event-opts="{{[ [ 'tap',[ [ 'itemCommentsClick',['$event'] ] ] ] ]}}" wx:if="{{item.tp=='comments'}}">
+                                <view class="jiangqie-listcont data-v-1ecf528a">
+                                    <image class="data-v-1ecf528a" mode="aspectFill" src="/static/images/more.png"></image>
+                                </view>
+                                <view class="jiangqie-listtitle data-v-1ecf528a">
+                                    <text class="data-v-1ecf528a">{{item.title}}</text>
+                                    <image class="data-v-1ecf528a" mode="aspectFill" src="{{item.icon}}" wx:if="{{item.icon}}"></image>
+                                </view>
+                            </view>
+                        </block>
+                    </block>
+                </block>
+                <view bindtap="__e" class="{{[ 'data-v-1ecf528a','jiangqie-listblock '+(item.line=='yes'?'jiangqie-listblock-line':'') ]}}" data-event-opts="{{[ [ 'tap',[ [ 'itemCertifyClick',['$event'] ] ] ] ]}}" wx:if="{{item.tp=='certify'}}">
+                    <view class="jiangqie-listcont data-v-1ecf528a">
+                        <view class="data-v-1ecf528a" style="display:inline-block;">
+                            <text class="data-v-1ecf528a">专属V图标/权限</text>
+                            <view class="red-dot data-v-1ecf528a" wx:if="{{certify_updatetime}}"></view>
+                        </view>
+                        <image class="data-v-1ecf528a" mode="aspectFill" src="/static/images/more.png"></image>
+                    </view>
+                    <view class="jiangqie-listtitle data-v-1ecf528a">
+                        <text class="data-v-1ecf528a">{{item.title}}</text>
+                        <image class="data-v-1ecf528a" mode="aspectFill" src="{{item.icon}}" wx:if="{{item.icon}}"></image>
+                    </view>
+                </view>
+                <block wx:else>
+                    <view class="{{[ 'data-v-1ecf528a','jiangqie-listblock '+(item.line=='yes'?'jiangqie-listblock-line':'') ]}}" wx:if="{{item.tp=='contact'}}">
+                        <view class="jiangqie-listcont data-v-1ecf528a">
+                            <image class="data-v-1ecf528a" mode="aspectFill" src="/static/images/more.png"></image>
+                        </view>
+                        <button class="jiangqie-listtitle data-v-1ecf528a" openType="contact">
+                            <text class="data-v-1ecf528a">{{item.title}}</text>
+                            <image class="data-v-1ecf528a" mode="aspectFill" src="{{item.icon}}" wx:if="{{item.icon}}"></image>
+                        </button>
+                    </view>
+                    <block wx:else>
+                        <view class="{{[ 'data-v-1ecf528a','jiangqie-listblock '+(item.line=='yes'?'jiangqie-listblock-line':'') ]}}" wx:if="{{item.tp=='feedback'}}">
+                            <view class="jiangqie-listcont data-v-1ecf528a">
+                                <image class="data-v-1ecf528a" mode="aspectFill" src="/static/images/more.png"></image>
+                            </view>
+                            <button class="jiangqie-listtitle data-v-1ecf528a" openType="feedback">
+                                <text class="data-v-1ecf528a">{{item.title}}</text>
+                                <image class="data-v-1ecf528a" mode="aspectFill" src="{{item.icon}}" wx:if="{{item.icon}}"></image>
+                            </button>
+                        </view>
+                        <block wx:else>
+                            <view bindtap="__e" class="{{[ 'data-v-1ecf528a','jiangqie-listblock '+(item.line=='yes'?'jiangqie-listblock-line':'') ]}}" data-event-opts="{{[ [ 'tap',[ [ 'itemClearClick',['$event'] ] ] ] ]}}" wx:if="{{item.tp=='clear'}}">
+                                <view class="jiangqie-listcont data-v-1ecf528a">
+                                    <image class="data-v-1ecf528a" mode="aspectFill" src="/static/images/more.png"></image>
+                                </view>
+                                <view class="jiangqie-listtitle data-v-1ecf528a">
+                                    <text class="data-v-1ecf528a">{{item.title}}</text>
+                                    <image class="data-v-1ecf528a" mode="aspectFill" src="{{item.icon}}" wx:if="{{item.icon}}"></image>
+                                </view>
+                            </view>
+                            <block wx:else>
+                                <view bindtap="__e" class="{{[ 'data-v-1ecf528a','jiangqie-listblock '+(item.line=='yes'?'jiangqie-listblock-line':'') ]}}" data-event-opts="{{[ [ 'tap',[ [ 'itemPageClick',['$event'] ] ] ] ]}}" data-page_id="{{item.page_id}}" wx:if="{{item.tp=='page'}}">
+                                    <view class="jiangqie-listcont data-v-1ecf528a">
+                                        <image class="data-v-1ecf528a" mode="aspectFill" src="/static/images/more.png"></image>
+                                    </view>
+                                    <view class="jiangqie-listtitle data-v-1ecf528a">
+                                        <text class="data-v-1ecf528a">{{item.title}}</text>
+                                        <image class="data-v-1ecf528a" mode="aspectFill" src="{{item.icon}}" wx:if="{{item.icon}}"></image>
+                                    </view>
+                                </view>
+                                <block wx:else>
+                                    <view bindtap="__e" class="{{[ 'data-v-1ecf528a','jiangqie-listblock '+(item.line=='yes'?'jiangqie-listblock-line':'') ]}}" data-event-opts="{{[ [ 'tap',[ [ 'itemLinkClick',['$event'] ] ] ] ]}}" data-link="{{item.link}}" wx:if="{{item.tp=='link'}}">
+                                        <view class="jiangqie-listcont data-v-1ecf528a">
+                                            <image class="data-v-1ecf528a" mode="aspectFill" src="/static/images/more.png"></image>
+                                        </view>
+                                        <view class="jiangqie-listtitle data-v-1ecf528a">
+                                            <text class="data-v-1ecf528a">{{item.title}}</text>
+                                            <image class="data-v-1ecf528a" mode="aspectFill" src="{{item.icon}}" wx:if="{{item.icon}}"></image>
+                                        </view>
+                                    </view>
+                                    <block wx:else>
+                                        <view class="jiangqie-list-split data-v-1ecf528a" wx:if="{{item.tp=='split'}}"></view>
+                                    </block>
+                                </block>
+                            </block>
+                        </block>
+                    </block>
+                </block>
+            </block>
+        </view>
+    </view>
+    <view bindtap="__e" class="jiangqie-copyinfo data-v-1ecf528a" data-event-opts="{{[ [ 'tap',[ [ 'copyrightClick',['$event'] ] ] ] ]}}">
+        <image class="data-v-1ecf528a" mode="aspectFill" src="{{copyrightlogo}}"></image>
+        <view class="data-v-1ecf528a">追格 zhuige.com 提供技术支持</view>
+    </view>
+</view>

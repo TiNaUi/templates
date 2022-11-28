@@ -1,0 +1,324 @@
+.default.data-v-4bb376a2 {
+    width: 100%;
+}
+
+.content.data-v-4bb376a2 {
+    background: #f5f5f5;
+    font: normal 14px Arial,Microsoft YaHei,WenQuanYi Micro Hei,Verdana,Tahoma,sans-serif;
+    padding-bottom: 20rpx;
+}
+
+.lxy-nav-bar__logo image.data-v-4bb376a2 {
+    height: 48rpx;
+    margin-right: 12rpx;
+    width: 128rpx;
+}
+
+.lxy-nav-bar-search.data-v-4bb376a2 {
+    align-items: center;
+    background: #f6f6f6;
+    border-radius: 16px;
+    display: flex;
+    height: 32px;
+    justify-content: left;
+    margin: 6rpx 0;
+    padding: 0 10rpx;
+    position: relative;
+    width: 70%;
+}
+
+.lxy-nav-bar-search__input.data-v-4bb376a2 {
+    align-items: left;
+    color: #999;
+    display: flex;
+    font-size: 13px;
+    height: 100%;
+    line-height: 14px;
+    width: 100%;
+}
+
+.lxy-nav-bar-search__input-item.data-v-4bb376a2 {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    font-size: 13px;
+    padding: 0 10rpx;
+}
+
+.jiangqie-banner-box.data-v-4bb376a2 {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.jiangqie-banner-swiper.data-v-4bb376a2 {
+    height: 320rpx;
+    width: 100%;
+}
+
+.jiangqie-banner-item.data-v-4bb376a2 {
+    box-sizing: border-box;
+    padding: 0 5rpx;
+    position: relative;
+}
+
+.jiangqie-banner-item view.data-v-4bb376a2 {
+    bottom: 60rpx;
+    color: #fff;
+    font-size: 36rpx;
+    font-weight: 600;
+    left: 30rpx;
+    position: absolute;
+    z-index: 9;
+}
+
+.jiangqie-slide-image.data-v-4bb376a2 {
+    border-radius: 8rpx;
+    display: block;
+    height: 320rpx;
+    transition: all .1s linear;
+    width: 100%;
+}
+
+.jiangqie-banner-scale.data-v-4bb376a2 {
+    transform-origin: center center;
+}
+
+.jiangqie-icon.data-v-4bb376a2 {
+    box-sizing: border-box;
+    color: #555;
+    flex-wrap: wrap;
+    font-size: 24rpx;
+    margin-bottom: 30rpx;
+    position: relative;
+    z-index: 20;
+}
+
+.jiangqie-icon.data-v-4bb376a2,.jiangqie-iconbox.data-v-4bb376a2 {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.jiangqie-iconbox.data-v-4bb376a2 {
+    flex-direction: column;
+    width: 20%;
+}
+
+.jiangqie-iconimg.data-v-4bb376a2 {
+    display: block;
+    height: 116rpx;
+    margin-bottom: 20rpx;
+    width: 116rpx;
+}
+
+.jiangqie-iconbox text.data-v-4bb376a2 {
+    color: #555;
+    font-size: 26rpx;
+    line-height: 46rpx;
+}
+
+.tab-view-con.data-v-4bb376a2 {
+    background-color: #fff;
+    border-radius: 12rpx;
+    display: flex;
+    margin: 20rpx;
+    padding-bottom: 1rpx;
+    position: sticky;
+    top: 120rpx;
+    z-index: 9999;
+}
+
+.tab-view-con-fix.data-v-4bb376a2 {
+    top: 159rpx;
+}
+
+.tab-view.data-v-4bb376a2 {
+    border: none;
+    width: 651rpx;
+}
+
+.tab-more.data-v-4bb376a2 {
+    height: 99rpx;
+    width: 99rpx;
+}
+
+.tab-more image.data-v-4bb376a2 {
+    height: 96rpx;
+    margin: 3rpx 3rpx 0 0;
+    width: 96rpx;
+}
+
+.jiangqie-tags-box.data-v-4bb376a2 {
+    background: #fff;
+    border-radius: 12rpx;
+    margin: 20rpx;
+    padding: 20rpx 0 30rpx;
+}
+
+.jiangqie-tags-list-box.data-v-4bb376a2 {
+    overflow-x: scroll;
+}
+
+.jiangqie-tags-list-box.data-v-4bb376a2::-webkit-scrollbar {
+    display: none;
+}
+
+.jiangqie-tags-list.data-v-4bb376a2 {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: hidden;
+    padding-left: 30rpx;
+}
+
+.jiangqie-tags-list view.data-v-4bb376a2 {
+    background: #f3f3f3;
+    border-radius: 60rpx;
+    color: #555;
+    font-size: 24rpx;
+    font-weight: 500;
+    margin-right: 20rpx;
+    margin-top: 24rpx;
+    padding: 20rpx 30rpx;
+    position: relative;
+}
+
+.jiangqie-tags-list view text.data-v-4bb376a2 {
+    background: #363b51;
+    border-radius: 18rpx 18rpx 18rpx 0;
+    color: #fff;
+    font-size: 18rpx;
+    font-weight: 300;
+    height: 36rpx;
+    line-height: 36rpx;
+    padding: 0 12rpx;
+    position: absolute;
+    right: -20rpx;
+    top: -18rpx;
+    z-index: 6;
+}
+
+.jiangqie-column-list-box.data-v-4bb376a2:last-child {
+    margin-right: 20rpx;
+}
+
+.jiangqie-list-block ad.data-v-4bb376a2 {
+    position: relative;
+    z-index: 98;
+}
+
+.jiangqie-list-title text.data-v-4bb376a2 {
+    background: #f40;
+    border-radius: 6rpx;
+    color: #fff;
+    font-size: 20rpx;
+    font-weight: 200;
+    margin-right: 12rpx;
+    padding: 6rpx 12rpx;
+    vertical-align: bottom;
+}
+
+.jiangqie-maxad.data-v-4bb376a2 {
+    background: rgba(0,0,0,.8);
+    height: 100%;
+    position: fixed;
+    text-align: center;
+    width: 100%;
+    z-index: 9999;
+}
+
+.jiangqie-maxad-img image.data-v-4bb376a2 {
+    height: 900rpx;
+    width: 100%;
+}
+
+.jiangqie-maxad-btn.data-v-4bb376a2 {
+    align-items: center;
+    border: 2rpx solid #aaa;
+    border-radius: 50rpx;
+    height: 50rpx;
+    justify-content: center;
+    left: 50%;
+    margin-left: -25rpx;
+    position: fixed;
+    width: 50rpx;
+}
+
+.jiangqie-maxad-btn image.data-v-4bb376a2 {
+    height: 20rpx;
+    width: 20rpx;
+}
+
+.jiangqie-new-header.data-v-4bb376a2 {
+    margin-bottom: 10rpx;
+    padding: 20rpx;
+}
+
+.jiangqie-new-header-title.data-v-4bb376a2 {
+    display: flex;
+    padding-bottom: 30rpx;
+}
+
+.title-text.data-v-4bb376a2 {
+    color: #333;
+    font-size: 56rpx;
+    font-weight: 600;
+}
+
+.jiangqie-new-search.data-v-4bb376a2 {
+    align-items: center;
+    background: #fff;
+    border-radius: 40rpx;
+    display: flex;
+    height: 80rpx;
+    line-height: 80rpx;
+    padding: 0 30rpx;
+}
+
+.jiangqie-new-search input.data-v-4bb376a2 {
+    font-size: 30rpx;
+    height: 70rpx;
+    line-height: 70rpx;
+    text-indent: 10rpx;
+}
+
+.jiangqie-list-prix.data-v-4bb376a2 {
+    color: #ff6146;
+    font-size: 24rpx;
+    font-weight: 300;
+    padding-top: 12rpx;
+}
+
+.jiangqie-list-prix-big.data-v-4bb376a2 {
+    margin-top: -52rpx;
+    text-align: right;
+}
+
+.jiangqie-list-prix text.data-v-4bb376a2 {
+    font-size: 32rpx;
+    font-weight: 500;
+    margin-right: 12rpx;
+}
+
+.jiangqie-scroll-icon.data-v-4bb376a2 {
+    padding: 0rpx 0 30rpx;
+    white-space: nowrap;
+}
+
+.jiangqie-scroll-icon .jiangqie-iconbox.data-v-4bb376a2 {
+    display: inline-block;
+    text-align: center;
+    width: 22%;
+}
+
+.jiangqie-scroll-icon .jiangqie-iconbox image.data-v-4bb376a2 {
+    margin: 0 auto 20rpx;
+}
+
+.img-max .jiangqie-list-image.data-v-4bb376a2 {
+    margin-bottom: 20rpx;
+}
+
+.img-max .jiangqie-list-title.data-v-4bb376a2 {
+    margin-top: 0;
+}

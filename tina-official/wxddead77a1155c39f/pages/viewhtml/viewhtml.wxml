@@ -1,0 +1,5 @@
+<view class="content data-v-42244b47" id="{{jqTheme}}">
+    <view class="jiangqie-page-body data-v-42244b47">
+        <mp-html bind:__l="__l" class="data-v-42244b47" content="{{article}}" vueId="378bf140-1"></mp-html>
+    </view>
+</view>

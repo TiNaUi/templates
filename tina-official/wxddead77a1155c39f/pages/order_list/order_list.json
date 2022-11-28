@@ -1,0 +1,9 @@
+{
+    "navigationBarTitleText": "购买记录",
+    "onReachBottomDistance": 50,
+    "usingComponents": {
+        "jiangqie-nodata": "/components/nodata/nodata",
+        "jiangqie-nomore": "/components/nomore/nomore",
+        "jiangqie-loadmore": "/components/loadmore/loadmore"
+    }
+}

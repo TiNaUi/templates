@@ -1,0 +1,12 @@
+{
+    "usingComponents": {
+        "navBar": "../../../components/navBar/navBar"
+    },
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "backgroundColor": "#f5f5f5",
+    "navigationBarTextStyle": "black",
+    "enablePullDownRefresh": false,
+    "navigationBarTitleText": "完善帐号信息",
+    "disableScroll": false
+}

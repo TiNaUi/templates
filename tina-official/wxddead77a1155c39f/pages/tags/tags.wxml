@@ -1,0 +1,17 @@
+<view id="{{jqTheme}}">
+    <block wx:if="{{tags.length>0}}">
+        <view class="tags-box">
+            <view bindtap="__e" class="tags-item" data-event-opts="{{[ [ 'tap',[ [ 'tagClickAction',['$event'] ] ] ] ]}}" data-id="{{tag.id}}" data-tag="{{tag.name}}" wx:for="{{tags}}" wx:for-item="tag" wx:key="index">
+                <image mode="aspectFill" src="{{tag.cover}}"></image>
+                <view class="tags-name">{{'#'+tag.name}}</view>
+                <view class="tags-describe">{{tag.count+'篇文章'}}</view>
+            </view>
+        </view>
+        <jiangqie-loadmore bind:__l="__l" visible="{{loadding}}" vueId="82c8edc0-1"></jiangqie-loadmore>
+        <jiangqie-nomore bgcolor="#F5F5F5" bind:__l="__l" visible="{{!pullUpOn}}" vueId="82c8edc0-2"></jiangqie-nomore>
+        <view class="place-holder"></view>
+    </block>
+    <block wx:else>
+        <jiangqie-nodata bind:__l="__l" vueId="82c8edc0-3" wx:if="{{loaded}}"></jiangqie-nodata>
+    </block>
+</view>

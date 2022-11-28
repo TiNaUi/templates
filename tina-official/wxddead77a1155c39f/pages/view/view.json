@@ -1,0 +1,15 @@
+{
+    "onReachBottomDistance": 50,
+    "navigationBarTitleText": "文章详情",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTextStyle": "black",
+    "usingComponents": {
+        "uni-icons": "/uni_modules/uni-icons/components/uni-icons/uni-icons",
+        "mp-html": "/components/mp-html/mp-html",
+        "image-loader": "/components/image-loader/image-loader",
+        "jiangqie-nodata": "/components/nodata/nodata",
+        "jiangqie-loadmore": "/components/loadmore/loadmore",
+        "jiangqie-nomore": "/components/nomore/nomore",
+        "l-painter": "/uni_modules/lime-painter/components/lime-painter/index"
+    }
+}

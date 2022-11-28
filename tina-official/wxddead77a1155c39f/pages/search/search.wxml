@@ -1,0 +1,29 @@
+<view class="data-v-01e5e6f2" id="{{jqTheme}}">
+    <view class="jiangqie-searchbox data-v-01e5e6f2">
+        <view class="jiangqie-search-input data-v-01e5e6f2">
+            <icon class="data-v-01e5e6f2" color="#999" size="18" type="search"></icon>
+            <input autoFocus="ture" bindconfirm="__e" bindinput="__e" class="jiangqie-input data-v-01e5e6f2" confirmType="search" data-event-opts="{{[ [ 'input',[ [ 'handlerSearchInput',['$event'] ] ] ],[ 'confirm',[ [ 'handerSearchConfirm',['$event'] ] ] ] ]}}" placeholder="请输入关键词..." placeholderClass="jiangqie-input-plholder"></input>
+        </view>
+        <view bindtap="__e" class="jiangqie-search data-v-01e5e6f2" data-event-opts="{{[ [ 'tap',[ [ 'handerSearchClick',['$event'] ] ] ] ]}}" wx:if="{{canSearch}}">搜索</view>
+        <view bindtap="__e" class="jiangqie-cancle data-v-01e5e6f2" data-event-opts="{{[ [ 'tap',[ [ 'handerCancelClick',['$event'] ] ] ] ]}}" wx:else>取消</view>
+    </view>
+    <view class="jiangqie-search-box data-v-01e5e6f2" wx:if="{{historySearch.length>0}}">
+        <view class="jiangqie-search-head data-v-01e5e6f2">搜索历史</view>
+        <view class="jiangqie-search-list data-v-01e5e6f2">
+            <view bindtap="__e" class="jiangqie-tag data-v-01e5e6f2" data-event-opts="{{[ [ 'tap',[ [ 'handlerSearchItemClick',['$event'] ] ] ] ]}}" data-item="{{item}}" wx:for="{{historySearch}}" wx:key="index">
+                <text class="data-v-01e5e6f2">{{item}}</text>
+            </view>
+            <view bindtap="__e" class="jiangqie-tag data-v-01e5e6f2" data-event-opts="{{[ [ 'tap',[ [ 'handlerClearHistory',['$event'] ] ] ] ]}}">
+                <text class="data-v-01e5e6f2">删除记录</text>
+            </view>
+        </view>
+    </view>
+    <view class="jiangqie-search-box jiangqie-search-hot data-v-01e5e6f2" wx:if="{{hotSearch.length>0}}">
+        <view class="jiangqie-search-hot data-v-01e5e6f2">热门搜索</view>
+        <view class="jiangqie-search-hotlist data-v-01e5e6f2">
+            <view bindtap="__e" class="data-v-01e5e6f2" data-event-opts="{{[ [ 'tap',[ [ 'handlerSearchItemClick',['$event'] ] ] ] ]}}" data-item="{{item}}" wx:for="{{hotSearch}}" wx:key="index">
+                <view class="data-v-01e5e6f2">{{item}}</view>
+            </view>
+        </view>
+    </view>
+</view>

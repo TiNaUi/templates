@@ -1,0 +1,15 @@
+<view class="data-v-5462c949" id="{{jqTheme}}">
+    <view class="jiangqie-pop-mask data-v-5462c949" wx:if="{{show_subscribe}}">
+        <view class="jiangqie-pop data-v-5462c949">
+            <view class="jiangqie-pop-title data-v-5462c949">提示</view>
+            <view class="jiangqie-pop-text data-v-5462c949">若有人回复，通知你？</view>
+            <view class="jiangqie-pop-btn data-v-5462c949">
+                <view bindtap="__e" class="data-v-5462c949" data-event-opts="{{[ [ 'tap',[ [ 'clickSubscribeCancel',['$event'] ] ] ] ]}}">取消</view>
+                <view bindtap="__e" class="data-v-5462c949" data-event-opts="{{[ [ 'tap',[ [ 'clickSubscribeOK',['$event'] ] ] ] ]}}">确定</view>
+            </view>
+        </view>
+    </view>
+    <view class="comment-tip data-v-5462c949">{{content.length+'/200'}}</view>
+    <textarea autoFocus="{{true}}" bindinput="__e" class="text-content data-v-5462c949" data-event-opts="{{[ [ 'input',[ [ 'contentInputAction',['$event'] ] ] ] ]}}" maxlength="200" placeholder="{{placeholder}}" showConfirmBar="{{false}}"></textarea>
+    <view bindtap="__e" class="btn-submit data-v-5462c949" data-event-opts="{{[ [ 'tap',[ [ 'submitClickAction',['$event'] ] ] ] ]}}">提交</view>
+</view>

@@ -1,0 +1,24 @@
+<view class="content" id="{{jqTheme}}">
+    <view class="jiangqie-user-set">
+        <view class="jiangqie-user-set-line">
+            <view class="jiangqie-user-set-title">昵称</view>
+            <view>
+                <input bindinput="__e" data-event-opts="{{[ [ 'input',[ [ '__set_model',[ '$0','nickname','$event',[] ],['user'] ] ] ] ]}}" placeholder="请输入昵称" type="nickname" value="{{user.nickname}}"></input>
+            </view>
+        </view>
+        <view class="jiangqie-user-set-line">
+            <view class="jiangqie-user-set-title">头像</view>
+            <view class="avatar-set">
+                <view>
+                    <uni-icons bind:__l="__l" color="#FFFFFF" size="14" type="camera" vueId="3ea64720-1"></uni-icons>
+                </view>
+                <button bindtap="__e" class="avatar-choose" data-event-opts="{{[ [ 'tap',[ [ 'onChooseAvatar',['$event'] ] ] ] ]}}">
+                    <image mode="aspectFill" src="{{user.avatar}}"></image>
+                </button>
+            </view>
+        </view>
+    </view>
+    <view class="jiangqie-user-set-btn">
+        <button bindtap="__e" class="avatar-set-btn" data-event-opts="{{[ [ 'tap',[ [ 'clickSubmit',['$event'] ] ] ] ]}}">提交</button>
+    </view>
+</view>

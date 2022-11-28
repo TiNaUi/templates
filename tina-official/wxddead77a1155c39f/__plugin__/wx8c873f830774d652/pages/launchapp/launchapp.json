@@ -1,0 +1,6 @@
+{
+    "navigationStyle": "default",
+    "usingComponents": {
+        "GeneralButton": "../../components/generalButton/generalButton"
+    }
+}

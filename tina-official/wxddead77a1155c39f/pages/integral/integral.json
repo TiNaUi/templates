@@ -1,0 +1,10 @@
+{
+    "navigationBarTitleText": "积分/任务",
+    "onReachBottomDistance": 50,
+    "enablePullDownRefresh": true,
+    "usingComponents": {
+        "jiangqie-nodata": "/components/nodata/nodata",
+        "jiangqie-loadmore": "/components/loadmore/loadmore",
+        "jiangqie-nomore": "/components/nomore/nomore"
+    }
+}

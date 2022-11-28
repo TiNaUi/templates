@@ -1,0 +1,57 @@
+<view class="content data-v-cd784916" id="{{jqTheme}}">
+    <view class="jiangqie-list-header data-v-cd784916">
+        <view class="jiangqie-type-banner data-v-cd784916">
+            <image class="jiangqie-type-image data-v-cd784916" mode="aspectFill" src="{{background}}"></image>
+        </view>
+        <view class="jiangqie-cert-info data-v-cd784916">
+            <view class="jiangqie-cert-title data-v-cd784916">
+                <view class="data-v-cd784916">{{title2}}</view>
+                <view class="jiangqie-cert-data data-v-cd784916" wx:if="{{certify.status!=-1}}">
+                    <block wx:if="{{certify.status=='2'}}">
+                        <view class="jiangqie-cert-text data-v-cd784916">
+                            <image class="data-v-cd784916" mode="aspectFill" src="{{certify.certify_icon}}"></image>{{''+certify.certify_name+''}}</view>
+                        <view class="jiangqie-cert-text data-v-cd784916">(<text class="data-v-cd784916">有效期:</text>{{''+certify.certify_start+' - '+certify.certify_end+')'}}</view>
+                    </block>
+                    <view class="jiangqie-cert-text data-v-cd784916" wx:else>
+                        <text class="data-v-cd784916">{{certify.status_desc}}</text>
+                        <text class="data-v-cd784916" wx:if="{{certify.remark}}">{{'('+certify.remark+')'}}</text>
+                    </view>
+                </view>
+            </view>
+            <text class="jiangqie-cert-text data-v-cd784916">{{description2}}</text>
+        </view>
+        <view class="jiangqie-cert-info jiangqie-cert-tips data-v-cd784916" wx:if="{{icon_nav.length>0}}">
+            <view class="jiangqie-cert-icon data-v-cd784916" wx:for="{{icon_nav}}" wx:key="index">
+                <image class="data-v-cd784916" mode="aspectFill" src="{{item.icon}}"></image>
+                <view class="data-v-cd784916">{{item.title}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="jiangqie-list-form data-v-cd784916">
+        <view class="jiangqie-list-cell data-v-cd784916">
+            <view class="jiangqie-list-title data-v-cd784916">怎么称呼</view>
+            <input bindinput="__e" class="jiangqie-list-input data-v-cd784916" data-event-opts="{{[ [ 'input',[ [ '__set_model',[ '$0','name','$event',[] ],['apply'] ] ] ] ]}}" maxlength="50" name="name" placeholder="请输入称呼" type="text" value="{{apply.name}}"></input>
+        </view>
+        <view class="jiangqie-list-cell data-v-cd784916">
+            <view class="jiangqie-list-title data-v-cd784916">怎么联系</view>
+            <input bindinput="__e" class="jiangqie-list-input data-v-cd784916" data-event-opts="{{[ [ 'input',[ [ '__set_model',[ '$0','contact','$event',[] ],['apply'] ] ] ] ]}}" maxlength="50" name="contact" placeholder="怎样才能联系您" type="text" value="{{apply.contact}}"></input>
+        </view>
+        <view class="jiangqie-list-cell data-v-cd784916">
+            <view class="jiangqie-list-title data-v-cd784916">描述信息</view>
+            <textarea bindinput="__e" class="jiangqie-list-tex data-v-cd784916" data-event-opts="{{[ [ 'input',[ [ '__set_model',[ '$0','brief','$event',[] ],['apply'] ] ] ] ]}}" name="brief" placeholder="简单描述一下自己" value="{{apply.brief}}"></textarea>
+        </view>
+        <view class="jiangqie-list-cell data-v-cd784916">
+            <view class="jiangqie-list-title data-v-cd784916">图片信息</view>
+            <view bindtap="__e" class="jiangqie-list-idimage data-v-cd784916" data-event-opts="{{[ [ 'tap',[ [ 'chooseImage',['$event'] ] ] ] ]}}">
+                <image class="data-v-cd784916" mode="aspectFill" src="{{apply.certificate}}" wx:if="{{apply.certificate}}"></image>
+                <view class="id-opt data-v-cd784916" wx:else>
+                    <uni-icons bind:__l="__l" class="data-v-cd784916" color="#999999" size="36" type="plusempty" vueId="532810ca-1"></uni-icons>
+                    <view class="data-v-cd784916">图片</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="jiangqie-list-button data-v-cd784916">
+        <button bindtap="__e" class="data-v-cd784916" data-event-opts="{{[ [ 'tap',[ [ 'formSubmit',['$event'] ] ] ] ]}}">提交</button>
+    </view>
+</view>

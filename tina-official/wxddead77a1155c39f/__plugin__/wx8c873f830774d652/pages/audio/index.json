@@ -1,0 +1,9 @@
+{
+    "navigationStyle": "default",
+    "usingComponents": {
+        "bottom-bar": "../../components/bottom-bar/bottom-bar",
+        "confirm": "../../components/confirm/confirm",
+        "Dialog": "../../components/Dialogs/ShowDialog/ShowDialog",
+        "Toast": "../../components/Toast/Toast"
+    }
+}

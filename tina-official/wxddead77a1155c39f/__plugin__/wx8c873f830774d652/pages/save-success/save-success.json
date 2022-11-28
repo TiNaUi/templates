@@ -1,0 +1,9 @@
+{
+    "navigationStyle": "default",
+    "disableScroll": true,
+    "usingComponents": {
+        "GeneralButton": "../../components/generalButton/generalButton",
+        "Toast": "../../components/Toast/Toast",
+        "Confirm": "../../components/confirm/confirm"
+    }
+}

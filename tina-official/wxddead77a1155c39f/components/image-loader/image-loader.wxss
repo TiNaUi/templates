@@ -1,0 +1,11 @@
+.before-load {
+    height: 0;
+    opacity: 0;
+    width: 0;
+}
+
+image-loader image {
+    border-radius: 16rpx;
+    height: 100%;
+    width: 100%;
+}

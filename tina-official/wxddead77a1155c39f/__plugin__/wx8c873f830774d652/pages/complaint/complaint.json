@@ -1,0 +1,8 @@
+{
+    "navigationStyle": "default",
+    "navigationBarTitleText": "分享内容举报",
+    "usingComponents": {
+        "GeneralButton": "../../components/generalButton/generalButton"
+    },
+    "disableScroll": true
+}

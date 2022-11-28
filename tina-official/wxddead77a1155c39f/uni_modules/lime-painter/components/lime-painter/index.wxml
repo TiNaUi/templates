@@ -1,0 +1,4 @@
+<view wx:if="{{canvasId}}">
+    <canvas id="{{canvasId}}" style="{{size+';'+customStyle}}" type="2d" wx:if="{{use2dCanvas}}"></canvas>
+    <canvas canvasId="{{canvasId}}" height="{{boardHeight*dpr}}" id="{{canvasId}}" style="{{size+';'+customStyle}}" width="{{boardWidth*dpr}}" wx:else></canvas>
+</view>

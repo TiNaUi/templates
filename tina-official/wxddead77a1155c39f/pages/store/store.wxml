@@ -1,0 +1,50 @@
+<view class="content data-v-560096d8" id="{{jqTheme}}">
+    <view class="jiangqie-point-store-swiper data-v-560096d8" wx:if="{{slide&&slide.length>0}}">
+        <view class="jiangqie-grid-slide data-v-560096d8">
+            <swiper autoplay="{{true}}" class="jiangqie-banner-swiper data-v-560096d8" duration="150" indicatorDots="{{true}}" interval="5000" nextMargin="0rpx" previousMargin="0rpx">
+                <swiper-item bindtap="__e" class="jiangqie-banner-item data-v-560096d8" data-event-opts="{{[ [ 'tap',[ [ 'slideItemClick',['$event'] ] ] ] ]}}" data-link="{{item.link}}" wx:for="{{slide}}" wx:key="index">
+                    <image class="jiangqie-slide-image data-v-560096d8" mode="aspectFill" src="{{item.icon}}"></image>
+                    <text class="data-v-560096d8">{{item.title}}</text>
+                </swiper-item>
+            </swiper>
+        </view>
+    </view>
+    <view class="jiangqie-icon data-v-560096d8" wx:if="{{icon_nav&&icon_nav.length>0}}">
+        <view bindtap="__e" class="jiangqie-iconbox data-v-560096d8" data-event-opts="{{[ [ 'tap',[ [ 'iconNavItemClick',['$event'] ] ] ] ]}}" data-link="{{item.link}}" wx:for="{{icon_nav}}" wx:key="index">
+            <image class="jiangqie-iconimg data-v-560096d8" mode="aspectFill" src="{{item.icon}}"></image>
+            <text class="data-v-560096d8">{{item.title}}</text>
+        </view>
+    </view>
+    <view class="jiangqie-point-store-box data-v-560096d8">
+        <view class="jiangqie-point-store-title data-v-560096d8">
+            <view class="data-v-560096d8">积分好货</view>
+            <view bindtap="__e" class="data-v-560096d8" data-event-opts="{{[ [ 'tap',[ [ 'myScoreClick',['$event'] ] ] ] ]}}">我的积分<text class="data-v-560096d8">{{my_score}}</text>
+            </view>
+        </view>
+        <view class="jiangqie-point-store-list data-v-560096d8">
+            <block wx:if="{{posts.length>0}}">
+                <view bindtap="__e" class="jiangqie-point-store-list-block data-v-560096d8" data-event-opts="{{[ [ 'tap',[ [ 'scoreGoodsClick',['$event'] ] ] ] ]}}" data-id="{{item.id}}" wx:for="{{posts}}" wx:key="index">
+                    <image class="data-v-560096d8" mode="aspectFill" src="{{item.thumbnail}}"></image>
+                    <view class="jiangqie-point-store-list-text data-v-560096d8">
+                        <view class="jiangqie-point-store-list-title data-v-560096d8">{{item.title}}</view>
+                        <view class="jiangqie-point-store-list-intro data-v-560096d8">{{item.excerpt}}</view>
+                        <view class="jiangqie-point-store-list-opt data-v-560096d8">
+                            <view class="data-v-560096d8">
+                                <text class="data-v-560096d8">{{item.price+'积分'}}</text>
+                                <text class="data-v-560096d8">{{'已兑 '+item.quantity}}</text>
+                            </view>
+                            <view class="data-v-560096d8">兑换</view>
+                        </view>
+                    </view>
+                </view>
+            </block>
+            <block wx:else>
+                <jiangqie-nodata bind:__l="__l" class="data-v-560096d8" vueId="2553bd08-1" wx:if="{{loaded}}"></jiangqie-nodata>
+            </block>
+        </view>
+    </view>
+    <block wx:if="{{posts.length>0}}">
+        <jiangqie-loadmore bind:__l="__l" class="data-v-560096d8" visible="{{loadding}}" vueId="2553bd08-2"></jiangqie-loadmore>
+        <jiangqie-nomore bgcolor="#F5F5F5" bind:__l="__l" class="data-v-560096d8" visible="{{!pullUpOn}}" vueId="2553bd08-3"></jiangqie-nomore>
+    </block>
+</view>

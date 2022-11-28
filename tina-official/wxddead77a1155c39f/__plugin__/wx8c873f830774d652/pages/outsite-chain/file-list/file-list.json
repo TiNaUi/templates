@@ -1,0 +1,16 @@
+{
+    "navigationBarTitleText": "百度网盘分享",
+    "disableScroll": true,
+    "navigationStyle": "default",
+    "usingComponents": {
+        "navBar": "../../../components/navBar/navBar",
+        "sharer-info": "./sharer-info/sharer-info",
+        "file-list-component": "./file-list-component/file-list-component",
+        "bottom-bar": "../../../components/bottom-bar/bottom-bar",
+        "Confirm": "../../../components/confirm/confirm",
+        "Dialog": "../../../components/Dialogs/ShowDialog/ShowDialog",
+        "Toast": "../../../components/Toast/Toast",
+        "audioPreview": "../../../components/audioPreview/index",
+        "showModel": "../../../components/showModel/showModel"
+    }
+}

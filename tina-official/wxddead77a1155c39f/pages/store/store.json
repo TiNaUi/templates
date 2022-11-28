@@ -1,0 +1,11 @@
+{
+    "navigationBarTitleText": "积分商城",
+    "onReachBottomDistance": 50,
+    "enablePullDownRefresh": true,
+    "usingComponents": {
+        "jiangqie-nodata": "/components/nodata/nodata",
+        "jiangqie-loadmore": "/components/loadmore/loadmore",
+        "image-loader": "/components/image-loader/image-loader",
+        "jiangqie-nomore": "/components/nomore/nomore"
+    }
+}

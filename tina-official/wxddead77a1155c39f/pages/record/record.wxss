@@ -1,0 +1,57 @@
+.content.data-v-4d2cd6fc {
+    padding: 20rpx;
+}
+
+.jiangqie-exchange.data-v-4d2cd6fc {
+    background: #fff;
+    border-radius: 12rpx;
+    margin-bottom: 30rpx;
+    padding: 30rpx;
+}
+
+.jiangqie-exchange-goods.data-v-4d2cd6fc {
+    align-items: center;
+    border-bottom: 1rpx solid #ddd;
+    display: flex;
+    padding-bottom: 30rpx;
+    position: relative;
+}
+
+.jiangqie-exchange-goods image.data-v-4d2cd6fc {
+    border-radius: 12rpx;
+    flex: 0 0 180rpx;
+    height: 120rpx;
+    width: 180rpx;
+}
+
+.jiangqie-exchange-info.data-v-4d2cd6fc {
+    margin-left: 20rpx;
+}
+
+.jiangqie-exchange-contact.data-v-4d2cd6fc {
+    align-items: center;
+    display: flex;
+}
+
+.jiangqie-exchange-contact-info.data-v-4d2cd6fc {
+    padding: 20rpx;
+}
+
+.jiangqie-exchange-addimg image.data-v-4d2cd6fc {
+    height: 48rpx;
+    width: 48rpx;
+}
+
+.jiangqie-exchange-contact-info view.data-v-4d2cd6fc {
+    font-size: 26rpx;
+    font-weight: 300;
+    padding-bottom: 8rpx;
+}
+
+.jiangqie-exchange-contact-info view.data-v-4d2cd6fc:nth-child(2),.jiangqie-exchange-contact-info view.data-v-4d2cd6fc:nth-child(3) {
+    color: #999;
+}
+
+.jiangqie-exchange-express_no.data-v-4d2cd6fc {
+    color: #f3473f;
+}

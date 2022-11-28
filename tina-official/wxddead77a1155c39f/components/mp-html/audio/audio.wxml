@@ -1,0 +1,13 @@
+<view class="_contain" wx:if="{{controls}}">
+    <view class="_poster" style="{{'background-image:url('+poster+')'}}">
+        <view bindtap="__e" class="_button" data-event-opts="{{[ [ 'tap',[ [ '_buttonTap',['$event'] ] ] ] ]}}">
+            <view class="{{[playing?'_pause':'_play']}}"></view>
+        </view>
+    </view>
+    <view class="_title">
+        <view class="_name">{{name||'未知音频'}}</view>
+        <view class="_author">{{author||'未知作者'}}</view>
+    </view>
+    <slider activeColor="#585959" bindchange="__e" bindchanging="__e" blockSize="12" class="_slider" data-event-opts="{{[ [ 'changing',[ [ '_seeking',['$event'] ] ] ],[ 'change',[ [ '_seeked',['$event'] ] ] ] ]}}" disabled="{{error}}" handleSize="12" value="{{value}}"></slider>
+    <view class="_time">{{time||'00:00'}}</view>
+</view>

@@ -1,0 +1,21 @@
+.none_tip {
+    padding: 80rpx;
+    text-align: center;
+}
+
+.none_tip .image {
+    height: 200rpx;
+    width: 200rpx;
+}
+
+.none_tip_text {
+    padding: 20rpx;
+}
+
+.none_tip_text .text {
+    color: #999;
+    display: block;
+    font-size: 28rpx;
+    font-weight: 200;
+    padding: 20rpx;
+}

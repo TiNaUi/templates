@@ -1,0 +1,7 @@
+{
+    "navigationBarTitleText": "...",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "usingComponents": {
+        "mp-html": "/components/mp-html/mp-html"
+    }
+}

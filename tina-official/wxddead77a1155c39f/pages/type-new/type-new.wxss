@@ -1,0 +1,92 @@
+.content {
+    padding: 20rpx 0 60rpx;
+}
+
+.jiangqie-scroll-box {
+    overflow: hidden;
+}
+
+.jiangqie-new-type {
+    background: #fff;
+    border-radius: 12rpx;
+    margin: 20rpx;
+    padding: 0 30rpx;
+}
+
+.jiangqie-new-type-block {
+    align-items: center;
+    border-bottom: 1rpx solid #eee;
+    display: flex;
+    flex-wrap: nowrap;
+    padding: 30rpx 0;
+}
+
+.jiangqie-new-type-group {
+    font-size: 36rpx;
+    font-weight: 600;
+    padding: 30rpx 0 10rpx;
+}
+
+.jiangqie-new-type-block:last-child {
+    border: none;
+}
+
+.jiangqie-new-type-side {
+    align-items: center;
+    display: flex;
+    overflow: hidden;
+    width: 78%;
+}
+
+.jiangqie-new-type-img {
+    flex: 0 0 64px;
+    height: 64px;
+    width: 64px;
+}
+
+.jiangqie-new-type-img image {
+    border-radius: 6rpx;
+    height: 100%;
+    width: 100%;
+}
+
+.jiangqie-new-type-info {
+    overflow: hidden;
+    padding-left: 20rpx;
+}
+
+.jiangqie-new-type-info view:nth-child(1) {
+    color: #333;
+    font-size: 30rpx;
+    font-weight: 600;
+    height: 1.2em;
+    line-height: 1.2em;
+    margin-bottom: 20rpx;
+}
+
+.jiangqie-new-type-info view:nth-child(2) {
+    color: #999;
+    font-size: 24rpx;
+    font-weight: 400;
+    height: 1.2em;
+    line-height: 1.2em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: keep-all;
+}
+
+.jiangqie-new-type-btn {
+    background: #ffefee;
+    border-radius: 40rpx;
+    color: #ff6d56;
+    font-size: 22rpx;
+    font-weight: 400;
+    height: 40rpx;
+    line-height: 40rpx;
+    text-align: center;
+    width: 22%;
+}
+
+.jiangqie-scroll-wide-box {
+    margin: 0 20rpx;
+}

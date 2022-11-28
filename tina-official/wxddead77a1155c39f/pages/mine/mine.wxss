@@ -1,0 +1,217 @@
+.content.data-v-1ecf528a {
+    background: #f5f5f5;
+}
+
+.jiangqie-mine-title text.data-v-1ecf528a {
+    color: #fff;
+    font-size: 36rpx;
+    font-weight: 400;
+}
+
+.jiangqie-mine.data-v-1ecf528a {
+    background: no-repeat #ece3b8;
+    overflow: hidden;
+    text-align: center;
+}
+
+.jiangqie-mine-info.data-v-1ecf528a {
+    color: #fff;
+    padding-top: 60rpx;
+}
+
+.jiangqie-mine-info image.data-v-1ecf528a {
+    border-radius: 160rpx;
+    height: 160rpx;
+    width: 160rpx;
+}
+
+.jiangqie-mine-info .jiangqie-userv.data-v-1ecf528a {
+    border-radius: 48rpx;
+    height: 48rpx;
+    padding: 2rpx;
+    position: absolute;
+    right: 290rpx;
+    top: 166rpx;
+    width: 48rpx;
+}
+
+.jiangqie-mine-info .jiangqie-userv image.data-v-1ecf528a {
+    height: 48rpx;
+    width: 48rpx;
+}
+
+.jiangqie-mine-info text.data-v-1ecf528a {
+    display: block;
+    font-size: 32rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+}
+
+.jiangqie-mybox.data-v-1ecf528a {
+    background: #fff;
+    border-radius: 12rpx;
+    margin: 30rpx 20rpx;
+    padding: 30rpx;
+}
+
+.jiangqie-listbox.data-v-1ecf528a {
+    background-color: #fff;
+    padding: 0;
+}
+
+.jiangqie-mask-fix.data-v-1ecf528a {
+    padding: 0 30rpx;
+    position: relative;
+}
+
+.jiangqie-listblock.data-v-1ecf528a {
+    overflow: hidden;
+    padding: 30rpx 0;
+}
+
+.jiangqie-listblock-line.data-v-1ecf528a {
+    border-bottom: 1rpx solid #ddd;
+}
+
+.jiangqie-listblock-line.data-v-1ecf528a:last-child {
+    border-bottom: none;
+}
+
+.jiangqie-list-split.data-v-1ecf528a {
+    background-color: #f3f3f3;
+    height: 16rpx;
+}
+
+.jiangqie-listcont.data-v-1ecf528a {
+    float: right;
+    text-align: right;
+}
+
+.jiangqie-listcont text.data-v-1ecf528a {
+    color: #999;
+    font-size: 24rpx;
+    font-weight: 300;
+}
+
+.jiangqie-listcont .red-dot.data-v-1ecf528a {
+    background: red;
+    border-radius: 10rpx;
+    display: inline-block;
+    height: 20rpx;
+    margin-left: 10rpx;
+    width: 20rpx;
+}
+
+.jiangqie-listcont image.data-v-1ecf528a {
+    float: right;
+    height: 24rpx;
+    margin-left: 10rpx;
+    margin-top: 14rpx;
+    width: 24rpx;
+}
+
+.jiangqie-listcont text.jiangqie-listcont-num.data-v-1ecf528a {
+    background: #f9dc53;
+    border-radius: 40rpx;
+    color: #555;
+    float: left;
+    font-size: 22rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    margin-top: 6rpx;
+    overflow: hidden;
+    text-align: center;
+    width: 40rpx;
+}
+
+.jiangqie-listtitle.data-v-1ecf528a {
+    text-align: left;
+}
+
+.jiangqie-listtitle text.data-v-1ecf528a {
+    color: #333;
+    font-size: 28rpx;
+    font-weight: 400;
+}
+
+.jiangqie-listtitle image.data-v-1ecf528a {
+    float: left;
+    height: 56rpx;
+    margin-right: 16rpx;
+    margin-top: -4rpx;
+    vertical-align: middle;
+    width: 56rpx;
+}
+
+button.jiangqie-listtitle.data-v-1ecf528a {
+    background-color: initial;
+    line-height: inherit;
+    margin: 0;
+    padding: 0;
+}
+
+.jiangqie-column-header.data-v-1ecf528a {
+    font-size: 28rpx;
+}
+
+.jiangqie-scroll-x-box.data-v-1ecf528a {
+    height: 210rpx;
+}
+
+.jiangqie-recom-header.data-v-1ecf528a {
+    font-size: 36rpx;
+    font-weight: 600;
+    margin: 0;
+    padding: 0 0 20rpx;
+}
+
+.jiangqie-myicon.data-v-1ecf528a {
+    overflow: hidden;
+    text-align: center;
+}
+
+.jiangqie-myiconblock.data-v-1ecf528a {
+    float: left;
+    padding-bottom: 20rpx;
+    width: 24.9%;
+}
+
+.jiangqie-myicon-img.data-v-1ecf528a {
+    margin-bottom: 2rpx;
+    position: relative;
+}
+
+.jiangqie-myicon-img text.data-v-1ecf528a {
+    background: #21a96e;
+    border-radius: 30rpx;
+    color: #fff;
+    font-size: 22rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    margin-left: -12rpx;
+    overflow: hidden;
+    position: absolute;
+    text-align: center;
+    width: 40rpx;
+}
+
+.jiangqie-myicon-img image.data-v-1ecf528a {
+    height: 64rpx;
+    width: 64rpx;
+}
+
+.jiangqie-myicon-text.data-v-1ecf528a {
+    font-size: 28rpx;
+    font-weight: 400;
+}
+
+.jiangqie-vip-banner.data-v-1ecf528a {
+    height: 120rpx;
+    margin: 0 10rpx;
+    width: 730rpx;
+}
+
+.jiangqie-vip-banner image.data-v-1ecf528a {
+    height: 120rpx;
+    width: 730rpx;
+}

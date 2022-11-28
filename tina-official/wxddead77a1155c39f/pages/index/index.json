@@ -1,0 +1,14 @@
+{
+    "navigationBarTitleText": "首页",
+    "onReachBottomDistance": 50,
+    "navigationStyle": "custom",
+    "enablePullDownRefresh": true,
+    "usingComponents": {
+        "uni-nav-bar": "/uni_modules/uni-nav-bar/components/uni-nav-bar/uni-nav-bar",
+        "uni-icons": "/uni_modules/uni-icons/components/uni-icons/uni-icons",
+        "image-loader": "/components/image-loader/image-loader",
+        "jiangqie-nodata": "/components/nodata/nodata",
+        "jiangqie-loadmore": "/components/loadmore/loadmore",
+        "jiangqie-nomore": "/components/nomore/nomore"
+    }
+}
