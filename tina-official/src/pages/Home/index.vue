@@ -5,6 +5,7 @@
     <Banner />
     <HomeTags :tags-title="home.tags_title" :tags-width="home.tags_width" :tags="home.tags" />
     <ColumnData :active-title="home.active_title" :active="home.active"/>
+    <Tabview />
   </PageContent>
 </template>
 
@@ -16,6 +17,8 @@ import ScrollIcon from './components/ScrollIcon.vue'
 import Banner from './components/Banner.vue'
 import HomeTags from './components/Tags.vue'
 import ColumnData from './components/ColumnData.vue'
+import Tabview from './components/Tabview.vue'
+import { onLoad } from '@dcloudio/uni-app'
 
 const home = reactive({
   home_title: 'News.',
@@ -116,8 +119,10 @@ const home = reactive({
       link: 'https://www.zhuige.com',
       enable: 'yes'
     }
-  ]
+  ],
+  top_nav: [{ id: 26,name: "小功能演示" },{ id: 25,name: "WordPress教程" },{ id: 27,name: "追格动态" },{ id: 18,name: "小程序" }]
 })
+
 </script>
 
 <style scoped lang="scss"></style>
