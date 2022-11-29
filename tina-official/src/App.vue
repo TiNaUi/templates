@@ -99,4 +99,23 @@ onHide(() => {
 <style lang="scss">
 @import '@tina-ui/ui/iconfont.css';
 @import '@tina-ui/ui/index.scss';
+
+.jiangqie-column-header,.jiangqie-recom-header,.jiangqie-tags-header {
+    clear: both;
+    color: #000;
+    font-size: 36rpx;
+    font-weight: 600;
+    margin: 10rpx 30rpx;
+}
+
+.jiangqie-column-header {
+    margin: 30rpx;
+}
+.jiangqie-column-header .navigator,.jiangqie-recom-header .navigator,.jiangqie-tags-header .navigator {
+    color: #333;
+    float: right;
+    font-size: 24rpx;
+    font-weight: 400;
+    margin-top: 8rpx;
+}
 </style>

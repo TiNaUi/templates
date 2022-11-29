@@ -30,7 +30,7 @@ export default defineConfig({
       proxy: {
         // 个人习惯，这里就用/dev作为前缀了
         '/api': {
-          target: 'http://localhost:10089',
+          target: 'https://www.zukmb.cn/mini-cms',
           changeOrigin: true,
           // 路径重写，去掉/dev
           // rewrite: (path) => path.replace(/^\/dev/, '')

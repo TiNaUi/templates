@@ -1,6 +1,13 @@
 <template>
   <view class="home-banner-container">
-    <tn-swiper :list="list" indicatorPosition="bottomRight" :effect3d="true" mode="round"></tn-swiper>
+    <tn-swiper
+      :list="list"
+      :title="true"
+      titleName="title"
+      indicatorPosition="bottomRight"
+      :effect3d="true"
+      mode="round"
+    />
   </view>
 </template>
 
@@ -13,14 +20,14 @@ defineOptions({
 })
 
 const { position = 'HomeTop' } = defineProps<{
-  position: string
+  position?: string
 }>()
 
 const list = ref<{image: string}[]>([])
 
 const getBanner = () => {
   ContentApi.bannerList(position).then(res => {
-    list.value = res.data.data.map(item => ({ image: 'http://img.zukmb.cn/' + item.cover }))
+    list.value = res.data.data.map(item => ({ image: 'http://img.zukmb.cn/' + item.cover, title: item.title }))
   })
 }
 onMounted(() => {
