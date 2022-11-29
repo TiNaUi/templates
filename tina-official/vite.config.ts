@@ -41,7 +41,7 @@ export default defineConfig({
       // 禁用 gzip 压缩大小报告，以提升构建性能
       // brotliSize: false,
       /** 配置h5打包js,css,img分别在不同文件夹start */
-      assetsDir: 'static/img/',
+      assetsDir: 'static/',
       minify: 'terser',
       rollupOptions: {
           output: {

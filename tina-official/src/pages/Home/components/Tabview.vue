@@ -25,7 +25,8 @@
   </view>
 </template>
 
-<script lang="ts" setup>import { onLoad } from '@dcloudio/uni-app';
+<script lang="ts" setup>
+import { onLoad } from '@dcloudio/uni-app';
 import { ref, onMounted, computed } from 'vue';
 import { useAppStore } from '../../../store/modules/app';
 
@@ -53,4 +54,31 @@ onMounted(() => {
 })
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.tab-view-con {
+  background-color: #fff;
+  border-radius: 12rpx;
+  display: flex;
+  margin: 20rpx;
+  padding-bottom: 1rpx;
+  position: sticky;
+  top: 120rpx;
+  z-index: 9999;
+}
+.tab-view-con-fix {
+  top: 159rpx;
+}
+.tab-view.data-v-4bb376a2 {
+  border: none;
+  width: 651rpx;
+}
+.tab-more {
+  height: 99rpx;
+  width: 99rpx;
+}
+.tab-more image {
+  height: 96rpx;
+  margin: 3rpx 3rpx 0 0;
+  width: 96rpx;
+}
+</style>
