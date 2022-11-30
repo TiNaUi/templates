@@ -1,14 +1,20 @@
 <template>
-  <view class="content" id="default">
+  <view class="content" id="default" :style="tStyle">
     <slot></slot>
   </view>
 </template>
 
 <script lang="ts" setup>
+import { CSSProperties } from 'vue';
+
 
 defineOptions({
   name: 'PageContent'
 })
+
+const { tStyle = {} } = defineProps<{
+  tStyle?: CSSProperties
+}>()
 
 </script>
 

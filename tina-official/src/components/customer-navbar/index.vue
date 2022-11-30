@@ -69,9 +69,6 @@ const search = () => {
       margin-left: 20rpx;
       font-size: 30rpx;
     }
-    
-    &__text {
-    }
   }
 }
 /* 自定义导航栏内容 end */
@@ -87,6 +84,6 @@ const search = () => {
   background-repeat:no-repeat;
   // background-attachment:fixed;
   background-position:top;
-  border-radius: 50%;
+  // border-radius: 50%;
 }
 </style>

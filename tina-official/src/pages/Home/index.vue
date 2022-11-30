@@ -1,16 +1,26 @@
 <template>
-  <PageContent>
+  <PageContent :t-style="pageStyle">
+    <HomeNavBar :hot-search="home.hot_search" :alpha="navBarAlpha"/>
     <NewHeader :title="home.home_title" :hot-search="home.hot_search" />
     <ScrollIcon :icon-nav="home.icon_nav" />
     <Banner />
     <HomeTags :tags-title="home.tags_title" :tags-width="home.tags_width" :tags="home.tags" />
-    <ColumnData :active-title="home.active_title" :active="home.active"/>
+    <ColumnData :active-title="home.active_title" :active="home.active" />
     <Tabview :cat-nav="home.top_nav" />
+    <template v-for="(item, index) in listViewData" :key="index">
+      <HomeHot v-if="Number(home.hot_index) === index" :hot-title="home.hot_title" :hot="home.hot" />
+      <HomeList
+        :item="item"
+        :index="index"
+        :list-mode="home.list_mode"
+        :show_excerpt="home.show_excerpt"
+      />
+    </template>
   </PageContent>
 </template>
 
 <script lang="ts" setup>
-import { reactive } from 'vue'
+import { computed, reactive, CSSProperties, onMounted, ref, onUnmounted } from 'vue';
 import PageContent from '@/components/pageWrapper/content.vue'
 import NewHeader from './components/Header.vue'
 import ScrollIcon from './components/ScrollIcon.vue'
@@ -18,7 +28,24 @@ import Banner from './components/Banner.vue'
 import HomeTags from './components/Tags.vue'
 import ColumnData from './components/ColumnData.vue'
 import Tabview from './components/Tabview.vue'
-import { onLoad } from '@dcloudio/uni-app'
+import HomeList from './components/HomeList.vue'
+import HomeHot from './components/HomeHot.vue'
+import HomeNavBar from './components/HomeNavBar.vue'
+import { useAppStore } from '@/store'
+
+import data from '../../../mock/listview.json'
+import { appEvent } from '../../utils/events/appEvent';
+
+const listViewData = data.data
+
+const appStore = useAppStore()
+const navbarHeight = computed(() => appStore.vuex_custom_bar_height + 10)
+const pageStyle = computed(() => {
+  return {
+    paddingTop: navbarHeight.value + 'px'
+  }
+})
+const navBarAlpha = ref(true)
 
 const home = reactive({
   home_title: 'News.',
@@ -120,9 +147,80 @@ const home = reactive({
       enable: 'yes'
     }
   ],
-  top_nav: [{ id: 26,name: "小功能演示" },{ id: 25,name: "WordPress教程" },{ id: 27,name: "追格动态" },{ id: 18,name: "小程序" }]
+  top_nav: [
+    { id: 26, name: '小功能演示' },
+    { id: 25, name: 'WordPress教程' },
+    { id: 27, name: '追格动态' },
+    { id: 18, name: '小程序' }
+  ],
+  list_mode: 4,
+  show_excerpt: false,
+  hot_index: 1,
+  hot_title: '编辑精选',
+  hot: [
+    {
+      id: 2278,
+      title: '看广告后“复制下载”链接',
+      thumbnail:
+        'https://zs.jiangqie.com/wp-content/uploads/2022/05/StockSnap_X4AAF4SU9Q-940x529-1.jpg',
+      direct_link_switch: 0,
+      direct_link: ''
+    },
+    {
+      id: 2254,
+      title: '看广告阅读全文',
+      thumbnail:
+        'https://zs.jiangqie.com/wp-content/uploads/2022/05/StockSnap_FLU1A9EK7E-940x529-1.jpg',
+      direct_link_switch: 0,
+      direct_link: ''
+    },
+    {
+      id: 2242,
+      title: '积分阅读全文',
+      thumbnail:
+        'https://zs.jiangqie.com/wp-content/uploads/2022/05/StockSnap_DGYLV0KMUY-940x529-1.jpg',
+      direct_link_switch: 0,
+      direct_link: ''
+    },
+    {
+      id: 2102,
+      title: '文章列表打开“视频号/视频”',
+      thumbnail:
+        'https://zs.jiangqie.com/wp-content/uploads/2022/05/StockSnap_76X7PJUIMF-940x529-1.jpg',
+      direct_link_switch: 1,
+      direct_link:
+        'finder:sphwkm4cNAFnRLs;feedId:export/UzFfAgtgekIEAQAAAAAAf2s4-m4BPwAAAAstQy6ubaLX4KHWvLEZgBPEtqEwCEFiS9n9zNPgMJq1dCiQ4AyT_DIh_GcF76bA'
+    },
+    {
+      id: 2274,
+      title: '看广告后“网盘下载”资源',
+      thumbnail:
+        'https://zs.jiangqie.com/wp-content/uploads/2022/05/StockSnap_YO8TBBW2RV-940x529-1.jpg',
+      direct_link_switch: 0,
+      direct_link: ''
+    },
+    {
+      id: 2259,
+      title: '短代码/内容种草功能演示',
+      thumbnail:
+        'https://zs.jiangqie.com/wp-content/uploads/2022/05/StockSnap_IPXQTD44G8-940x529-1.jpg',
+      direct_link_switch: 0,
+      direct_link: ''
+    }
+  ]
 })
 
+onMounted(() => {
+  appEvent.on('pageScroll', (data) => {
+    if (data.page === 'Index') {
+      navBarAlpha.value = data.scrollTop > 100 ? false :true
+    }
+  })
+})
+
+onUnmounted(() => {
+  appEvent.off('pageScroll')
+})
 </script>
 
 <style scoped lang="scss"></style>

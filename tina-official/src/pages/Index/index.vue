@@ -23,11 +23,12 @@ import Home from '../Home/index.vue';
 import Category from '../Category/index.vue';
 import Creator from '../Creator/index.vue';
 import UserCenter from '../UserCenter/index.vue';
-import { onLoad, onShareAppMessage, onShareTimeline } from '@dcloudio/uni-app';
+import { onLoad, onShareAppMessage, onShareTimeline, onPageScroll } from '@dcloudio/uni-app';
 import { useImagePath } from '@/hooks';
 import { useShare, useTimelineContent } from '../../hooks/useShare';
 import { shareUserIdField } from '@/config';
 import { useUserStore } from '@/store';
+import { appEvent, throttle } from '@/utils';
 
 defineOptions({
   name: 'IndexPage'
@@ -71,6 +72,16 @@ onLoad((options) => {
     //设置下方的Menus菜单，才能够让发送给朋友与分享到朋友圈两个按钮可以点击
     menus: ["shareAppMessage", "shareTimeline"]
   })
+})
+const scrollTimer = ref(-1)
+onPageScroll((data) => {
+  if (scrollTimer.value !== -1) {
+    clearTimeout(scrollTimer.value)
+  }
+  scrollTimer.value = setTimeout(() => {
+    console.log("🚀 ~ file: index.vue ~ line 77 ~ onPageScroll ~ data", data)
+    appEvent.emit('pageScroll', {page: 'Index', ...data})
+  }, 100)
 })
 
 // 定义分享逻辑
