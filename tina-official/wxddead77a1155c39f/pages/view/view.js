@@ -41,7 +41,7 @@
                 e.e("components/nodata/nodata").then(function() {
                     return resolve(e("4536"));
                 }.bind(null, e)).catch(e.oe);
-            }), p = (requirePlugin("netdiskShare"), n(o = {
+            }), p = (/*requirePlugin("netdiskShare"),*/ n(o = {
                 components: {
                     jiangqieNodata: u,
                     jiangqieLoadmore: function() {

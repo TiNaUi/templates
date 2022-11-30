@@ -11,7 +11,7 @@ defineOptions({
   name: 'CustomerNavBarNormal'
 })
 
-defineProps<{
+const { title = ''} = defineProps<{
   title: string
 }>()
 

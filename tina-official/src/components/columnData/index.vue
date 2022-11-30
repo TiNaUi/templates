@@ -1,12 +1,12 @@
 <template>
-  <view class="jiangqie-column" v-if="active.length > 0">
+  <view class="jiangqie-column" v-if="active.length > 0" :style="tStyle">
     <view class="jiangqie-column-header">
       <text class="navigator">滑动查看</text>{{ '' + activeTitle + '' }}</view>
     <scroll-view class="jiangqie-column-scroll-x-box" :scrollX="true">
       <view class="jiangqie-column-list">
         <view
           class="jiangqie-column-list-box"
-          @click="activeItemClick(item.link)"
+          @click="activeItemClick(item.link!)"
           v-for="(item, index) in active"
           :key="index"
         >
@@ -14,7 +14,7 @@
             defaultImage="/static/images/placeholder800x400.png"
             :lazyLoad="true"
             mode="aspectFill"
-            :originalImage="item.cover"
+            :originalImage="item.cover!"
           />
           <view :class="['color'+index%6+1]">{{ item.title }}</view>
         </view>
@@ -24,19 +24,25 @@
 </template>
 
 <script lang="ts" setup>
+import { CSSProperties } from 'vue';
 import ImageLoader from '@/components/imageLoader/index.vue'
 
 defineOptions({
   name: 'ColumnData'
 })
 
-const { active = [] } = defineProps<{
+const { active = [], activeTitle = '', tStyle = {} } = defineProps<{
   activeTitle: string
-  active?: Array<{
+  active?: Array<Partial<{
+    id: number
+    name: string
     link: string
     cover: string
     title: string
-  }>
+    count: number
+    description: string
+  }>>
+  tStyle?: CSSProperties
 }>()
 const activeItemClick = (link: string) => {}
 </script>

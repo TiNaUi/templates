@@ -9,7 +9,7 @@
         "pages/mine/mine",
         "pages/login/login",
         "pages/list/list",
-        "pages/type/type",
+        // "pages/type/type",
         "pages/search/search",
         "pages/view/view",
         "pages/order_list/order_list",

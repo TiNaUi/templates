@@ -1,7 +1,7 @@
 {
 	"pages": [
 		{
-			"path": "pages/Index/index",
+			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "Index"
 			}
@@ -58,6 +58,12 @@
 			"path": "pages/Pictures/recommend",
 			"style": {
 				"navigationBarTitleText": "recommend"
+			}
+		},
+		{
+			"path": "pages/type-new/index",
+			"style": {
+				"navigationBarTitleText": "type-new"
 			}
 		}
 	],

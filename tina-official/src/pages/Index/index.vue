@@ -1,7 +1,7 @@
 <template>
   <view class="page">
     <Home v-if="currentIndex === 0 && tabberPageLoadFlag[0]" :hidden="currentIndex !== 0" :style="{display: currentIndex === 0 ? '' : 'none'}"/>
-    <Category v-if="tabberPageLoadFlag[1]" :hidden="currentIndex !== 1" :style="{display: currentIndex === 1 ? '' : 'none'}"/>
+    <TypeNew v-if="tabberPageLoadFlag[1]" :hidden="currentIndex !== 1" :style="{display: currentIndex === 1 ? '' : 'none'}"/>
     <Creator v-if="tabberPageLoadFlag[2]" :hidden="currentIndex !== 2" :style="{display: currentIndex === 2 ? '' : 'none'}"/>
     <UserCenter v-if="tabberPageLoadFlag[3]" :hidden="currentIndex !== 3" :style="{display: currentIndex === 3 ? '' : 'none'}"/>
   </view>
@@ -20,7 +20,7 @@
 <script lang="ts" setup>
 import { reactive, ref } from 'vue';
 import Home from '../Home/index.vue';
-import Category from '../Category/index.vue';
+import TypeNew from '../type-new/index.vue'
 import Creator from '../Creator/index.vue';
 import UserCenter from '../UserCenter/index.vue';
 import { onLoad, onShareAppMessage, onShareTimeline, onPageScroll } from '@dcloudio/uni-app';
