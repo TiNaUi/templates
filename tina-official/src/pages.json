@@ -65,6 +65,12 @@
 			"style": {
 				"navigationBarTitleText": "type-new"
 			}
+		},
+		{
+			"path": "pages/ranking/index",
+			"style": {
+				"navigationBarTitleText": "ranking"
+			}
 		}
 	],
 	"globalStyle": {
