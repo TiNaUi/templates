@@ -1,12 +1,34 @@
-import { defineConfig } from 'vite'
+import { defineConfig, Plugin } from 'vite'
+import path from 'path';
+import fs from 'fs-extra';
 import uni from '@dcloudio/vite-plugin-uni'
 import { resolve } from 'path'
 import DefineOptions from 'unplugin-vue-define-options/vite'
 import { templateInset } from "./plugins/viteInjectComponents"
+
+function copyFile(): Plugin {
+	return {
+    name: 'uni-static',
+		enforce: 'post',
+		async writeBundle() {
+			await fs.copy(
+				path.resolve(__dirname, 'static'),
+				path.join(
+					__dirname,
+					'dist',
+					process.env.NODE_ENV === 'production' ? 'build' : 'dev',
+					process.env.UNI_PLATFORM!,
+					'static'
+				)
+			);
+		},
+	};
+}
+
 // https://vitejs.dev/config/
 export default defineConfig({
   envDir: resolve(__dirname, 'env'),
-  plugins: [templateInset(["<LoginModel ref='loginModel'></LoginModel>"]), uni(), DefineOptions()],
+  plugins: [templateInset(["<LoginModel ref='loginModel'></LoginModel>"]), uni(), DefineOptions(), copyFile()],
   resolve: {
       // 配置别名
       alias: {

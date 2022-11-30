@@ -5,7 +5,7 @@
     <Banner />
     <HomeTags :tags-title="home.tags_title" :tags-width="home.tags_width" :tags="home.tags" />
     <ColumnData :active-title="home.active_title" :active="home.active"/>
-    <Tabview />
+    <Tabview :cat-nav="home.top_nav" />
   </PageContent>
 </template>
 

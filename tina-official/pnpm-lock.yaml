@@ -20,6 +20,7 @@ specifiers:
   '@dcloudio/uni-ui': ^1.4.12
   '@dcloudio/vite-plugin-uni': 3.0.0-alpha-3061020221121002
   '@tina-ui/ui': ^1.0.8
+  '@types/fs-extra': ^9.0.13
   '@types/mockjs': ^1.0.6
   '@types/weixin-app': ^2.9.3
   '@typescript-eslint/eslint-plugin': ^5.12.1
@@ -33,6 +34,7 @@ specifiers:
   eslint-plugin-import: ^2.25.2
   eslint-plugin-prettier: ^4.0.0
   eslint-plugin-vue: ^8.5.0
+  fs-extra: ^11.1.0
   mitt: ^3.0.0
   mockjs: ^1.1.0
   pinia: ^2.0.21
@@ -82,6 +84,7 @@ devDependencies:
   '@dcloudio/uni-cli-shared': 3.0.0-alpha-3061020221121002_postcss@8.4.16+vue@3.2.45
   '@dcloudio/uni-stacktracey': 3.0.0-alpha-3061020221121002
   '@dcloudio/vite-plugin-uni': 3.0.0-alpha-3061020221121002_feffzpj2cqvsf4adpkkbgob4fu
+  '@types/fs-extra': 9.0.13
   '@types/mockjs': 1.0.6
   '@types/weixin-app': 2.9.3
   '@typescript-eslint/eslint-plugin': 5.12.1_e6qmpcfmvr6wkukae6ywpy5t6y
@@ -95,6 +98,7 @@ devDependencies:
   eslint-plugin-import: 2.25.4_ni7otjtfx7f4lso6dw3nuteu6a
   eslint-plugin-prettier: 4.0.0_czuzk2ucfevr6kiqdiakkvpfx4
   eslint-plugin-vue: 8.5.0_eslint@8.10.0
+  fs-extra: 11.1.0
   postcss: 8.4.16
   postcss-html: 1.5.0
   prettier: 2.5.1
@@ -1167,6 +1171,12 @@ packages:
       - ts-node
       - vue
     dev: false
+
+  /@types/fs-extra/9.0.13:
+    resolution: {integrity: sha512-nEnwB++1u5lVDM2UI4c1+5R+FYaKfaAzS4OococimjVm3nQw3TuzH5UNsocrcTBbhnerblyHj4A49qXbIiZdpA==}
+    dependencies:
+      '@types/node': 17.0.21
+    dev: true
 
   /@types/glob/7.2.0:
     resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
@@ -3488,6 +3498,15 @@ packages:
       graceful-fs: 4.2.9
       jsonfile: 6.1.0
       universalify: 2.0.0
+
+  /fs-extra/11.1.0:
+    resolution: {integrity: sha512-0rcTq621PD5jM/e0a3EJoGC/1TC5ZBCERW82LQuwfGnCa1V8w7dpYH1yNu+SLb6E5dkeCBzKEyLGlFrnr+dUyw==}
+    engines: {node: '>=14.14'}
+    dependencies:
+      graceful-fs: 4.2.9
+      jsonfile: 6.1.0
+      universalify: 2.0.0
+    dev: true
 
   /fs.realpath/1.0.0:
     resolution: {integrity: sha512-OO0pH2lK6a0hZnAdau5ItzHPI6pUlvI7jMVnxUQRtw4owF2wk8lOSabtGDCTP4Ggrg2MbGnWO9X8K1t4+fGMDw==}
