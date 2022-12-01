@@ -33,7 +33,7 @@
       // 首页地址
       indexPath: {
         type: String,
-        default: '/pages/Index/index'
+        default: '/pages/index/index'
       }
     },
     methods: {

@@ -49,12 +49,6 @@
 			}
 		},
 		{
-			"path": "pages/rank/index",
-			"style": {
-				"navigationBarTitleText": "rank"
-			}
-		},
-		{
 			"path": "pages/Pictures/recommend",
 			"style": {
 				"navigationBarTitleText": "recommend"
@@ -70,6 +64,18 @@
 			"path": "pages/ranking/index",
 			"style": {
 				"navigationBarTitleText": "ranking"
+			}
+		},
+		{
+			"path": "pages/list/index",
+			"style": {
+				"navigationBarTitleText": "list"
+			}
+		},
+		{
+			"path": "pages/view/index",
+			"style": {
+				"navigationBarTitleText": "view"
 			}
 		}
 	],

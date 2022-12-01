@@ -37,6 +37,7 @@ specifiers:
   fs-extra: ^11.1.0
   mitt: ^3.0.0
   mockjs: ^1.1.0
+  mp-html: ^2.4.0
   pinia: ^2.0.21
   postcss: ^8.1.0
   postcss-html: ^1.0.0
@@ -74,6 +75,7 @@ dependencies:
   '@tina-ui/ui': 1.0.8_postcss@8.4.16+vue@3.2.45
   mitt: 3.0.0
   mockjs: 1.1.0
+  mp-html: 2.4.0
   pinia: 2.0.21_oankqy72ltdeevri3bqxeckw3m
   vue: 3.2.45
   vue-i18n: 9.1.9_vue@3.2.45
@@ -4649,6 +4651,10 @@ packages:
 
   /module-alias/2.2.2:
     resolution: {integrity: sha512-A/78XjoX2EmNvppVWEhM2oGk3x4lLxnkEA4jTbaK97QKSDjkIoOsKQlfylt/d3kKKi596Qy3NP5XrXJ6fZIC9Q==}
+
+  /mp-html/2.4.0:
+    resolution: {integrity: sha512-T8zcDoy+zR5VMQ9dnFK3bMAbibgVN8VitXNjuU9tuRPYSbo2qiGroYJSoAAF7XbFenMayKjeY8fkR0dxOD63sQ==}
+    dev: false
 
   /ms/2.0.0:
     resolution: {integrity: sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A==}

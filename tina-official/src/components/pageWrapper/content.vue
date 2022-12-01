@@ -1,20 +1,33 @@
 <template>
-  <view class="content" id="default" :style="tStyle">
+  <view class="content" id="default" :style="pageStyle">
+    <tn-nav-bar v-if="title" :bottomShadow="false" :fixed="true">{{ title }}</tn-nav-bar>
     <slot></slot>
   </view>
 </template>
 
 <script lang="ts" setup>
-import { CSSProperties } from 'vue';
-
+import { useAppStore } from '@/store';
+import { computed, CSSProperties } from 'vue';
 
 defineOptions({
   name: 'PageContent'
 })
 
-const { tStyle = {} } = defineProps<{
+const { tStyle = {}, title } = defineProps<{
   tStyle?: CSSProperties
+  title?: string
 }>()
+
+const appStore = useAppStore()
+const navbarHeight = computed(() => appStore.vuex_custom_bar_height + 10)
+const pageStyle = computed(() => {
+  return {
+    paddingTop: title ? navbarHeight.value + 'px' : 0,
+    ...tStyle
+  }
+})
+
+
 
 </script>
 

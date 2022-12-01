@@ -1,12 +1,14 @@
 <template>
   <view class="jiangqie-column" v-if="active.length > 0" :style="tStyle">
     <view class="jiangqie-column-header">
-      <text class="navigator">滑动查看</text>{{ '' + activeTitle + '' }}</view>
+      <text class="navigator">滑动查看</text>
+      {{ '' + activeTitle + '' }}
+    </view>
     <scroll-view class="jiangqie-column-scroll-x-box" :scrollX="true">
       <view class="jiangqie-column-list">
         <view
           class="jiangqie-column-list-box"
-          @click="activeItemClick(item.link!)"
+          @click="activeItemClick(item, index)"
           v-for="(item, index) in active"
           :key="index"
         >
@@ -16,7 +18,7 @@
             mode="aspectFill"
             :originalImage="item.cover!"
           />
-          <view :class="['color'+index%6+1]">{{ item.title }}</view>
+          <view :class="['color'+index%6+1]">{{ item.title ? item.title : item.name }}</view>
         </view>
       </view>
     </scroll-view>
@@ -31,6 +33,10 @@ defineOptions({
   name: 'ColumnData'
 })
 
+const emit = defineEmits<{
+  (event: 'itemClick', params: { item: any, index: number }): void
+}>()
+
 const { active = [], activeTitle = '', tStyle = {} } = defineProps<{
   activeTitle: string
   active?: Array<Partial<{
@@ -44,7 +50,10 @@ const { active = [], activeTitle = '', tStyle = {} } = defineProps<{
   }>>
   tStyle?: CSSProperties
 }>()
-const activeItemClick = (link: string) => {}
+const activeItemClick = (item: any, index: number) => {
+  console.log(item, index)
+  emit('itemClick', { item, index })
+}
 </script>
 
 <style lang="scss" scoped>

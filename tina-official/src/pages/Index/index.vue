@@ -2,7 +2,7 @@
   <view class="page">
     <Home v-if="currentIndex === 0 && tabberPageLoadFlag[0]" :hidden="currentIndex !== 0" :style="{display: currentIndex === 0 ? '' : 'none'}"/>
     <TypeNew v-if="tabberPageLoadFlag[1]" :hidden="currentIndex !== 1" :style="{display: currentIndex === 1 ? '' : 'none'}"/>
-    <Creator v-if="tabberPageLoadFlag[2]" :hidden="currentIndex !== 2" :style="{display: currentIndex === 2 ? '' : 'none'}"/>
+    <Ranking v-if="tabberPageLoadFlag[2]" :hidden="currentIndex !== 2" :style="{display: currentIndex === 2 ? '' : 'none'}"/>
     <UserCenter v-if="tabberPageLoadFlag[3]" :hidden="currentIndex !== 3" :style="{display: currentIndex === 3 ? '' : 'none'}"/>
   </view>
   <tn-tabbar
@@ -21,14 +21,14 @@
 import { reactive, ref } from 'vue';
 import Home from '../Home/index.vue';
 import TypeNew from '../type-new/index.vue'
-import Creator from '../Creator/index.vue';
+import Ranking from '../ranking/index.vue'
 import UserCenter from '../UserCenter/index.vue';
 import { onLoad, onShareAppMessage, onShareTimeline, onPageScroll } from '@dcloudio/uni-app';
 import { useImagePath } from '@/hooks';
 import { useShare, useTimelineContent } from '../../hooks/useShare';
 import { shareUserIdField } from '@/config';
 import { useUserStore } from '@/store';
-import { appEvent, throttle } from '@/utils';
+import { appEvent } from '@/utils';
 
 defineOptions({
   name: 'IndexPage'
@@ -50,7 +50,7 @@ const tabbarList = reactive([
     inactiveIcon: useImagePath('/tabbar/cate_tn.png')
   },
   {
-    title: '推荐官',
+    title: '榜单',
     activeIcon: useImagePath('/tabbar/information_tncur.png'),
     inactiveIcon: useImagePath('/tabbar/information_tn.png')
   },

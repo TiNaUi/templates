@@ -1,7 +1,11 @@
 <template>
-  <PageContent :t-style="pageStyle">
-    <tn-nav-bar :bottomShadow="false" :fixed="true">分类</tn-nav-bar>
-    <ColumnData activeTitle="分类推荐" :active="top_cats" :t-style="{ background: 'transparent' }"/>
+  <PageContent title="分类">
+    <ColumnData
+      activeTitle="分类推荐"
+      :active="top_cats"
+      :t-style="{ background: 'transparent' }"
+      @itemClick="cateItemClick"
+    />
     <view class="jiangqie-new-type" v-for="(item, index) in sort_cats" :key="index">
       <view
         class="jiangqie-new-type-group"
@@ -32,18 +36,11 @@
 <script lang="ts" setup>
 import PageContent from '@/components/pageWrapper/content.vue';
 import ColumnData from '@/components/columnData/index.vue'
-import { useAppStore } from '@/store'
 
 import cateData from '../../../mock/cateData.json'
-import { computed } from 'vue';
+import { navigatorTo } from '../../utils/common';
 
-const appStore = useAppStore()
-const navbarHeight = computed(() => appStore.vuex_custom_bar_height + 10)
-const pageStyle = computed(() => {
-  return {
-    paddingTop: navbarHeight.value + 'px'
-  }
-})
+
 defineOptions({
   name: 'TypeNew'
 })
@@ -52,6 +49,14 @@ const top_cats = cateData.top_cats
 const sort_cats = cateData.sort_cats
 
 const clickCat = (index: number, id?: number) => {}
+const cateItemClick = ({ item, index }: { item: typeof top_cats[0], index: number }) => {
+  navigatorTo({
+    url: '/pages/list/index',
+    query: {
+      id: item.id
+    }
+  })
+}
 </script>
 
 <style lang="scss" scoped>

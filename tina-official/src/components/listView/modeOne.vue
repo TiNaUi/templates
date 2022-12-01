@@ -29,6 +29,9 @@
 defineOptions({
   name: 'ListViewModeOne'
 })
+const emit = defineEmits<{
+  (event: 'itemClick', params: { item: any, index: number }): void
+}>()
 
 const { item, show_excerpt, index } = defineProps<{
   show_excerpt: boolean
@@ -44,5 +47,7 @@ const { item, show_excerpt, index } = defineProps<{
   }
 }>()
 
-const clickPost = (index: number) => {}
+const clickPost = (index: number) => {
+  emit('itemClick', { item, index })
+}
 </script>
