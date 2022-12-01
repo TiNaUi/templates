@@ -124,7 +124,7 @@ defineOptions({
 
 const post = ref(postData.data as any)
 console.log("🚀 ~ file: index.vue:126 ~ post", post)
-const { ad_top, ad } = postInfo.data
+const { ad_top, ad, copyright: copyrightInfo } = postInfo.data
 
 const show_jili = ref(false)
 const adJiliClick = () => {}
@@ -139,7 +139,7 @@ const show_baidu_jili = ref(false)
 const baiduDiskClick = () => {}
 const sideBackClick = () => {}
 
-const copyright = ref(false)
+const copyright = ref(copyrightInfo)
 
 const handlerTagClick = () => {}
 </script>
