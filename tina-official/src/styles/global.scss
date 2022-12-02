@@ -45,6 +45,23 @@ $tnt-img-host: "http://img.zukmb.cn/icons";
   width: 54.33333333%;
 }
 
+.jiangqie-copyinfo {
+  padding: 60rpx;
+  text-align: center;
+  image {
+    border-radius: 100rpx;
+    height: 100rpx;
+    margin-bottom: 40rpx;
+    width: 100rpx;
+  }
+  view {
+    color: #ccc;
+    font-size: 22rpx;
+    font-weight: 200;
+  }
+}
+
+
 @import 'page.scss';
 @import './listView.scss';
 @import './article.scss';

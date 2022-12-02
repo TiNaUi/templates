@@ -67,11 +67,8 @@
       </view>
 
       <VipCard :isLogin="isLogin" @loginAct="loginAct()" />
-      <view class="create-banner">
-        <image class="create-banner-image" :src="useImagePath('/banner/create.png')" mode='widthFix'></image>
-      </view>
 
-      <view class="about-shadow tn-padding-top-sm tn-padding-bottom-sm tn-margin-left tn-margin-right">
+      <view class="about-shadow tn-margin-top-xl tn-padding-bottom-sm tn-margin-left tn-margin-right">
         <tn-list-cell :hover="true" :unlined="true" :radius="true" :fontSize="30">
           <view class="tn-flex tn-flex-col-center">
             <view class="icon1__item--icon tn-flex tn-flex-row-center tn-flex-col-center tn-cool-bg-color-5 tn-color-white" > 
@@ -135,7 +132,10 @@
         </tn-list-cell>
       </view>
     </view>
-    <view class="tn-padding-xl"></view>
+    <view class="jiangqie-copyinfo" @click="copyrightClick">
+        <image mode="aspectFill" :src="useImagePath('/logo.jpg')"></image>
+        <view>星图 zukmb.cn 提供技术支持</view>
+    </view>
   </view>
 
 </template>
@@ -161,6 +161,7 @@ function loginAct() {
     loginModel.value.show()
   }
 }
+const copyrightClick = () => {}
 </script>
 
 <style lang="scss" scoped>

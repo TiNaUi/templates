@@ -6,9 +6,7 @@
 </template>
 
 <script lang="ts" setup>
-import { PropType, computed, defineAsyncComponent, markRaw } from 'vue';
-import ApplyLogItem from '@/pages/Creator/components/ApplyLogItem/index.vue'
-import CreatorListItem from '@/pages/Creator/components/creatorListItem/index.vue'
+import { PropType } from 'vue';
 
 defineOptions({
   name: 'ZpPublicVirtualCell'

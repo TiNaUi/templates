@@ -7,54 +7,6 @@
 			}
 		},
 		{
-			"path": "pages/Creator/apply",
-			"style": {
-				"navigationBarTitleText": "apply"
-			}
-		},
-		{
-			"path": "pages/Creator/applyLog",
-			"style": {
-				"navigationBarTitleText": "applyLog"
-			}
-		},
-		{
-			"path": "pages/Creator/list",
-			"style": {
-				"navigationBarTitleText": "list"
-			}
-		},
-		{
-			"path": "pages/Creator/search",
-			"style": {
-				"navigationBarTitleText": ""
-			}
-		},
-		{
-			"path": "pages/Creator/center",
-			"style": {
-				"navigationBarTitleText": "center"
-			}
-		},
-		{
-			"path": "pages/Pictures/index",
-			"style": {
-				"navigationBarTitleText": "Pictures"
-			}
-		},
-		{
-			"path": "pages/Pictures/detail",
-			"style": {
-				"navigationBarTitleText": "PicturesDetail"
-			}
-		},
-		{
-			"path": "pages/Pictures/recommend",
-			"style": {
-				"navigationBarTitleText": "recommend"
-			}
-		},
-		{
 			"path": "pages/type-new/index",
 			"style": {
 				"navigationBarTitleText": "type-new"
@@ -76,6 +28,12 @@
 			"path": "pages/view/index",
 			"style": {
 				"navigationBarTitleText": "view"
+			}
+		},
+		{
+			"path": "pages/login/index",
+			"style": {
+				"navigationBarTitleText": "login"
 			}
 		}
 	],

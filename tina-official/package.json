@@ -32,7 +32,8 @@
         "build:quickapp-webview-union": "uni build -p quickapp-webview-union",
         "lint:js": "eslint --fix --ext .js,.jsx,.ts,.tsx,.vue src",
         "lint:css": "stylelint src/**/*.{html,vue,css,scss}",
-        "lint": "prettier --write src/**/*.{vue,css,scss,json,js,ts,jsx,tsx} && npm run lint:js && npm run lint:css"
+        "lint": "prettier --write src/**/*.{vue,css,scss,json,js,ts,jsx,tsx} && npm run lint:js && npm run lint:css",
+        "wtu": "wtu -i .\\wxddead77a1155c39f\\"
     },
     "dependencies": {
         "@dcloudio/uni-app": "3.0.0-alpha-3061020221121002",

@@ -48,6 +48,7 @@
 
 <script lang="ts" setup>
 import PageContent from '@/components/pageWrapper/content.vue'
+import { ref } from 'vue';
 
 import postData from '../../../mock/rankPost.json'
 
