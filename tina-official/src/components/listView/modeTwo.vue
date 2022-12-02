@@ -1,7 +1,7 @@
-import ImageLoader from '@/components/imageLoader/index.vue';
 <template>
   <view class="jiangqie-list-view">
     <view class="jiangqie-list-float-l">
+      <slot name="title"></slot>
       <view
         class="jiangqie-list-block jiangqie-list-float"
         @click="clickPost(index)"

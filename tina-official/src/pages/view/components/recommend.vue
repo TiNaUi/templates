@@ -1,29 +1,23 @@
 <template>
   <view
     class="jiangqie-list-view jiangqie-list-float-l"
-    wx:if="{{recommend.length>0}}"
+    v-if="recommend.length>0"
   >
     <view class="jiangqie-cmt-title">
       <text>猜你喜欢</text>
     </view>
     <view
-      bindtap="__e"
       class="jiangqie-list-block jiangqie-list-float"
-      data-event-opts="{{[ [ 'tap',[ [ 'recPostClickAction',['$event'] ] ] ] ]}}"
-      data-id="{{item.id}}"
-      data-link="{{item.direct_link}}"
-      data-swith="{{item.direct_link_switch}}"
-      wx:for="{{recommend}}"
-      wx:key="index"
+      @click="recPostClickAction(item)"
+      v-for="(item, index) in recommend"
+      :key="index"
     >
       <view class="jiangqie-list-image">
         <image-loader
-          bind:__l="__l"
           defaultImage="/static/images/placeholder800x400.png"
-          lazyLoad="{{true}}"
+          lazyLoad
           mode="aspectFill"
-          originalImage="{{item.thumbnail}}"
-          vueId="{{'3f3801a0-5-'+index}}"
+          :originalImage="item.thumbnail"
         ></image-loader>
       </view>
       <view class="jiangqie-list-title">{{ item.title }}</view>
@@ -36,9 +30,28 @@
 </template>
 
 <script lang="ts" setup>
-defineOptions({
-  name: ''
-})
-</script>
+import ImageLoader from '@/components/imageLoader/index.vue';
 
-<style lang="scss" scoped></style>
+defineOptions({
+  name: 'ViewRecommend'
+})
+
+type PostItem = {
+  thumbnail: string
+  id: number
+  title: string
+  badge: string
+  stick: boolean
+  excerpt: string
+  views: number
+  likes: number
+  time: string
+  require_score: number
+  thumbnails: string[]
+}
+
+const { recommend = [] } = defineProps<{
+  recommend: Array<Partial<PostItem>>
+}>()
+const recPostClickAction = (item: PostItem) => {}
+</script>

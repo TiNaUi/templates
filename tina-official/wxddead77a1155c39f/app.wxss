@@ -885,6 +885,12 @@ button::after {
     padding-left: 80rpx;
 }
 
+.jiangqie-safearea-bottom {
+  height: env(safe-area-inset-bottom);
+  width: 100%;
+}
+
+
 .jiangqie-operation {
     align-items: center;
     background: #fff;
@@ -899,12 +905,6 @@ button::after {
     width: 100%;
     z-index: 99999;
 }
-
-.jiangqie-safearea-bottom {
-    height: env(safe-area-inset-bottom);
-    width: 100%;
-}
-
 .jiangqie-operation::before {
     border-top: 1rpx solid #eaeef1;
     content: "";

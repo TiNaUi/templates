@@ -38,6 +38,13 @@ $tnt-img-host: "http://img.zukmb.cn/icons";
   white-space: nowrap;
 }
 
+.jiangqie-col-5 {
+  width: 45.66666667%;
+}
+.jiangqie-col-7 {
+  width: 54.33333333%;
+}
+
 @import 'page.scss';
 @import './listView.scss';
 @import './article.scss';

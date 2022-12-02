@@ -43,25 +43,25 @@
             </button>
           </view>
         </template>
-        <block v-else>
+        <template v-else>
           <view class="jiangqie-consume" v-if="post.switch_score == 1">
             <button @click="buyPostClick">
               {{ post.require_score + '积分阅读全文' }}
             </button>
           </view>
-          <block v-else>
+          <template v-else>
             <view class="jiangqie-identity-tips" v-if="post.switch_certify == 1">
               <view class="btn-jili" @click="clickCertify">
                 <view>认证阅读全文</view>
               </view>
               <text>{{ post.certify_require + ' 可直接阅读全文/下载' }}</text>
             </view>
-            <block v-else>
+            <template v-else>
               <view class="btn-jili" @click="adJiliClick" v-if="post.switch_jili == 1 && show_jili">
                 观看完整视频，阅读更多...
                 <image mode="aspectFill" src="/static/images/more.png" />
               </view>
-              <block v-else>
+              <template v-else>
                 <view
                   class="jiangqie-identity-tips"
                   @click="baiduDiskClick"
@@ -72,13 +72,11 @@
                   >
                   <view v-else>百度网盘下载</view>
                 </view>
-              </block>
-            </block>
-          </block>
-        </block>
-        <view class="jiangqie-side-icon" @click="sideBackClick">
-          <view>首页</view>
-        </view>
+              </template>
+            </template>
+          </template>
+        </template>
+        <view class="jiangqie-side-icon" @click="sideBackClick"><view>首页</view></view>
         <view class="jiangqie-article-end">—— The End ——</view>
         <view class="jiangqie-cpinfo" v-if="copyright">{{ '' + copyright + '' }}</view>
         <view class="jiangqie-article-tag">
@@ -92,7 +90,7 @@
           >
         </view>
         <view class="jiangqie-article-adbox" v-if="ad.switch_banner == 'yes' && ad.id_banner != ''">
-          <ad :unitid="ad.id_banner"></ad>
+          <!-- <ad :unitid="ad.id_banner"></ad> -->
         </view>
       </view>
     </view>
@@ -128,15 +126,22 @@
         </view>
       </view>
     </view>
-    <view class="jiangqie-article-adbox" wx:if="{{ad.switch_video=='yes'&&ad.id_video!=''}}">
-      <ad-custom :unitId="ad.id_video"></ad-custom>
+    <view class="jiangqie-article-adbox" v-if="ad.switch_video=='yes'&&ad.id_video!=''">
+      <!-- <ad-custom :unitId="ad.id_video"></ad-custom> -->
     </view>
-    <Recommend />
-    <view bindtap="__e" class="jiangqie-view-adbox" data-event-opts="{{[ [ 'tap',[ [ 'adBottomClick',['$event'] ] ] ] ]}}" data-link="{{ad_bottom.link}}" wx:if="{{ad_bottom}}">
-        <image mode="widthFix" src="{{ad_bottom.image}}"></image>
+    <Recommend :recommend="recommend"/>
+    <view @click="adBottomClick(ad_bottom.link)" class="jiangqie-view-adbox" v-if="ad_bottom">
+      <image mode="widthFix" :src="ad_bottom.image"></image>
     </view>
-    <ReplyList />
-    <Operation />
+    <ReplyList :comments="replyList" :switch_comment="Boolean(+post.switch_comment)" />
+    <Operation
+      :comment_count="+post.comment_count"
+      :switch_comment="Boolean(+post.switch_comment)"
+      :like_count="+post.like_list.length"
+      :post_favorite="Boolean(post.user.isfavorite)"
+      :favorites="post.favorites"
+      :post_like="Boolean(post.user.islike)"
+    />
   </PageContent>
 </template>
 
@@ -146,18 +151,21 @@ import mpHtml from 'mp-html/dist/uni-app/components/mp-html/mp-html.vue'
 import Recommend from './components/recommend.vue'
 import ReplyList from './components/replayList.vue'
 import Operation from './components/operation.vue'
+import { ref } from 'vue'
 
 import postData from '../../../mock/post.json'
 import postInfo from '../../../mock/postInfo.json'
-import { ref } from 'vue'
+import recomendData from '../../../mock/postRecommend.json'
+import replayListData from '../../../mock/replayList.json'
 
 defineOptions({
   name: 'PageView'
 })
 
 const post = ref(postData.data as any)
-console.log('🚀 ~ file: index.vue:126 ~ post', post)
-const { ad_top, ad, copyright: copyrightInfo } = postInfo.data
+const { ad_top, ad, copyright: copyrightInfo, ad_bottom } = postInfo.data
+const recommend = recomendData.data
+const replyList = replayListData.data as any
 
 const show_jili = ref(false)
 const adJiliClick = () => {}
@@ -171,6 +179,7 @@ const buyPostClick = () => {}
 const show_baidu_jili = ref(false)
 const baiduDiskClick = () => {}
 const sideBackClick = () => {}
+const adBottomClick = (link: string) => {}
 
 const copyright = ref(copyrightInfo)
 
